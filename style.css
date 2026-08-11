@@ -1,9 +1,12 @@
 /* =========================================================
-   SEOLCHEON PERFORMANCE LAB
-   style.css
+   설천고 스포츠과학 훈련센터 PRO
+   STYLE.CSS
+   PART 1 / 4
 
-   PART 1
-   Base / Layout / Sidebar / Topbar / Hero
+   DESIGN:
+   - KISS / 선수촌 스포츠과학 시스템 느낌
+   - Dark Navy Performance UI
+   - iPad / Desktop Responsive
 ========================================================= */
 
 
@@ -12,43 +15,40 @@
 ========================================================= */
 
 :root {
-  --bg-main: #050a12;
-  --bg-deep: #03070d;
-  --bg-sidebar: #070d16;
 
-  --panel: #0b1421;
-  --panel-soft: #101b2b;
-  --panel-hover: #132238;
+  --bg-main: #07101d;
+  --bg-deep: #040b14;
+  --bg-sidebar: #07111f;
 
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.14);
+  --surface-1: #0b1726;
+  --surface-2: #0e1d2f;
+  --surface-3: #12243a;
 
-  --blue: #1d7cff;
-  --blue-light: #4ba3ff;
-  --blue-dark: #0c4da2;
+  --border: rgba(148, 163, 184, 0.14);
+  --border-strong: rgba(148, 163, 184, 0.25);
 
-  --cyan: #39c6ff;
+  --text-main: #f8fafc;
+  --text-soft: #cbd5e1;
+  --text-muted: #7f91a8;
 
-  --green: #38d996;
-  --yellow: #f2c94c;
-  --red: #ff5b68;
+  --accent: #28a8ff;
+  --accent-strong: #008cff;
+  --accent-soft: rgba(40, 168, 255, 0.12);
 
-  --text: #f4f8ff;
-  --text-soft: #a9b6c8;
-  --text-muted: #6f8097;
+  --success: #22d3a6;
+  --warning: #f5c451;
+  --danger: #ff647c;
 
-  --sidebar-width: 245px;
-  --topbar-height: 74px;
+  --sidebar-width: 260px;
+  --topbar-height: 82px;
 
-  --radius-small: 10px;
-  --radius: 16px;
-  --radius-large: 22px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
 
   --shadow:
-    0 20px 50px rgba(0, 0, 0, 0.35);
+    0 18px 45px rgba(0, 0, 0, 0.22);
 
-  --transition:
-    0.22s ease;
 }
 
 
@@ -64,31 +64,40 @@
 
 
 html {
-  scroll-behavior: smooth;
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg-main);
+  -webkit-text-size-adjust: 100%;
 }
 
 
 body {
+
+  width: 100%;
   min-height: 100vh;
 
   font-family:
-    "Noto Sans KR",
     -apple-system,
     BlinkMacSystemFont,
+    "Pretendard",
+    "Noto Sans KR",
     "Segoe UI",
     sans-serif;
 
   background:
     radial-gradient(
       circle at 70% 0%,
-      rgba(18, 82, 160, 0.12),
-      transparent 35%
+      rgba(0, 140, 255, 0.08),
+      transparent 32%
     ),
     var(--bg-main);
 
-  color: var(--text);
+  color: var(--text-main);
 
   overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
+
 }
 
 
@@ -102,6 +111,16 @@ textarea {
 
 button {
   border: 0;
+}
+
+
+button,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+button {
   cursor: pointer;
 }
 
@@ -112,23 +131,8 @@ a {
 }
 
 
-img,
-video,
-canvas {
-  display: block;
-  max-width: 100%;
-}
-
-
-select,
-input,
-textarea {
-  outline: none;
-}
-
-
 ::selection {
-  background: var(--blue);
+  background: rgba(40, 168, 255, 0.3);
   color: #ffffff;
 }
 
@@ -144,28 +148,34 @@ textarea {
 
 
 ::-webkit-scrollbar-track {
-  background: #060b12;
+  background: transparent;
 }
 
 
 ::-webkit-scrollbar-thumb {
-  background: #26364b;
+  background: rgba(148, 163, 184, 0.2);
   border-radius: 20px;
 }
 
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #354b67;
+  background: rgba(148, 163, 184, 0.35);
 }
 
 
 /* =========================================================
-   04. APP
+   04. MAIN APP
 ========================================================= */
 
-.app {
+.app-shell {
+
   width: 100%;
   min-height: 100vh;
+
+  display: flex;
+
+  background: var(--bg-main);
+
 }
 
 
@@ -174,13 +184,12 @@ textarea {
 ========================================================= */
 
 .sidebar {
+
   position: fixed;
 
   top: 0;
   left: 0;
   bottom: 0;
-
-  z-index: 100;
 
   width: var(--sidebar-width);
 
@@ -190,14 +199,16 @@ textarea {
   background:
     linear-gradient(
       180deg,
-      rgba(10, 20, 34, 0.98),
-      rgba(4, 9, 16, 0.99)
+      rgba(11, 27, 45, 0.98),
+      rgba(5, 14, 25, 0.99)
     );
 
-  border-right: 1px solid var(--line);
+  border-right: 1px solid var(--border);
 
-  box-shadow:
-    10px 0 40px rgba(0, 0, 0, 0.18);
+  z-index: 1000;
+
+  overflow: hidden;
+
 }
 
 
@@ -206,100 +217,115 @@ textarea {
 ========================================================= */
 
 .brand {
+
   min-height: 92px;
 
   display: flex;
   align-items: center;
 
-  gap: 13px;
+  gap: 12px;
 
   padding: 18px 20px;
 
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border);
+
 }
 
 
-.brand-mark {
+.brand-logo {
+
   position: relative;
 
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
 
-  flex-shrink: 0;
+  flex: 0 0 46px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 14px;
+  border-radius: 13px;
 
   background:
     linear-gradient(
       145deg,
-      #258cff,
-      #0751ad
+      #18a9ff,
+      #006be6
     );
 
   box-shadow:
-    0 8px 25px rgba(29, 124, 255, 0.28);
+    0 8px 24px rgba(0, 140, 255, 0.3);
+
+  overflow: hidden;
+
 }
 
 
-.brand-mark::before {
+.brand-logo::after {
+
   content: "";
 
   position: absolute;
 
-  inset: 4px;
+  width: 30px;
+  height: 30px;
 
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 
-  border-radius: 10px;
+  border-radius: 50%;
+
 }
 
 
-.brand-mark span {
+.brand-logo-main {
+
   position: relative;
-  z-index: 1;
+  z-index: 2;
 
   font-size: 23px;
   font-weight: 900;
 
-  font-style: italic;
-
   color: #ffffff;
+
 }
 
 
 .brand-text {
+
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
 
-  min-width: 0;
+  gap: 4px;
+
 }
 
 
 .brand-text strong {
-  font-size: 18px;
-  font-weight: 800;
-
-  letter-spacing: -0.5px;
 
   color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  white-space: nowrap;
+
 }
 
 
 .brand-text span {
-  margin-top: 1px;
-
-  font-size: 10px;
-  font-weight: 600;
-
-  letter-spacing: 0.6px;
 
   color: var(--text-muted);
 
-  text-transform: uppercase;
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.1px;
+
+  white-space: nowrap;
+
 }
 
 
@@ -308,139 +334,180 @@ textarea {
 ========================================================= */
 
 .sidebar-nav {
+
   flex: 1;
 
+  padding: 16px 12px 24px;
+
   overflow-y: auto;
+  overflow-x: hidden;
+
+}
+
+
+.nav-section-title {
 
   padding:
-    16px
+    18px
     12px
-    24px;
-}
-
-
-.sidebar-nav::-webkit-scrollbar {
-  width: 3px;
-}
-
-
-.nav-section {
-  margin-top: 22px;
-}
-
-
-.nav-title {
-  padding:
-    0
-    11px
     8px;
 
-  font-size: 10px;
-  font-weight: 700;
+  color: #566b83;
 
-  letter-spacing: 1.4px;
+  font-size: 9px;
+  font-weight: 800;
 
-  color: #53657c;
+  letter-spacing: 1.5px;
 
-  text-transform: uppercase;
+}
+
+
+.nav-section-title:first-child {
+  padding-top: 4px;
 }
 
 
 .nav-item {
+
   position: relative;
 
   width: 100%;
-  min-height: 44px;
+  min-height: 46px;
 
   display: flex;
   align-items: center;
 
-  gap: 12px;
+  gap: 11px;
 
   margin-bottom: 4px;
 
   padding:
-    0
-    13px;
+    10px
+    12px;
 
-  border-radius: 10px;
+  border-radius: 11px;
 
   background: transparent;
 
-  color: #8999ad;
+  color: #91a3b8;
 
   text-align: left;
 
-  transition: var(--transition);
-}
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
 
-
-.nav-item i {
-  width: 20px;
-
-  text-align: center;
-
-  font-size: 15px;
-
-  color: #60738c;
-
-  transition: var(--transition);
-}
-
-
-.nav-item span {
-  font-size: 13px;
-  font-weight: 600;
 }
 
 
 .nav-item:hover {
-  background:
-    rgba(255, 255, 255, 0.035);
 
-  color: #d9e7f7;
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #ffffff;
+
 }
 
 
-.nav-item:hover i {
-  color: var(--blue-light);
+.nav-item:active {
+  transform: scale(0.985);
 }
 
 
 .nav-item.active {
+
+  color: #ffffff;
+
   background:
     linear-gradient(
       90deg,
-      rgba(29, 124, 255, 0.17),
-      rgba(29, 124, 255, 0.05)
+      rgba(0, 140, 255, 0.18),
+      rgba(0, 140, 255, 0.06)
     );
 
-  color: #ffffff;
+  box-shadow:
+    inset 3px 0 0 var(--accent);
+
 }
 
 
-.nav-item.active::before {
-  content: "";
+.nav-icon {
 
-  position: absolute;
-
-  left: 0;
-
-  width: 3px;
+  width: 24px;
   height: 24px;
 
-  border-radius:
-    0
-    4px
-    4px
-    0;
+  flex: 0 0 24px;
 
-  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #7189a3;
+
+  font-size: 17px;
+
 }
 
 
-.nav-item.active i {
-  color: #48a1ff;
+.nav-item.active .nav-icon {
+  color: var(--accent);
+}
+
+
+.nav-label {
+
+  min-width: 0;
+
+  flex: 1;
+
+  font-size: 13px;
+  font-weight: 650;
+
+  white-space: nowrap;
+
+}
+
+
+.nav-count {
+
+  min-width: 34px;
+
+  padding:
+    4px
+    7px;
+
+  border-radius: 20px;
+
+  background: rgba(148, 163, 184, 0.09);
+
+  color: #758aa2;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  text-align: center;
+
+}
+
+
+.nav-badge {
+
+  padding:
+    4px
+    7px;
+
+  border-radius: 6px;
+
+  background: rgba(40, 168, 255, 0.14);
+
+  color: #54baff;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 0.6px;
+
 }
 
 
@@ -449,60 +516,100 @@ textarea {
 ========================================================= */
 
 .sidebar-footer {
-  min-height: 105px;
 
-  padding:
-    16px
-    20px;
+  padding: 14px 16px;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border);
 
-  background:
-    rgba(0, 0, 0, 0.12);
+  background: rgba(3, 10, 18, 0.3);
+
 }
 
 
-.footer-logo {
-  margin-bottom: 5px;
+.system-status {
 
-  font-size: 13px;
-  font-weight: 900;
+  display: flex;
+  align-items: center;
 
-  letter-spacing: 2px;
+  gap: 10px;
 
-  color: var(--blue-light);
 }
 
 
-.sidebar-footer p {
+.status-dot {
+
+  width: 8px;
+  height: 8px;
+
+  flex: 0 0 8px;
+
+  border-radius: 50%;
+
+  background: var(--success);
+
+  box-shadow:
+    0 0 0 4px rgba(34, 211, 166, 0.08),
+    0 0 12px rgba(34, 211, 166, 0.55);
+
+}
+
+
+.system-status div {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+}
+
+
+.system-status strong {
+
+  color: #dce7f3;
+
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 800;
 
-  color: #8da0b7;
+  letter-spacing: 0.8px;
+
 }
 
 
-.sidebar-footer span {
-  display: block;
+.system-status small {
 
-  margin-top: 2px;
+  color: var(--success);
 
   font-size: 8px;
+  font-weight: 800;
 
-  letter-spacing: 0.7px;
+}
 
-  color: #46586e;
+
+.system-version {
+
+  margin-top: 10px;
+  margin-left: 18px;
+
+  color: #40546a;
+
+  font-size: 8px;
+  font-weight: 700;
+
 }
 
 
 /* =========================================================
-   09. MAIN
+   09. MAIN AREA
 ========================================================= */
 
-.main {
+.main-area {
+
+  width: calc(100% - var(--sidebar-width));
   min-height: 100vh;
 
   margin-left: var(--sidebar-width);
+
 }
 
 
@@ -511,13 +618,12 @@ textarea {
 ========================================================= */
 
 .topbar {
+
   position: sticky;
 
   top: 0;
 
-  z-index: 80;
-
-  height: var(--topbar-height);
+  min-height: var(--topbar-height);
 
   display: flex;
   align-items: center;
@@ -526,67 +632,609 @@ textarea {
   gap: 20px;
 
   padding:
-    0
+    13px
     28px;
 
-  background:
-    rgba(5, 10, 18, 0.88);
+  background: rgba(7, 16, 29, 0.88);
 
-  backdrop-filter:
-    blur(18px);
+  border-bottom: 1px solid var(--border);
 
-  -webkit-backdrop-filter:
-    blur(18px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
-  border-bottom:
-    1px solid var(--line);
+  z-index: 800;
+
 }
 
 
-.mobile-menu {
-  display: none;
+.topbar-left {
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+}
+
+
+.topbar-eyebrow {
+
+  margin-bottom: 3px;
+
+  color: #54718f;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+}
+
+
+.topbar h1 {
+
+  color: #f8fbff;
+
+  font-size: 22px;
+  font-weight: 800;
+
+  line-height: 1.2;
+
+}
+
+
+.mobile-menu-btn {
 
   width: 42px;
   height: 42px;
 
+  display: none;
   align-items: center;
   justify-content: center;
 
+  border: 1px solid var(--border);
+
   border-radius: 10px;
 
-  background: var(--panel);
+  background: var(--surface-1);
 
   color: #ffffff;
+
+  font-size: 19px;
+
 }
 
 
-.top-message {
-  font-size: 13px;
-  font-weight: 500;
+.topbar-right {
 
-  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
 
-  color: #8392a5;
+  gap: 10px;
+
 }
 
 
-.top-message strong {
-  color: #eaf4ff;
+/* =========================================================
+   11. TOP STATUS
+========================================================= */
+
+.top-status-card {
+
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    8px
+    13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  background: rgba(12, 28, 46, 0.72);
+
 }
 
 
-.top-actions {
+.top-status-card div {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1px;
+
+}
+
+
+.top-status-card small {
+
+  color: var(--text-muted);
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+
+}
+
+
+.top-status-card strong {
+
+  color: var(--success);
+
+  font-size: 9px;
+  font-weight: 900;
+
+}
+
+
+/* =========================================================
+   12. GLOBAL BUTTONS
+========================================================= */
+
+.primary-btn,
+.secondary-btn {
+
+  min-height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding:
+    10px
+    16px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease,
+    border-color 0.18s ease;
+
+}
+
+
+.primary-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #1ba7ff,
+      #0077ed
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 22px rgba(0, 119, 237, 0.2);
+
+}
+
+
+.primary-btn:hover {
+  filter: brightness(1.08);
+}
+
+
+.primary-btn:active,
+.secondary-btn:active {
+  transform: scale(0.98);
+}
+
+
+.secondary-btn {
+
+  border: 1px solid var(--border-strong);
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: #dbe8f5;
+
+}
+
+
+.secondary-btn:hover {
+
+  border-color: rgba(40, 168, 255, 0.35);
+
+  background: rgba(40, 168, 255, 0.06);
+
+}
+
+
+.primary-btn.large,
+.secondary-btn.large {
+
+  min-height: 48px;
+
+  padding:
+    12px
+    20px;
+
+}
+
+
+.secondary-btn.full {
+  width: 100%;
+}
+
+
+/* =========================================================
+   13. PROFILE
+========================================================= */
+
+.profile-button {
+
+  min-height: 44px;
+
   display: flex;
   align-items: center;
 
   gap: 9px;
+
+  padding:
+    5px
+    10px
+    5px
+    6px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 11px;
+
+  background: rgba(12, 28, 46, 0.72);
+
+  color: #ffffff;
+
 }
 
 
-.icon-button,
-.profile-button {
-  width: 40px;
-  height: 40px;
+.profile-avatar {
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #173f69,
+      #0b2948
+    );
+
+  color: #78c8ff;
+
+  font-size: 10px;
+  font-weight: 900;
+
+}
+
+
+.profile-info {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 1px;
+
+}
+
+
+.profile-info strong {
+
+  color: #eaf4ff;
+
+  font-size: 10px;
+  font-weight: 800;
+
+}
+
+
+.profile-info small {
+
+  color: #5e7690;
+
+  font-size: 6px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+}
+
+
+/* =========================================================
+   14. PAGE CONTENT
+========================================================= */
+
+.page-content {
+
+  width: 100%;
+
+  padding:
+    26px
+    28px
+    50px;
+
+}
+
+
+.page-section {
+
+  display: none;
+
+  width: 100%;
+
+}
+
+
+.page-section.active {
+  display: block;
+}
+
+
+/* =========================================================
+   15. MOBILE OVERLAY
+========================================================= */
+
+.sidebar-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  display: none;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  z-index: 900;
+
+}
+
+
+.sidebar-overlay.active {
+  display: block;
+}
+/* =========================================================
+   설천고 스포츠과학 훈련센터 PRO
+   STYLE.CSS
+   PART 2 / 4
+
+   DASHBOARD
+========================================================= */
+
+
+/* =========================================================
+   16. DASHBOARD HERO
+========================================================= */
+
+.dashboard-hero {
+
+  position: relative;
+
+  min-height: 300px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.45fr)
+    minmax(280px, 0.55fr);
+
+  align-items: center;
+
+  gap: 30px;
+
+  padding: 38px 42px;
+
+  border: 1px solid rgba(73, 139, 201, 0.18);
+
+  border-radius: var(--radius-lg);
+
+  background:
+    radial-gradient(
+      circle at 78% 45%,
+      rgba(0, 140, 255, 0.14),
+      transparent 27%
+    ),
+    linear-gradient(
+      120deg,
+      #0b1a2c 0%,
+      #0a1727 45%,
+      #07121f 100%
+    );
+
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
+
+}
+
+
+.dashboard-hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.16;
+
+  background-image:
+    linear-gradient(
+      rgba(72, 130, 180, 0.12) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(72, 130, 180, 0.12) 1px,
+      transparent 1px
+    );
+
+  background-size: 34px 34px;
+
+}
+
+
+.dashboard-hero::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  right: -120px;
+  top: -160px;
+
+  border: 1px solid rgba(40, 168, 255, 0.12);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 40px rgba(40, 168, 255, 0.018),
+    0 0 0 80px rgba(40, 168, 255, 0.012);
+
+}
+
+
+.hero-content {
+
+  position: relative;
+  z-index: 2;
+
+  max-width: 700px;
+
+}
+
+
+.hero-badge {
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 26px;
+
+  padding:
+    5px
+    10px;
+
+  margin-bottom: 17px;
+
+  border: 1px solid rgba(40, 168, 255, 0.22);
+
+  border-radius: 7px;
+
+  background: rgba(40, 168, 255, 0.07);
+
+  color: #62c2ff;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: 1.2px;
+
+}
+
+
+.hero-content h2 {
+
+  color: #f7fbff;
+
+  font-size: clamp(
+    28px,
+    3.3vw,
+    46px
+  );
+
+  font-weight: 850;
+
+  line-height: 1.16;
+
+  letter-spacing: -1.6px;
+
+}
+
+
+.hero-content h2 span {
+
+  color: #39afff;
+
+}
+
+
+.hero-content p {
+
+  max-width: 600px;
+
+  margin-top: 17px;
+
+  color: #8499b0;
+
+  font-size: 13px;
+
+  line-height: 1.8;
+
+}
+
+
+.hero-actions {
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 25px;
+
+}
+
+
+/* =========================================================
+   17. HERO SYSTEM
+========================================================= */
+
+.hero-system {
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 20px;
+
+}
+
+
+.system-ring {
+
+  width: 145px;
+  height: 145px;
 
   display: flex;
   align-items: center;
@@ -595,61 +1243,2668 @@ textarea {
   border-radius: 50%;
 
   background:
-    rgba(255, 255, 255, 0.035);
+    conic-gradient(
+      from 0deg,
+      #18a8ff,
+      #0a6cff,
+      #22d3a6,
+      #18a8ff
+    );
 
-  border:
-    1px solid var(--line);
+  padding: 2px;
 
-  color: #8293a8;
+  box-shadow:
+    0 0 35px rgba(0, 140, 255, 0.13);
 
-  transition: var(--transition);
 }
 
 
-.icon-button:hover,
-.profile-button:hover {
+.system-ring-inner {
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  border-radius: 50%;
+
   background:
-    rgba(29, 124, 255, 0.12);
+    radial-gradient(
+      circle,
+      #0e2238,
+      #081523 70%
+    );
 
-  border-color:
-    rgba(29, 124, 255, 0.35);
+}
 
-  color: #ffffff;
+
+.system-ring-inner strong {
+
+  color: var(--success);
+
+  font-size: 21px;
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+}
+
+
+.system-ring-inner span {
+
+  color: #5f7892;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+
+}
+
+
+.hero-system-info {
+
+  width: 100%;
+  max-width: 260px;
+
+  display: grid;
+
+  gap: 7px;
+
+}
+
+
+.hero-system-info > div {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding:
+    7px
+    10px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+
+}
+
+
+.hero-system-info span {
+
+  color: #60778f;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+
+}
+
+
+.hero-system-info strong {
+
+  color: #9fb5c9;
+
+  font-size: 8px;
+  font-weight: 900;
+
+}
+
+
+.hero-system-info div:first-child strong,
+.hero-system-info div:nth-child(2) strong {
+
+  color: var(--success);
+
 }
 
 
 /* =========================================================
-   11. PAGE SYSTEM
+   18. SECTION HEADINGS
 ========================================================= */
 
-.page-container {
-  width: 100%;
+.section-heading {
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin:
+    34px
+    0
+    15px;
+
 }
 
 
-.page {
-  display: none;
+.section-eyebrow {
 
-  width: 100%;
-
-  min-height:
-    calc(100vh - var(--topbar-height));
-
-  padding:
-    28px
-    30px
-    60px;
-}
-
-
-.page.active {
   display: block;
 
-  animation:
-    pageFadeIn
-    0.3s ease;
+  margin-bottom: 4px;
+
+  color: #4d6c8c;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
 }
 
+
+.section-heading h2 {
+
+  color: #eaf3fc;
+
+  font-size: 19px;
+  font-weight: 800;
+
+}
+
+
+.section-date {
+
+  color: #61778d;
+
+  font-size: 9px;
+
+}
+
+
+.quick-heading {
+  margin-top: 38px;
+}
+
+
+/* =========================================================
+   19. SUMMARY CARDS
+========================================================= */
+
+.summary-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+}
+
+
+.summary-card {
+
+  position: relative;
+
+  min-height: 142px;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 33, 53, 0.92),
+      rgba(9, 23, 38, 0.94)
+    );
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+
+}
+
+
+.summary-card::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 90px;
+  height: 90px;
+
+  right: -38px;
+  bottom: -45px;
+
+  border-radius: 50%;
+
+  background: rgba(40, 168, 255, 0.04);
+
+}
+
+
+.summary-card:hover {
+
+  transform: translateY(-2px);
+
+  border-color: rgba(40, 168, 255, 0.24);
+
+}
+
+
+.summary-card-top {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+}
+
+
+.summary-icon {
+
+  width: 33px;
+  height: 33px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: var(--accent-soft);
+
+  color: #56bbff;
+
+  font-size: 17px;
+
+}
+
+
+.summary-trend {
+
+  padding:
+    4px
+    7px;
+
+  border-radius: 5px;
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: 0.7px;
+
+}
+
+
+.summary-trend.neutral {
+
+  background: rgba(148, 163, 184, 0.07);
+
+  color: #6f859b;
+
+}
+
+
+.summary-trend.positive {
+
+  background: rgba(34, 211, 166, 0.08);
+
+  color: var(--success);
+
+}
+
+
+.summary-value {
+
+  display: flex;
+  align-items: baseline;
+
+  gap: 5px;
+
+  margin-top: 15px;
+
+}
+
+
+.summary-value strong {
+
+  color: #ffffff;
+
+  font-size: 27px;
+  font-weight: 850;
+
+  line-height: 1;
+
+}
+
+
+.summary-value span {
+
+  color: #647b92;
+
+  font-size: 10px;
+  font-weight: 700;
+
+}
+
+
+.summary-card p {
+
+  margin-top: 7px;
+
+  color: #71869c;
+
+  font-size: 10px;
+
+}
+
+
+/* =========================================================
+   20. DASHBOARD GRID
+========================================================= */
+
+.dashboard-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin-top: 14px;
+
+}
+
+
+.panel {
+
+  position: relative;
+
+  min-width: 0;
+
+  padding: 19px;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13, 29, 47, 0.94),
+      rgba(8, 20, 34, 0.96)
+    );
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.recent-analysis-panel {
+  grid-column: span 7;
+}
+
+
+.performance-panel {
+  grid-column: span 5;
+}
+
+
+.sports-panel {
+  grid-column: span 7;
+}
+
+
+.elite-panel {
+  grid-column: span 5;
+}
+
+
+.chart-panel {
+  grid-column: span 8;
+}
+
+
+.university-panel {
+  grid-column: span 4;
+}
+
+
+/* =========================================================
+   21. PANEL HEADER
+========================================================= */
+
+.panel-header {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  min-height: 40px;
+
+  padding-bottom: 13px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+
+}
+
+
+.panel-eyebrow {
+
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #4f6b87;
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: 1.2px;
+
+}
+
+
+.panel-header h3 {
+
+  color: #e8f1fa;
+
+  font-size: 14px;
+  font-weight: 800;
+
+}
+
+
+.text-button {
+
+  padding: 6px;
+
+  background: transparent;
+
+  color: #5799c8;
+
+  font-size: 9px;
+  font-weight: 700;
+
+}
+
+
+.text-button:hover {
+  color: #74c8ff;
+}
+
+
+.live-badge,
+.university-badge {
+
+  padding:
+    5px
+    7px;
+
+  border-radius: 5px;
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: 0.7px;
+
+}
+
+
+.live-badge {
+
+  background: rgba(34, 211, 166, 0.07);
+
+  color: var(--success);
+
+}
+
+
+.university-badge {
+
+  background: rgba(40, 168, 255, 0.08);
+
+  color: #4ab5ff;
+
+}
+
+
+/* =========================================================
+   22. EMPTY STATE
+========================================================= */
+
+.recent-analysis-list {
+
+  min-height: 210px;
+
+}
+
+
+.empty-state {
+
+  min-height: 210px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  text-align: center;
+
+}
+
+
+.empty-icon {
+
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border: 1px solid rgba(40, 168, 255, 0.13);
+
+  border-radius: 50%;
+
+  background: rgba(40, 168, 255, 0.05);
+
+  color: #43b2ff;
+
+  font-size: 22px;
+
+}
+
+
+.empty-state strong {
+
+  color: #b8c8d8;
+
+  font-size: 12px;
+
+}
+
+
+.empty-state p {
+
+  margin:
+    6px
+    0
+    15px;
+
+  color: #5d738a;
+
+  font-size: 9px;
+
+}
+
+
+/* =========================================================
+   23. PERFORMANCE SCORE
+========================================================= */
+
+.performance-score-wrap {
+
+  padding-top: 18px;
+
+}
+
+
+.big-score {
+
+  display: flex;
+  align-items: baseline;
+
+  gap: 6px;
+
+  margin-bottom: 21px;
+
+}
+
+
+.big-score span {
+
+  margin-right: auto;
+
+  color: #6f849a;
+
+  font-size: 9px;
+
+}
+
+
+.big-score strong {
+
+  color: #ffffff;
+
+  font-size: 35px;
+  font-weight: 900;
+
+}
+
+
+.big-score small {
+
+  color: #526a82;
+
+  font-size: 9px;
+
+}
+
+
+.score-bars {
+
+  display: grid;
+
+  gap: 13px;
+
+}
+
+
+.score-row {
+
+  display: grid;
+
+  gap: 6px;
+
+}
+
+
+.score-label {
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  color: #788da3;
+
+  font-size: 9px;
+
+}
+
+
+.score-label strong {
+
+  color: #b8c8d8;
+
+  font-size: 9px;
+
+}
+
+
+.progress-track {
+
+  position: relative;
+
+  width: 100%;
+  height: 5px;
+
+  border-radius: 20px;
+
+  background: rgba(148, 163, 184, 0.08);
+
+  overflow: hidden;
+
+}
+
+
+.progress-fill {
+
+  width: 0%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #057ce7,
+      #31b3ff
+    );
+
+  transition: width 0.5s ease;
+
+}
+
+
+/* =========================================================
+   24. SPORT QUICK GRID
+========================================================= */
+
+.sport-quick-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+
+  padding-top: 16px;
+
+}
+
+
+.sport-quick-card {
+
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 13px;
+
+  border: 1px solid rgba(148, 163, 184, 0.1);
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  color: #ffffff;
+
+  text-align: left;
+
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+
+}
+
+
+.sport-quick-card:hover {
+
+  border-color: rgba(40, 168, 255, 0.26);
+
+  background: rgba(40, 168, 255, 0.045);
+
+  transform: translateY(-1px);
+
+}
+
+
+.sport-quick-icon {
+
+  width: 39px;
+  height: 39px;
+
+  flex: 0 0 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: rgba(40, 168, 255, 0.07);
+
+  font-size: 19px;
+
+}
+
+
+.sport-quick-card > div {
+
+  min-width: 0;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+
+.sport-quick-card strong {
+
+  color: #cddae6;
+
+  font-size: 11px;
+
+}
+
+
+.sport-quick-card div span {
+
+  color: #60768c;
+
+  font-size: 8px;
+
+}
+
+
+.quick-arrow {
+
+  color: #42617d;
+
+  font-size: 15px;
+
+}
+
+
+/* =========================================================
+   25. ELITE COMPARISON
+========================================================= */
+
+.elite-comparison {
+
+  display: grid;
+
+  grid-template-columns:
+    0.8fr
+    1.2fr;
+
+  gap: 16px;
+
+  padding-top: 16px;
+
+}
+
+
+.elite-visual {
+
+  position: relative;
+
+  min-height: 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(40, 168, 255, 0.08);
+
+  border-radius: 12px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(40, 168, 255, 0.08),
+      transparent 65%
+    );
+
+  overflow: hidden;
+
+}
+
+
+.elite-target-ring {
+
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding-bottom: 7px;
+
+  border:
+    1px
+    dashed
+    rgba(40, 168, 255, 0.16);
+
+  border-radius: 50%;
+
+}
+
+
+.elite-target-ring::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 78px;
+  height: 78px;
+
+  left: 20px;
+  top: 20px;
+
+  border:
+    1px
+    dashed
+    rgba(40, 168, 255, 0.12);
+
+  border-radius: 50%;
+
+}
+
+
+.elite-target-ring span {
+
+  color: #386487;
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+}
+
+
+.elite-human {
+
+  position: relative;
+
+  width: 60px;
+  height: 130px;
+
+  z-index: 2;
+
+}
+
+
+.human-head {
+
+  position: absolute;
+
+  width: 18px;
+  height: 18px;
+
+  left: 21px;
+  top: 5px;
+
+  border:
+    2px
+    solid
+    rgba(67, 178, 255, 0.7);
+
+  border-radius: 50%;
+
+}
+
+
+.human-body {
+
+  position: absolute;
+
+  width: 2px;
+  height: 49px;
+
+  left: 29px;
+  top: 25px;
+
+  background: rgba(67, 178, 255, 0.7);
+
+}
+
+
+.human-arm,
+.human-leg {
+
+  position: absolute;
+
+  width: 2px;
+
+  background: rgba(67, 178, 255, 0.65);
+
+  transform-origin: top center;
+
+}
+
+
+.human-arm {
+  height: 43px;
+  top: 30px;
+}
+
+
+.human-arm.left {
+
+  left: 27px;
+
+  transform: rotate(42deg);
+
+}
+
+
+.human-arm.right {
+
+  left: 31px;
+
+  transform: rotate(-42deg);
+
+}
+
+
+.human-leg {
+
+  height: 52px;
+  top: 72px;
+
+}
+
+
+.human-leg.left {
+
+  left: 28px;
+
+  transform: rotate(18deg);
+
+}
+
+
+.human-leg.right {
+
+  left: 31px;
+
+  transform: rotate(-18deg);
+
+}
+
+
+.elite-info {
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 8px;
+
+}
+
+
+.elite-info-row {
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding:
+    8px
+    0;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.07);
+
+}
+
+
+.elite-info-row span {
+
+  color: #637990;
+
+  font-size: 8px;
+
+}
+
+
+.elite-info-row strong {
+
+  color: #aabccd;
+
+  font-size: 8px;
+
+  text-align: right;
+
+}
+
+
+.elite-info-row .ready-text {
+  color: var(--success);
+}
+
+
+/* =========================================================
+   26. DEVELOPMENT CHART
+========================================================= */
+
+.compact-select {
+
+  min-height: 31px;
+
+  padding:
+    5px
+    27px
+    5px
+    9px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 7px;
+
+  outline: none;
+
+  background: #0c1b2c;
+
+  color: #8ca1b6;
+
+  font-size: 8px;
+
+}
+
+
+.chart-container {
+
+  position: relative;
+
+  width: 100%;
+  height: 255px;
+
+  padding-top: 15px;
+
+}
+
+
+.chart-container canvas {
+
+  width: 100% !important;
+  height: 100% !important;
+
+}
+
+
+.chart-empty-state {
+
+  position: absolute;
+
+  inset:
+    15px
+    0
+    0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #536b83;
+
+  font-size: 9px;
+
+  text-align: center;
+
+}
+
+
+/* =========================================================
+   27. UNIVERSITY PANEL
+========================================================= */
+
+.university-empty {
+
+  min-height: 255px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  text-align: center;
+
+}
+
+
+.university-icon {
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 13px;
+
+  border: 1px solid rgba(40, 168, 255, 0.12);
+
+  border-radius: 14px;
+
+  background: rgba(40, 168, 255, 0.05);
+
+  font-size: 22px;
+
+}
+
+
+.university-empty strong {
+
+  color: #bdcad7;
+
+  font-size: 12px;
+
+}
+
+
+.university-empty p {
+
+  max-width: 260px;
+
+  margin:
+    7px
+    0
+    16px;
+
+  color: #5f758b;
+
+  font-size: 9px;
+
+  line-height: 1.65;
+
+}
+
+
+/* =========================================================
+   28. QUICK ACTIONS
+========================================================= */
+
+.quick-actions-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+}
+
+
+.quick-action-card {
+
+  min-height: 115px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 17px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 31, 50, 0.86),
+      rgba(8, 20, 34, 0.92)
+    );
+
+  color: #ffffff;
+
+  text-align: left;
+
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease;
+
+}
+
+
+.quick-action-card:hover {
+
+  transform: translateY(-2px);
+
+  border-color: rgba(40, 168, 255, 0.25);
+
+}
+
+
+.quick-action-icon {
+
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 5px;
+
+  border-radius: 8px;
+
+  background: rgba(40, 168, 255, 0.08);
+
+  color: #4db8ff;
+
+  font-size: 16px;
+
+}
+
+
+.quick-action-card strong {
+
+  color: #d1deea;
+
+  font-size: 11px;
+
+}
+
+
+.quick-action-card small {
+
+  color: #5c7288;
+
+  font-size: 8px;
+
+}
+/* =========================================================
+   설천고 스포츠과학 훈련센터 PRO
+   STYLE.CSS
+   PART 3 / 4
+
+   SUB PAGES
+========================================================= */
+
+
+/* =========================================================
+   29. PAGE PLACEHOLDER / SUB PAGE BASE
+========================================================= */
+
+.page-placeholder {
+
+  position: relative;
+
+  width: 100%;
+  min-height: calc(100vh - 160px);
+
+  padding: 34px;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(40, 168, 255, 0.07),
+      transparent 25%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(13, 29, 47, 0.95),
+      rgba(7, 18, 31, 0.97)
+    );
+
+  overflow: hidden;
+
+}
+
+
+.page-placeholder::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.11;
+
+  background-image:
+    linear-gradient(
+      rgba(89, 142, 190, 0.12) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(89, 142, 190, 0.12) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+}
+
+
+.page-placeholder > * {
+
+  position: relative;
+  z-index: 2;
+
+}
+
+
+.placeholder-badge {
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 27px;
+
+  padding: 5px 10px;
+
+  margin-bottom: 14px;
+
+  border: 1px solid rgba(40, 168, 255, 0.18);
+
+  border-radius: 7px;
+
+  background: rgba(40, 168, 255, 0.06);
+
+  color: #4fb8ff;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 1.2px;
+
+}
+
+
+.placeholder-badge.ai {
+
+  border-color: rgba(34, 211, 166, 0.18);
+
+  background: rgba(34, 211, 166, 0.05);
+
+  color: var(--success);
+
+}
+
+
+.page-placeholder > h2 {
+
+  color: #f4f9ff;
+
+  font-size: 29px;
+  font-weight: 850;
+
+  letter-spacing: -0.8px;
+
+}
+
+
+.page-placeholder > p {
+
+  max-width: 720px;
+
+  margin-top: 9px;
+
+  color: #71879d;
+
+  font-size: 11px;
+
+  line-height: 1.75;
+
+}
+
+
+.placeholder-actions {
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 22px;
+
+}
+
+
+/* =========================================================
+   30. CATEGORY PREVIEW
+========================================================= */
+
+.category-preview-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 30px;
+
+}
+
+
+.category-preview-card {
+
+  min-height: 155px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  border: 1px solid rgba(148, 163, 184, 0.11);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(16, 36, 58, 0.82),
+      rgba(8, 21, 35, 0.88)
+    );
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+
+}
+
+
+.category-preview-card:hover {
+
+  transform: translateY(-3px);
+
+  border-color: rgba(40, 168, 255, 0.28);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(19, 43, 69, 0.92),
+      rgba(9, 25, 41, 0.94)
+    );
+
+}
+
+
+.category-preview-card > span {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 43px;
+  height: 43px;
+
+  margin-bottom: 15px;
+
+  border-radius: 11px;
+
+  background: rgba(40, 168, 255, 0.07);
+
+  font-size: 21px;
+
+}
+
+
+.category-preview-card strong {
+
+  color: #d9e5f0;
+
+  font-size: 12px;
+
+}
+
+
+.category-preview-card small {
+
+  margin-top: 5px;
+
+  color: #536c84;
+
+  font-size: 8px;
+
+}
+
+
+/* =========================================================
+   31. PE ENTRANCE FLOW
+========================================================= */
+
+.entrance-flow {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    50px
+    1fr
+    50px
+    1fr
+    50px
+    1fr;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 36px;
+
+}
+
+
+.flow-step {
+
+  min-height: 135px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 15px;
+
+  border: 1px solid rgba(40, 168, 255, 0.12);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(17, 39, 63, 0.72),
+      rgba(9, 23, 39, 0.8)
+    );
+
+  text-align: center;
+
+}
+
+
+.flow-step span {
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(40, 168, 255, 0.09);
+
+  color: #4bb7ff;
+
+  font-size: 10px;
+  font-weight: 900;
+
+}
+
+
+.flow-step strong {
+
+  color: #c4d2df;
+
+  font-size: 10px;
+
+}
+
+
+.flow-line {
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(40, 168, 255, 0.05),
+      rgba(40, 168, 255, 0.4),
+      rgba(40, 168, 255, 0.05)
+    );
+
+}
+
+
+/* =========================================================
+   32. POSE ANALYSIS PREVIEW
+========================================================= */
+
+.pose-placeholder {
+
+  background:
+    radial-gradient(
+      circle at 72% 38%,
+      rgba(0, 140, 255, 0.09),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 88% 15%,
+      rgba(34, 211, 166, 0.045),
+      transparent 20%
+    ),
+    linear-gradient(
+      145deg,
+      #0b1b2d,
+      #071321
+    );
+
+}
+
+
+.pose-feature-preview {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 31px;
+
+}
+
+
+.pose-feature-preview > div {
+
+  min-height: 145px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 19px;
+
+  border: 1px solid rgba(40, 168, 255, 0.12);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 35, 57, 0.84),
+      rgba(7, 21, 36, 0.88)
+    );
+
+}
+
+
+.pose-feature-number {
+
+  margin-bottom: 15px;
+
+  color: #258fd5;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+}
+
+
+.pose-feature-preview strong {
+
+  color: #d8e7f4;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  letter-spacing: 0.7px;
+
+}
+
+
+.pose-feature-preview small {
+
+  margin-top: 5px;
+
+  color: #5b748d;
+
+  font-size: 8px;
+
+}
+
+
+.development-warning {
+
+  max-width: 760px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-top: 20px;
+
+  padding: 14px;
+
+  border: 1px solid rgba(34, 211, 166, 0.12);
+
+  border-radius: 11px;
+
+  background: rgba(34, 211, 166, 0.035);
+
+}
+
+
+.development-warning > span {
+
+  color: var(--success);
+
+  font-size: 9px;
+
+  text-shadow:
+    0 0 8px rgba(34, 211, 166, 0.6);
+
+}
+
+
+.development-warning div {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+
+.development-warning strong {
+
+  color: #73d9c0;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 0.8px;
+
+}
+
+
+.development-warning p {
+
+  color: #607d79;
+
+  font-size: 8px;
+
+  line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   33. COMPARISON PREVIEW
+========================================================= */
+
+.comparison-preview {
+
+  max-width: 850px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    80px
+    1fr;
+
+  align-items: stretch;
+
+  gap: 12px;
+
+  margin-top: 32px;
+
+}
+
+
+.comparison-side {
+
+  min-height: 240px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  border: 1px solid rgba(148, 163, 184, 0.12);
+
+  border-radius: 16px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(40, 168, 255, 0.05),
+      transparent 65%
+    ),
+    rgba(7, 20, 34, 0.7);
+
+}
+
+
+.comparison-side.elite {
+
+  border-color: rgba(34, 211, 166, 0.13);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(34, 211, 166, 0.045),
+      transparent 65%
+    ),
+    rgba(7, 20, 34, 0.7);
+
+}
+
+
+.comparison-side > span {
+
+  color: #526c85;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 1.4px;
+
+}
+
+
+.comparison-side > strong {
+
+  margin-top: 8px;
+
+  color: #c9d7e4;
+
+  font-size: 14px;
+
+}
+
+
+.comparison-score {
+
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+
+  border: 1px solid rgba(40, 168, 255, 0.17);
+
+  border-radius: 50%;
+
+  background: rgba(40, 168, 255, 0.045);
+
+  color: #49b6ff;
+
+  font-size: 18px;
+  font-weight: 900;
+
+}
+
+
+.comparison-side.elite .comparison-score {
+
+  border-color: rgba(34, 211, 166, 0.17);
+
+  background: rgba(34, 211, 166, 0.04);
+
+  color: var(--success);
+
+  font-size: 10px;
+
+  letter-spacing: 0.8px;
+
+}
+
+
+.comparison-vs {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #405d77;
+
+  font-size: 13px;
+  font-weight: 900;
+
+}
+
+
+/* =========================================================
+   34. ATHLETE PAGE FUTURE COMPONENTS
+========================================================= */
+
+.athlete-toolbar {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 25px;
+
+}
+
+
+.athlete-search {
+
+  width: min(100%, 360px);
+  height: 42px;
+
+  padding:
+    0
+    13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: rgba(5, 16, 28, 0.78);
+
+  color: #e7f1fa;
+
+}
+
+
+.athlete-search::placeholder {
+  color: #50677e;
+}
+
+
+.athlete-search:focus {
+
+  border-color: rgba(40, 168, 255, 0.45);
+
+  box-shadow:
+    0 0 0 3px rgba(40, 168, 255, 0.06);
+
+}
+
+
+.athlete-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 18px;
+
+}
+
+
+.athlete-card {
+
+  min-height: 180px;
+
+  padding: 17px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 32, 52, 0.9),
+      rgba(8, 21, 35, 0.94)
+    );
+
+}
+
+
+/* =========================================================
+   35. SPORTS LIST FUTURE COMPONENTS
+========================================================= */
+
+.sport-toolbar {
+
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 25px;
+
+}
+
+
+.sport-search {
+
+  width: min(100%, 360px);
+  height: 42px;
+
+  padding:
+    0
+    13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #081827;
+
+  color: #e5eef7;
+
+}
+
+
+.sport-search:focus {
+
+  border-color: rgba(40, 168, 255, 0.4);
+
+}
+
+
+.sport-filter-group {
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+}
+
+
+.filter-btn {
+
+  min-height: 34px;
+
+  padding:
+    7px
+    11px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.02);
+
+  color: #71889f;
+
+  font-size: 9px;
+  font-weight: 700;
+
+}
+
+
+.filter-btn.active {
+
+  border-color: rgba(40, 168, 255, 0.25);
+
+  background: rgba(40, 168, 255, 0.09);
+
+  color: #57bdff;
+
+}
+
+
+.sports-list-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-top: 17px;
+
+}
+
+
+.sport-list-card {
+
+  min-height: 120px;
+
+  padding: 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: rgba(8, 22, 37, 0.82);
+
+  color: #ffffff;
+
+  text-align: left;
+
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease;
+
+}
+
+
+.sport-list-card:hover {
+
+  transform: translateY(-2px);
+
+  border-color: rgba(40, 168, 255, 0.27);
+
+}
+
+
+/* =========================================================
+   36. POSE ANALYSIS FUTURE WORKSPACE
+========================================================= */
+
+.analysis-workspace {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.7fr)
+    minmax(300px, 0.7fr);
+
+  gap: 14px;
+
+  margin-top: 20px;
+
+}
+
+
+.analysis-viewer {
+
+  position: relative;
+
+  min-height: 520px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  background: #030910;
+
+  overflow: hidden;
+
+}
+
+
+.analysis-video,
+.analysis-canvas {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+}
+
+
+.analysis-canvas {
+
+  z-index: 3;
+
+  pointer-events: none;
+
+}
+
+
+.analysis-grid-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(74, 135, 185, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(74, 135, 185, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 50px 50px;
+
+}
+
+
+.analysis-side-panel {
+
+  min-height: 520px;
+
+  padding: 17px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0d1d30,
+      #081523
+    );
+
+}
+
+
+.analysis-control-bar {
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-top: 10px;
+
+  padding: 10px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 11px;
+
+  background: rgba(6, 17, 29, 0.88);
+
+}
+
+
+.analysis-control-btn {
+
+  min-height: 34px;
+
+  padding:
+    7px
+    11px;
+
+  border: 1px solid rgba(148, 163, 184, 0.12);
+
+  border-radius: 8px;
+
+  background: #0d2034;
+
+  color: #8da4ba;
+
+  font-size: 9px;
+
+}
+
+
+.analysis-control-btn.active {
+
+  border-color: rgba(40, 168, 255, 0.3);
+
+  background: rgba(40, 168, 255, 0.1);
+
+  color: #53bbff;
+
+}
+
+
+/* =========================================================
+   37. ANGLE DATA
+========================================================= */
+
+.angle-data-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+
+  margin-top: 12px;
+
+}
+
+
+.angle-data-card {
+
+  padding: 12px;
+
+  border: 1px solid rgba(148, 163, 184, 0.09);
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.018);
+
+}
+
+
+.angle-data-card span {
+
+  display: block;
+
+  color: #5d758d;
+
+  font-size: 8px;
+
+}
+
+
+.angle-data-card strong {
+
+  display: block;
+
+  margin-top: 5px;
+
+  color: #d9e8f5;
+
+  font-size: 18px;
+  font-weight: 850;
+
+}
+
+
+/* =========================================================
+   38. AI FEEDBACK
+========================================================= */
+
+.ai-feedback {
+
+  margin-top: 12px;
+
+  padding: 13px;
+
+  border: 1px solid rgba(40, 168, 255, 0.1);
+
+  border-radius: 10px;
+
+  background: rgba(40, 168, 255, 0.03);
+
+}
+
+
+.ai-feedback-title {
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #5abfff;
+
+  font-size: 9px;
+  font-weight: 900;
+
+}
+
+
+.ai-feedback p {
+
+  margin-top: 7px;
+
+  color: #70879d;
+
+  font-size: 9px;
+
+  line-height: 1.65;
+
+}
+
+
+/* =========================================================
+   39. DATA TABLE
+========================================================= */
+
+.data-table-wrap {
+
+  width: 100%;
+
+  margin-top: 20px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  overflow-x: auto;
+
+}
+
+
+.data-table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 720px;
+
+}
+
+
+.data-table th {
+
+  padding: 12px;
+
+  background: rgba(40, 168, 255, 0.04);
+
+  color: #637f99;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  text-align: left;
+
+  letter-spacing: 0.6px;
+
+}
+
+
+.data-table td {
+
+  padding: 12px;
+
+  border-top: 1px solid rgba(148, 163, 184, 0.07);
+
+  color: #9eb0c1;
+
+  font-size: 9px;
+
+}
+
+
+/* =========================================================
+   40. FORM ELEMENTS
+========================================================= */
+
+.pro-input,
+.pro-select {
+
+  width: 100%;
+  height: 42px;
+
+  padding:
+    0
+    12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #081827;
+
+  color: #dbe7f2;
+
+  font-size: 10px;
+
+}
+
+
+.pro-input:focus,
+.pro-select:focus {
+
+  border-color: rgba(40, 168, 255, 0.42);
+
+  box-shadow:
+    0 0 0 3px rgba(40, 168, 255, 0.05);
+
+}
+
+
+.pro-label {
+
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #607990;
+
+  font-size: 8px;
+  font-weight: 800;
+
+}
+
+
+.form-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+}
+/* =========================================================
+   설천고 스포츠과학 훈련센터 PRO
+   STYLE.CSS
+   PART 4 / 4
+
+   RESPONSIVE / iPAD / MOBILE / ANIMATION
+========================================================= */
+
+
+/* =========================================================
+   41. BASIC ANIMATION
+========================================================= */
 
 @keyframes pageFadeIn {
 
@@ -666,5476 +3921,935 @@ textarea {
 }
 
 
-/* =========================================================
-   12. DASHBOARD HERO
-========================================================= */
-
-.hero {
-  position: relative;
-
-  width: 100%;
-  min-height: 390px;
-
-  display: flex;
-  align-items: center;
-
-  overflow: hidden;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.08);
-
-  border-radius: var(--radius-large);
-
-  background:
-    radial-gradient(
-      circle at 78% 40%,
-      rgba(24, 118, 225, 0.20),
-      transparent 28%
-    ),
-    linear-gradient(
-      115deg,
-      #0b1625 0%,
-      #09131f 47%,
-      #07101b 100%
-    );
-
-  box-shadow: var(--shadow);
-}
-
-
-/* 배경의 스포츠과학 센터 느낌 */
-
-.hero::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      rgba(5, 11, 19, 0.08),
-      rgba(5, 11, 19, 0.12)
-    ),
-
-    radial-gradient(
-      circle at 85% 50%,
-      rgba(30, 133, 255, 0.16),
-      transparent 25%
-    );
-
-  pointer-events: none;
-}
-
-
-/* 오른쪽 건축물 형태 */
-
-.hero::after {
-  content: "";
-
-  position: absolute;
-
-  right: -2%;
-  bottom: 0;
-
-  width: 48%;
-  height: 77%;
-
-  opacity: 0.28;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      transparent 0 20%,
-      rgba(83, 132, 184, 0.25) 20% 21%,
-      transparent 21% 27%,
-      rgba(80, 128, 180, 0.18) 27% 28%,
-      transparent 28%
-    ),
-
-    linear-gradient(
-      180deg,
-      rgba(35, 71, 110, 0.38),
-      rgba(7, 18, 30, 0.10)
-    );
-
-  clip-path:
-    polygon(
-      22% 0,
-      100% 13%,
-      100% 100%,
-      0 100%,
-      0 34%
-    );
-
-  border-left:
-    1px solid rgba(89, 157, 229, 0.18);
-
-  pointer-events: none;
-}
-
-
-.hero-overlay {
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(5, 12, 21, 0.96) 0%,
-      rgba(5, 12, 21, 0.82) 42%,
-      rgba(5, 12, 21, 0.22) 100%
-    );
-
-  z-index: 1;
-}
-
-
-.hero-content {
-  position: relative;
-
-  z-index: 3;
-
-  width: 100%;
-  max-width: 800px;
-
-  padding:
-    52px
-    58px;
-}
-
-
-.hero-label {
-  display: inline-flex;
-
-  align-items: center;
-
-  margin-bottom: 18px;
-
-  padding:
-    7px
-    11px;
-
-  border:
-    1px solid rgba(67, 158, 255, 0.25);
-
-  border-radius: 7px;
-
-  background:
-    rgba(20, 112, 215, 0.08);
-
-  font-size: 9px;
-  font-weight: 800;
-
-  letter-spacing: 2px;
-
-  color: #61b1ff;
-}
-
-
-.hero h1 {
-  max-width: 700px;
-
-  font-size:
-    clamp(38px, 5vw, 68px);
-
-  line-height: 1.08;
-
-  letter-spacing: -3px;
-
-  font-weight: 400;
-
-  color: #ffffff;
-}
-
-
-.hero h1 span {
-  display: block;
-
-  margin-bottom: 5px;
-
-  font-size: 0.38em;
-
-  font-weight: 700;
-
-  letter-spacing: 0;
-
-  color: #8fa4bc;
-}
-
-
-.hero h1 strong {
-  font-weight: 900;
-
-  color: #ffffff;
-}
-
-
-.hero-description {
-  margin-top: 18px;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  color: #92a4b8;
-}
-
-
-/* =========================================================
-   13. HERO FEATURES
-========================================================= */
-
-.hero-features {
-  display: flex;
-  align-items: center;
-
-  gap: 34px;
-
-  margin-top: 34px;
-}
-
-
-.hero-feature {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-}
-
-
-.feature-icon {
-  width: 37px;
-  height: 37px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 10px;
-
-  background:
-    rgba(29, 124, 255, 0.10);
-
-  border:
-    1px solid rgba(29, 124, 255, 0.18);
-
-  color: #48a1ff;
-}
-
-
-.feature-icon i {
-  font-size: 13px;
-}
-
-
-.hero-feature > div:last-child {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.hero-feature strong {
-  font-size: 11px;
-  font-weight: 700;
-
-  color: #dceaff;
-}
-
-
-.hero-feature span {
-  margin-top: 2px;
-
-  font-size: 9px;
-
-  color: #62758c;
-}
-
-
-/* =========================================================
-   14. COMMON SECTION
-========================================================= */
-
-.dashboard-section {
-  margin-top: 36px;
-}
-
-
-.section-heading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 16px;
-}
-
-
-.section-eyebrow {
-  display: block;
-
-  margin-bottom: 5px;
-
-  font-size: 9px;
-  font-weight: 800;
-
-  letter-spacing: 1.7px;
-
-  color: #407ebc;
-}
-
-
-.section-heading h2 {
-  font-size: 20px;
-  font-weight: 800;
-
-  letter-spacing: -0.7px;
-
-  color: #eef6ff;
-}
-
-
-.system-status {
-  display: flex;
-  align-items: center;
-
-  gap: 7px;
-
-  padding:
-    7px
-    10px;
-
-  border-radius: 8px;
-
-  background:
-    rgba(56, 217, 150, 0.06);
-
-  border:
-    1px solid rgba(56, 217, 150, 0.13);
-
-  font-size: 9px;
-  font-weight: 600;
-
-  color: #6fa58e;
-}
-
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background: var(--green);
-
-  box-shadow:
-    0 0 8px rgba(56, 217, 150, 0.7);
-}
-
-
-/* =========================================================
-   15. RESPONSIVE - PART 1
-========================================================= */
-
-@media (max-width: 1000px) {
-
-  :root {
-    --sidebar-width: 220px;
-  }
-
-
-  .hero {
-    min-height: 350px;
-  }
-
-
-  .hero-content {
-    padding:
-      45px
-      40px;
-  }
-
-
-  .hero-features {
-    gap: 20px;
-  }
-
-}
-
-
-@media (max-width: 800px) {
-
-  .sidebar {
-    transform: translateX(-100%);
-
-    transition:
-      transform
-      0.28s ease;
-  }
-
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
-
-  .main {
-    margin-left: 0;
-  }
-
-
-  .mobile-menu {
-    display: flex;
-  }
-
-
-  .topbar {
-    padding:
-      0
-      16px;
-  }
-
-
-  .top-message {
-    display: none;
-  }
-
-
-  .page {
-    padding:
-      18px
-      16px
-      45px;
-  }
-
-
-  .hero {
-    min-height: 400px;
-  }
-
-
-  .hero-content {
-    padding:
-      38px
-      28px;
-  }
-
-
-  .hero h1 {
-    letter-spacing: -2px;
-  }
-
-
-  .hero-features {
-    align-items: flex-start;
-    flex-direction: column;
-
-    gap: 14px;
-  }
-
-
-  .hero::after {
-    width: 70%;
-
-    opacity: 0.16;
-  }
-
-}
-
-
-@media (max-width: 500px) {
-
-  .hero {
-    min-height: 430px;
-
-    border-radius: 17px;
-  }
-
-
-  .hero-content {
-    padding:
-      34px
-      22px;
-  }
-
-
-  .hero h1 {
-    font-size: 38px;
-
-    letter-spacing: -1.8px;
-  }
-
-
-  .section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-}
-
-
-/* =========================================================
-   END OF style.css PART 1
-========================================================= */
-/* =========================================================
-   SEOLCHEON PERFORMANCE LAB
-   style.css
-
-   PART 2
-   Dashboard Cards / Quick Analysis / Performance
-========================================================= */
-
-
-/* =========================================================
-   16. STATS GRID
-========================================================= */
-
-.stats-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 14px;
-}
-
-
-.stat-card {
-  position: relative;
-
-  min-height: 155px;
-
-  padding: 20px;
-
-  overflow: hidden;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: var(--radius);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(15, 27, 44, 0.96),
-      rgba(8, 17, 29, 0.96)
-    );
-
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.15);
-
-  transition: var(--transition);
-}
-
-
-.stat-card::before {
-  content: "";
-
-  position: absolute;
-
-  width: 110px;
-  height: 110px;
-
-  top: -45px;
-  right: -40px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(29, 124, 255, 0.16),
-      transparent 70%
-    );
-
-  pointer-events: none;
-}
-
-
-.stat-card:hover {
-  transform: translateY(-3px);
-
-  border-color:
-    rgba(72, 161, 255, 0.22);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17, 32, 52, 0.98),
-      rgba(9, 19, 32, 0.98)
-    );
-}
-
-
-.stat-card-top {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-}
-
-
-.stat-icon {
-  width: 35px;
-  height: 35px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 9px;
-
-  background:
-    rgba(29, 124, 255, 0.09);
-
-  border:
-    1px solid rgba(29, 124, 255, 0.13);
-
-  color: #4da5ff;
-}
-
-
-.stat-icon i {
-  font-size: 13px;
-}
-
-
-.stat-label {
-  font-size: 11px;
-  font-weight: 600;
-
-  color: #8092a8;
-}
-
-
-.stat-value {
-  display: flex;
-  align-items: baseline;
-
-  gap: 5px;
-
-  margin-top: 17px;
-}
-
-
-.stat-value strong {
-  font-size: 31px;
-  line-height: 1;
-
-  font-weight: 800;
-
-  letter-spacing: -1px;
-
-  color: #f3f8ff;
-}
-
-
-.stat-value span {
-  font-size: 11px;
-  font-weight: 600;
-
-  color: #64778e;
-}
-
-
-.stat-description {
-  margin-top: 10px;
-
-  font-size: 9px;
-  line-height: 1.6;
-
-  color: #53657a;
-}
-
-
-/* =========================================================
-   17. QUICK ANALYSIS GRID
-========================================================= */
-
-.quick-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 12px;
-}
-
-
-.quick-card {
-  position: relative;
-
-  min-height: 92px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 14px;
-
-  padding:
-    17px
-    18px;
-
-  overflow: hidden;
-
-  text-align: left;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(14, 26, 42, 0.94),
-      rgba(8, 16, 28, 0.94)
-    );
-
-  color: var(--text);
-
-  transition:
-    transform var(--transition),
-    border-color var(--transition),
-    background var(--transition);
-}
-
-
-.quick-card::after {
-  content: "";
-
-  position: absolute;
-
-  width: 80px;
-  height: 80px;
-
-  right: -40px;
-  bottom: -45px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(29, 124, 255, 0.08);
-
-  transition:
-    transform
-    0.3s ease;
-}
-
-
-.quick-card:hover {
-  transform: translateY(-3px);
-
-  border-color:
-    rgba(58, 153, 255, 0.28);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(17, 34, 56, 0.98),
-      rgba(9, 20, 35, 0.98)
-    );
-}
-
-
-.quick-card:hover::after {
-  transform: scale(1.5);
-}
-
-
-.quick-icon {
-  width: 46px;
-  height: 46px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 12px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(29, 124, 255, 0.16),
-      rgba(29, 124, 255, 0.05)
-    );
-
-  border:
-    1px solid rgba(53, 148, 255, 0.16);
-
-  color: #4da5ff;
-}
-
-
-.quick-icon i {
-  font-size: 17px;
-}
-
-
-.quick-text {
-  position: relative;
-  z-index: 2;
-
-  min-width: 0;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-}
-
-
-.quick-text strong {
-  font-size: 13px;
-  font-weight: 700;
-
-  color: #e9f3ff;
-}
-
-
-.quick-text span {
-  margin-top: 4px;
-
-  overflow: hidden;
-
-  font-size: 9px;
-
-  color: #64778d;
-
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-
-.quick-arrow {
-  position: relative;
-  z-index: 2;
-
-  width: 28px;
-  height: 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background:
-    rgba(255, 255, 255, 0.025);
-
-  color: #52667e;
-
-  transition: var(--transition);
-}
-
-
-.quick-arrow i {
-  font-size: 10px;
-}
-
-
-.quick-card:hover .quick-arrow {
-  transform: translateX(3px);
-
-  background:
-    rgba(29, 124, 255, 0.12);
-
-  color: #5cadff;
-}
-
-
-/* =========================================================
-   18. SECTION LINK
-========================================================= */
-
-.section-link {
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-
-  padding:
-    8px
-    11px;
-
-  border-radius: 8px;
-
-  background: transparent;
-
-  font-size: 10px;
-  font-weight: 600;
-
-  color: #71869f;
-
-  transition: var(--transition);
-}
-
-
-.section-link i {
-  font-size: 9px;
-}
-
-
-.section-link:hover {
-  background:
-    rgba(29, 124, 255, 0.07);
-
-  color: #55a7ff;
-}
-
-
-/* =========================================================
-   19. PERFORMANCE LAYOUT
-========================================================= */
-
-.performance-layout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.25fr)
-    minmax(320px, 0.75fr);
-
-  gap: 14px;
-}
-
-
-.dashboard-panel {
-  min-height: 315px;
-
-  padding: 20px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: var(--radius);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 24, 39, 0.96),
-      rgba(7, 15, 26, 0.96)
-    );
-}
-
-
-.panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 18px;
-}
-
-
-.panel-label {
-  display: block;
-
-  margin-bottom: 4px;
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1.5px;
-
-  color: #3e78b4;
-}
-
-
-.panel-header h3 {
-  font-size: 15px;
-  font-weight: 700;
-
-  letter-spacing: -0.4px;
-
-  color: #eaf3ff;
-}
-
-
-.panel-header > i {
-  font-size: 15px;
-
-  color: #334a65;
-}
-
-
-.panel-header.compact {
-  margin-bottom: 13px;
-}
-
-
-/* =========================================================
-   20. EMPTY STATE
-========================================================= */
-
-.empty-state {
-  min-height: 220px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  padding: 25px;
-
-  text-align: center;
-
-  border:
-    1px dashed rgba(255, 255, 255, 0.07);
-
-  border-radius: 13px;
-
-  background:
-    rgba(255, 255, 255, 0.012);
-}
-
-
-.empty-icon {
-  width: 48px;
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 13px;
-
-  border-radius: 13px;
-
-  background:
-    rgba(29, 124, 255, 0.07);
-
-  color: #356fae;
-}
-
-
-.empty-icon i {
-  font-size: 17px;
-}
-
-
-.empty-state strong {
-  font-size: 12px;
-  font-weight: 700;
-
-  color: #aebed0;
-}
-
-
-.empty-state span {
-  max-width: 310px;
-
-  margin-top: 6px;
-
-  font-size: 9px;
-  line-height: 1.7;
-
-  color: #53657a;
-}
-
-
-.empty-state button {
-  margin-top: 15px;
-
-  padding:
-    8px
-    14px;
-
-  border:
-    1px solid rgba(29, 124, 255, 0.18);
-
-  border-radius: 8px;
-
-  background:
-    rgba(29, 124, 255, 0.08);
-
-  font-size: 9px;
-  font-weight: 700;
-
-  color: #56a8ff;
-
-  transition: var(--transition);
-}
-
-
-.empty-state button:hover {
-  background:
-    rgba(29, 124, 255, 0.16);
-
-  color: #ffffff;
-}
-
-
-/* =========================================================
-   21. RECENT ANALYSIS ITEMS
-   app.js에서 나중에 생성할 카드까지 미리 디자인
-========================================================= */
-
-.recent-analysis-list,
-.dashboard-athlete-list {
-  display: flex;
-  flex-direction: column;
-
-  gap: 9px;
-}
-
-
-.recent-analysis-item {
-  display: grid;
-
-  grid-template-columns:
-    40px
-    minmax(0, 1fr)
-    auto;
-
-  align-items: center;
-
-  gap: 11px;
-
-  min-height: 63px;
-
-  padding:
-    10px
-    12px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.055);
-
-  border-radius: 11px;
-
-  background:
-    rgba(255, 255, 255, 0.018);
-
-  transition: var(--transition);
-}
-
-
-.recent-analysis-item:hover {
-  background:
-    rgba(29, 124, 255, 0.045);
-
-  border-color:
-    rgba(29, 124, 255, 0.12);
-}
-
-
-.recent-analysis-icon {
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 10px;
-
-  background:
-    rgba(29, 124, 255, 0.08);
-
-  color: #489cff;
-}
-
-
-.recent-analysis-info {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-
-.recent-analysis-info strong {
-  overflow: hidden;
-
-  font-size: 11px;
-  font-weight: 700;
-
-  color: #d9e7f6;
-
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-
-.recent-analysis-info span {
-  margin-top: 3px;
-
-  font-size: 8px;
-
-  color: #52657b;
-}
-
-
-.recent-analysis-score {
-  font-size: 17px;
-  font-weight: 800;
-
-  color: #5eacff;
-}
-
-
-/* =========================================================
-   22. DASHBOARD ATHLETE ITEMS
-========================================================= */
-
-.dashboard-athlete-item {
-  display: grid;
-
-  grid-template-columns:
-    42px
-    minmax(0, 1fr)
-    auto;
-
-  align-items: center;
-
-  gap: 10px;
-
-  padding:
-    10px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.05);
-
-  border-radius: 11px;
-
-  background:
-    rgba(255, 255, 255, 0.015);
-}
-
-
-.dashboard-athlete-avatar {
-  width: 40px;
-  height: 40px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #14283f,
-      #0a1726
-    );
-
-  border:
-    1px solid rgba(255, 255, 255, 0.08);
-
-  color: #68829f;
-}
-
-
-.dashboard-athlete-avatar img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-
-.dashboard-athlete-info {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-
-.dashboard-athlete-info strong {
-  font-size: 11px;
-
-  color: #dce8f5;
-}
-
-
-.dashboard-athlete-info span {
-  margin-top: 2px;
-
-  font-size: 8px;
-
-  color: #586a7f;
-}
-
-
-.dashboard-athlete-score {
-  padding:
-    5px
-    7px;
-
-  border-radius: 7px;
-
-  background:
-    rgba(29, 124, 255, 0.07);
-
-  font-size: 10px;
-  font-weight: 700;
-
-  color: #4e9df2;
-}
-
-
-/* =========================================================
-   23. LAB BANNER
-========================================================= */
-
-.lab-banner {
-  position: relative;
-
-  min-height: 175px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 30px;
-
-  margin-top: 36px;
-
-  padding:
-    30px
-    36px;
-
-  overflow: hidden;
-
-  border:
-    1px solid rgba(53, 144, 240, 0.12);
-
-  border-radius: var(--radius-large);
-
-  background:
-    linear-gradient(
-      110deg,
-      rgba(12, 34, 58, 0.96),
-      rgba(7, 18, 31, 0.98) 55%,
-      rgba(8, 24, 41, 0.96)
-    );
-}
-
-
-.lab-banner::before {
-  content: "";
-
-  position: absolute;
-
-  width: 300px;
-  height: 300px;
-
-  right: -80px;
-  top: -130px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(29, 124, 255, 0.17),
-      transparent 68%
-    );
-}
-
-
-.lab-banner::after {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  top: 0;
-
-  width: 3px;
-  height: 100%;
-
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      #278aff,
-      transparent
-    );
-}
-
-
-.lab-banner-content {
-  position: relative;
-  z-index: 2;
-}
-
-
-.lab-banner-content > span {
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1.8px;
-
-  color: #4389d1;
-}
-
-
-.lab-banner-content h2 {
-  margin-top: 7px;
-
-  font-size: 24px;
-  font-weight: 800;
-
-  letter-spacing: -1px;
-
-  color: #eef7ff;
-}
-
-
-.lab-banner-content p {
-  max-width: 580px;
-
-  margin-top: 8px;
-
-  font-size: 10px;
-  line-height: 1.8;
-
-  color: #698098;
-}
-
-
-.lab-banner-mark {
-  position: relative;
-  z-index: 2;
-
-  min-width: 145px;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  padding:
-    18px
-    22px;
-
-  border-left:
-    1px solid rgba(255, 255, 255, 0.06);
-}
-
-
-.lab-banner-mark strong {
-  font-size: 38px;
-  line-height: 1;
-
-  font-weight: 900;
-  font-style: italic;
-
-  letter-spacing: -2px;
-
-  color: #298cff;
-
-  text-shadow:
-    0 0 30px rgba(29, 124, 255, 0.25);
-}
-
-
-.lab-banner-mark span {
-  margin-top: 6px;
-
-  font-size: 7px;
-  font-weight: 700;
-
-  letter-spacing: 1.7px;
-
-  color: #49637f;
-}
-
-
-/* =========================================================
-   24. COMMON BUTTONS
-========================================================= */
-
-.primary-analysis-button,
-.secondary-analysis-button,
-.danger-analysis-button {
-  min-height: 40px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 8px;
-
-  padding:
-    0
-    15px;
-
-  border-radius: 9px;
-
-  font-size: 10px;
-  font-weight: 700;
-
-  transition: var(--transition);
-}
-
-
-.primary-analysis-button {
-  background:
-    linear-gradient(
-      135deg,
-      #2489f7,
-      #0c63c7
-    );
-
-  border:
-    1px solid rgba(90, 174, 255, 0.25);
-
-  color: #ffffff;
-
-  box-shadow:
-    0 7px 20px rgba(14, 105, 205, 0.16);
-}
-
-
-.primary-analysis-button:hover {
-  transform: translateY(-1px);
-
-  filter: brightness(1.08);
-}
-
-
-.secondary-analysis-button {
-  background:
-    rgba(255, 255, 255, 0.035);
-
-  border:
-    1px solid rgba(255, 255, 255, 0.08);
-
-  color: #91a3b8;
-}
-
-
-.secondary-analysis-button:hover {
-  border-color:
-    rgba(58, 150, 246, 0.2);
-
-  background:
-    rgba(29, 124, 255, 0.07);
-
-  color: #d7e8f9;
-}
-
-
-.danger-analysis-button {
-  background:
-    rgba(255, 91, 104, 0.07);
-
-  border:
-    1px solid rgba(255, 91, 104, 0.14);
-
-  color: #d77a83;
-}
-
-
-.danger-analysis-button:hover {
-  background:
-    rgba(255, 91, 104, 0.12);
-
-  color: #ff9ca4;
-}
-
-
-.primary-analysis-button:disabled,
-.secondary-analysis-button:disabled,
-.danger-analysis-button:disabled {
-  opacity: 0.35;
-
-  cursor: not-allowed;
-
-  transform: none;
-
-  filter: none;
-}
-
-
-/* =========================================================
-   25. LARGE EMPTY STATE
-========================================================= */
-
-.large-empty-state {
-  width: 100%;
-  min-height: 380px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  padding: 40px;
-
-  text-align: center;
-
-  border:
-    1px dashed rgba(255, 255, 255, 0.08);
-
-  border-radius: var(--radius);
-
-  background:
-    rgba(255, 255, 255, 0.012);
-}
-
-
-.large-empty-state > i {
-  margin-bottom: 17px;
-
-  font-size: 32px;
-
-  color: #284c73;
-}
-
-
-.large-empty-state h2 {
-  font-size: 17px;
-
-  color: #aebfd1;
-}
-
-
-.large-empty-state p {
-  margin-top: 7px;
-
-  font-size: 10px;
-
-  color: #586a7f;
-}
-
-
-.large-empty-state button {
-  margin-top: 18px;
-}
-
-
-/* =========================================================
-   26. DASHBOARD RESPONSIVE
-========================================================= */
-
-@media (max-width: 1200px) {
-
-  .stats-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-
-  .quick-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-
-@media (max-width: 1000px) {
-
-  .performance-layout {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-
-@media (max-width: 650px) {
-
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
-
-    gap: 10px;
-  }
-
-
-  .stat-card {
-    min-height: 145px;
-
-    padding: 16px;
-  }
-
-
-  .stat-value strong {
-    font-size: 26px;
-  }
-
-
-  .quick-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .lab-banner {
-    align-items: flex-start;
-    flex-direction: column;
-
-    padding:
-      25px
-      23px;
-  }
-
-
-  .lab-banner-mark {
-    width: 100%;
-
-    align-items: flex-start;
-
-    padding:
-      16px
-      0
-      0;
-
-    border-top:
-      1px solid rgba(255, 255, 255, 0.06);
-
-    border-left: 0;
-  }
-
-}
-
-
-@media (max-width: 420px) {
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .stat-card {
-    min-height: 135px;
-  }
-
-}
-
-
-/* =========================================================
-   END OF style.css PART 2
-========================================================= */
-/* =========================================================
-   SEOLCHEON PERFORMANCE LAB
-   style.css
-
-   PART 3
-   Pose Analysis / Camera / Joint Data / Results
-========================================================= */
-
-
-/* =========================================================
-   27. ANALYSIS PAGE HEADER
-========================================================= */
-
-.analysis-page-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  gap: 24px;
-
-  margin-bottom: 24px;
-}
-
-
-.analysis-page-header h1 {
-  margin-top: 3px;
-
-  font-size: 28px;
-  font-weight: 800;
-
-  letter-spacing: -1.3px;
-
-  color: #f3f8ff;
-}
-
-
-.analysis-page-header p {
-  max-width: 650px;
-
-  margin-top: 7px;
-
-  font-size: 11px;
-  line-height: 1.7;
-
-  color: #66798f;
-}
-
-
-.analysis-status {
-  min-height: 34px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-
-  padding:
-    0
-    12px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.07);
-
-  border-radius: 9px;
-
-  background:
-    rgba(255, 255, 255, 0.025);
-
-  font-size: 9px;
-  font-weight: 700;
-
-  color: #74879d;
-}
-
-
-.analysis-status-dot {
-  width: 7px;
-  height: 7px;
-
-  border-radius: 50%;
-
-  background: #53657a;
-
-  transition: var(--transition);
-}
-
-
-.analysis-status.active .analysis-status-dot {
-  background: var(--green);
-
-  box-shadow:
-    0 0 10px rgba(56, 217, 150, 0.7);
-}
-
-
-.analysis-status.active {
-  border-color:
-    rgba(56, 217, 150, 0.15);
-
-  color: #76b79b;
-}
-
-
-/* =========================================================
-   28. ANALYSIS CONTROL PANEL
-========================================================= */
-
-.analysis-control-panel {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin-bottom: 16px;
-
-  padding: 15px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 24, 39, 0.95),
-      rgba(7, 15, 26, 0.95)
-    );
-}
-
-
-.control-group {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 7px;
-}
-
-
-.control-group label {
-  padding-left: 2px;
-
-  font-size: 9px;
-  font-weight: 700;
-
-  color: #697c92;
-}
-
-
-.control-group select,
-.control-group input {
-  width: 100%;
-  height: 42px;
-
-  padding:
-    0
-    12px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.075);
-
-  border-radius: 9px;
-
-  background: #091421;
-
-  color: #c5d3e2;
-
-  font-size: 10px;
-
-  transition: var(--transition);
-}
-
-
-.control-group select {
-  cursor: pointer;
-}
-
-
-.control-group select:hover,
-.control-group input:hover {
-  border-color:
-    rgba(57, 149, 247, 0.18);
-}
-
-
-.control-group select:focus,
-.control-group input:focus {
-  border-color:
-    rgba(54, 151, 255, 0.42);
-
-  box-shadow:
-    0 0 0 3px rgba(29, 124, 255, 0.07);
-}
-
-
-/* =========================================================
-   29. POSE WORKSPACE
-========================================================= */
-
-.pose-workspace {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    290px;
-
-  align-items: start;
-
-  gap: 16px;
-}
-
-
-/* =========================================================
-   30. CAMERA PANEL
-========================================================= */
-
-.camera-panel {
-  min-width: 0;
-
-  padding: 17px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: var(--radius);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(12, 23, 38, 0.97),
-      rgba(6, 14, 24, 0.98)
-    );
-
-  box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.16);
-}
-
-
-.camera-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 14px;
-}
-
-
-.camera-header h2 {
-  font-size: 15px;
-  font-weight: 700;
-
-  letter-spacing: -0.4px;
-
-  color: #e8f2ff;
-}
-
-
-.camera-state {
-  display: flex;
-  align-items: center;
-
-  gap: 7px;
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 0.7px;
-
-  color: #586a80;
-}
-
-
-.camera-state-dot {
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background: #45566a;
-}
-
-
-.camera-state.active {
-  color: #70b996;
-}
-
-
-.camera-state.active .camera-state-dot {
-  background: var(--green);
-
-  box-shadow:
-    0 0 9px rgba(56, 217, 150, 0.8);
-}
-
-
-/* =========================================================
-   31. CAMERA STAGE
-========================================================= */
-
-.camera-stage {
-  position: relative;
-
-  width: 100%;
-  aspect-ratio: 16 / 9;
-
-  min-height: 430px;
-
-  overflow: hidden;
-
-  border:
-    1px solid rgba(83, 130, 178, 0.13);
-
-  border-radius: 13px;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #0c1b2b 0%,
-      #07111d 48%,
-      #03080e 100%
-    );
-}
-
-
-.camera-stage::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 1;
-
-  opacity: 0.15;
-
-  background-image:
-    linear-gradient(
-      rgba(71, 127, 183, 0.15) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(71, 127, 183, 0.15) 1px,
-      transparent 1px
-    );
-
-  background-size:
-    45px
-    45px;
-
-  pointer-events: none;
-}
-
-
-.camera-stage::after {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  top: 0;
-
-  z-index: 1;
-
-  width: 1px;
-  height: 100%;
-
-  background:
-    linear-gradient(
-      transparent,
-      rgba(70, 151, 232, 0.12),
-      transparent
-    );
-
-  pointer-events: none;
-}
-
-
-#poseVideo,
-#poseCanvas,
-#analysisVideo,
-#videoPoseCanvas {
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-}
-
-
-#poseVideo,
-#analysisVideo {
-  z-index: 0;
-
-  object-fit: cover;
-
-  background: #03080e;
-}
-
-
-#poseCanvas,
-#videoPoseCanvas {
-  z-index: 4;
-
-  pointer-events: none;
-}
-
-
-/* 전면 카메라 미러 모드용 */
-
-#poseVideo.mirror {
-  transform: scaleX(-1);
-}
-
-
-#poseCanvas.mirror {
-  transform: scaleX(-1);
-}
-
-
-/* =========================================================
-   32. BODY GUIDE
-========================================================= */
-
-.body-guide {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  z-index: 3;
-
-  width: 180px;
-  height: 350px;
-
-  transform:
-    translate(-50%, -50%);
-
-  opacity: 0.42;
-
-  pointer-events: none;
-
-  transition:
-    opacity
-    0.3s ease;
-}
-
-
-.body-guide.hidden {
-  opacity: 0;
-}
-
-
-.guide-head {
-  position: absolute;
-
-  left: 50%;
-  top: 0;
-
-  width: 48px;
-  height: 48px;
-
-  transform:
-    translateX(-50%);
-
-  border:
-    1px dashed rgba(75, 163, 255, 0.7);
-
-  border-radius: 50%;
-}
-
-
-.guide-body {
-  position: absolute;
-
-  left: 50%;
-  top: 55px;
-
-  width: 1px;
-  height: 150px;
-
-  transform:
-    translateX(-50%);
-
-  background:
-    rgba(75, 163, 255, 0.5);
-}
-
-
-.guide-line {
-  position: absolute;
-
-  height: 1px;
-
-  transform-origin: left center;
-
-  background:
-    rgba(75, 163, 255, 0.5);
-}
-
-
-.guide-arm-left {
-  width: 95px;
-
-  left: 50%;
-  top: 80px;
-
-  transform:
-    rotate(155deg);
-}
-
-
-.guide-arm-right {
-  width: 95px;
-
-  left: 50%;
-  top: 80px;
-
-  transform:
-    rotate(25deg);
-}
-
-
-.guide-leg-left {
-  width: 145px;
-
-  left: 50%;
-  top: 200px;
-
-  transform:
-    rotate(112deg);
-}
-
-
-.guide-leg-right {
-  width: 145px;
-
-  left: 50%;
-  top: 200px;
-
-  transform:
-    rotate(68deg);
-}
-
-
-.guide-message {
-  position: absolute;
-
-  left: 50%;
-  bottom: -35px;
-
-  width: 250px;
-
-  transform:
-    translateX(-50%);
-
-  text-align: center;
-
-  font-size: 9px;
-  font-weight: 600;
-
-  color: #6082a4;
-}
-
-
-/* =========================================================
-   33. CAMERA CORNERS
-========================================================= */
-
-.camera-corner {
-  position: absolute;
-
-  z-index: 5;
-
-  width: 28px;
-  height: 28px;
-
-  pointer-events: none;
-}
-
-
-.camera-corner.top-left {
-  top: 16px;
-  left: 16px;
-
-  border-top:
-    2px solid rgba(64, 157, 255, 0.55);
-
-  border-left:
-    2px solid rgba(64, 157, 255, 0.55);
-}
-
-
-.camera-corner.top-right {
-  top: 16px;
-  right: 16px;
-
-  border-top:
-    2px solid rgba(64, 157, 255, 0.55);
-
-  border-right:
-    2px solid rgba(64, 157, 255, 0.55);
-}
-
-
-.camera-corner.bottom-left {
-  left: 16px;
-  bottom: 16px;
-
-  border-left:
-    2px solid rgba(64, 157, 255, 0.55);
-
-  border-bottom:
-    2px solid rgba(64, 157, 255, 0.55);
-}
-
-
-.camera-corner.bottom-right {
-  right: 16px;
-  bottom: 16px;
-
-  border-right:
-    2px solid rgba(64, 157, 255, 0.55);
-
-  border-bottom:
-    2px solid rgba(64, 157, 255, 0.55);
-}
-
-
-/* =========================================================
-   34. LIVE BADGE
-========================================================= */
-
-.live-analysis-badge {
-  position: absolute;
-
-  top: 17px;
-  left: 50%;
-
-  z-index: 7;
-
-  display: none;
-  align-items: center;
-
-  gap: 7px;
-
-  transform:
-    translateX(-50%);
-
-  padding:
-    7px
-    10px;
-
-  border:
-    1px solid rgba(56, 217, 150, 0.17);
-
-  border-radius: 7px;
-
-  background:
-    rgba(4, 15, 18, 0.72);
-
-  backdrop-filter:
-    blur(8px);
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1px;
-
-  color: #75d5ad;
-}
-
-
-.live-analysis-badge.active {
-  display: flex;
-}
-
-
-.live-analysis-badge span {
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background: var(--green);
-
-  box-shadow:
-    0 0 9px rgba(56, 217, 150, 0.85);
-
-  animation:
-    livePulse
-    1.4s infinite;
-}
-
-
-@keyframes livePulse {
+@keyframes pulseStatus {
 
   0%,
   100% {
     opacity: 1;
+    transform: scale(1);
   }
 
   50% {
-    opacity: 0.3;
+    opacity: 0.55;
+    transform: scale(0.85);
   }
 
 }
 
 
-/* =========================================================
-   35. CAMERA CONTROLS
-========================================================= */
+@keyframes systemGlow {
 
-.camera-controls {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  0%,
+  100% {
+    box-shadow:
+      0 0 25px rgba(0, 140, 255, 0.08);
+  }
 
-  gap: 8px;
+  50% {
+    box-shadow:
+      0 0 42px rgba(0, 140, 255, 0.18);
+  }
 
-  margin-top: 13px;
 }
 
 
-.camera-controls .primary-analysis-button {
-  min-width: 125px;
-}
-
-
-/* =========================================================
-   36. POSE DATA PANEL
-========================================================= */
-
-.pose-data-panel {
-  display: flex;
-  flex-direction: column;
-
-  gap: 12px;
-}
-
-
-/* =========================================================
-   37. POSE SCORE
-========================================================= */
-
-.pose-score-card,
-.joint-data-card,
-.balance-card {
-  padding: 17px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 25, 41, 0.96),
-      rgba(7, 15, 26, 0.97)
-    );
-}
-
-
-.pose-score-card {
-  text-align: center;
-}
-
-
-.pose-score-card > .panel-label {
-  text-align: left;
-}
-
-
-.score-circle {
-  position: relative;
-
-  width: 126px;
-  height: 126px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin:
-    12px
-    auto
-    11px;
-
-  border-radius: 50%;
-
-  background:
-    conic-gradient(
-      #238cff 0deg,
-      #238cff 0deg,
-      rgba(255, 255, 255, 0.055) 0deg,
-      rgba(255, 255, 255, 0.055) 360deg
-    );
-
-  transition:
-    background
-    0.35s ease;
-}
-
-
-.score-circle::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 7px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      #101f31,
-      #07111d
-    );
-
-  border:
-    1px solid rgba(255, 255, 255, 0.055);
-}
-
-
-.score-circle > div {
-  position: relative;
-  z-index: 2;
-
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-}
-
-
-.score-circle strong {
-  font-size: 31px;
-  font-weight: 800;
-
-  letter-spacing: -1.5px;
-
-  color: #eaf5ff;
-}
-
-
-.score-circle span {
-  margin-left: 3px;
-
-  font-size: 9px;
-
-  color: #596d84;
-}
-
-
-.pose-score-card p {
-  font-size: 8px;
-  line-height: 1.6;
-
-  color: #576a80;
-}
-
-
-/* =========================================================
-   38. JOINT DATA
-========================================================= */
-
-.joint-list {
-  display: flex;
-  flex-direction: column;
-
-  gap: 6px;
-}
-
-
-.joint-item {
-  min-height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 12px;
-
-  padding:
-    0
-    10px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.045);
-
-  border-radius: 8px;
-
-  background:
-    rgba(255, 255, 255, 0.018);
-}
-
-
-.joint-name {
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-}
-
-
-.joint-name i {
-  width: 16px;
-
-  text-align: center;
-
-  font-size: 9px;
-
-  color: #3e78b5;
-}
-
-
-.joint-name span,
-.joint-item > span {
-  font-size: 9px;
-  font-weight: 600;
-
-  color: #73869c;
-}
-
-
-.joint-item strong {
-  font-size: 11px;
-  font-weight: 700;
-
-  color: #b9d8f8;
-}
-
-
-/* 분석 정상 */
-
-.joint-item.good {
-  border-color:
-    rgba(56, 217, 150, 0.1);
-}
-
-
-.joint-item.good strong {
-  color: #6bd5a6;
-}
-
-
-/* 확인 필요 */
-
-.joint-item.warning {
-  border-color:
-    rgba(242, 201, 76, 0.12);
-}
-
-
-.joint-item.warning strong {
-  color: #d8bc64;
-}
-
-
-/* 큰 차이 */
-
-.joint-item.danger {
-  border-color:
-    rgba(255, 91, 104, 0.12);
-}
-
-
-.joint-item.danger strong {
-  color: #e87983;
-}
-
-
-/* =========================================================
-   39. BALANCE
-========================================================= */
-
-.balance-display {
-  display: grid;
-
-  grid-template-columns:
-    48px
-    minmax(0, 1fr)
-    48px;
-
-  align-items: center;
-
-  gap: 8px;
-
-  margin-top: 6px;
-}
-
-
-.balance-side {
-  display: flex;
-  flex-direction: column;
-
-  text-align: center;
-}
-
-
-.balance-side span {
-  font-size: 7px;
-  font-weight: 700;
-
-  letter-spacing: 0.8px;
-
-  color: #4d6076;
-}
-
-
-.balance-side strong {
-  margin-top: 3px;
-
-  font-size: 11px;
-
-  color: #9cb0c5;
-}
-
-
-.balance-bar {
-  position: relative;
-
-  height: 7px;
-
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(37, 137, 247, 0.35),
-      rgba(255, 255, 255, 0.07) 50%,
-      rgba(37, 137, 247, 0.35)
-    );
-}
-
-
-.balance-center {
-  position: absolute;
-
-  left: 50%;
-  top: -3px;
-
-  width: 1px;
-  height: 13px;
-
-  background:
-    rgba(255, 255, 255, 0.25);
-}
-
-
-.balance-indicator {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  width: 13px;
-  height: 13px;
-
-  transform:
-    translate(-50%, -50%);
-
-  border:
-    2px solid #0a1725;
-
-  border-radius: 50%;
-
-  background: #4ca2ff;
-
-  box-shadow:
-    0 0 9px rgba(76, 162, 255, 0.45);
-
-  transition:
-    left
-    0.25s ease;
-}
-
-
-/* =========================================================
-   40. ANALYSIS RESULT
-========================================================= */
-
-.pose-result-section {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin-top: 16px;
-}
-
-
-.analysis-result-card {
-  min-height: 160px;
-
-  padding: 17px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 24, 39, 0.96),
-      rgba(7, 15, 26, 0.96)
-    );
-}
-
-
-.result-card-header {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-
-  padding-bottom: 12px;
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.05);
-}
-
-
-.result-icon {
-  width: 34px;
-  height: 34px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 9px;
-}
-
-
-.result-icon i {
-  font-size: 11px;
-}
-
-
-.result-card-header span {
-  display: block;
-
-  margin-bottom: 2px;
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 1.1px;
-}
-
-
-.result-card-header h3 {
-  font-size: 11px;
-  font-weight: 700;
-
-  color: #cbd8e7;
-}
-
-
-.analysis-result-card.good .result-icon {
-  background:
-    rgba(56, 217, 150, 0.08);
-
-  color: #55c895;
-}
-
-
-.analysis-result-card.good .result-card-header span {
-  color: #397e62;
-}
-
-
-.analysis-result-card.improvement .result-icon {
-  background:
-    rgba(29, 124, 255, 0.09);
-
-  color: #4a9cf4;
-}
-
-
-.analysis-result-card.improvement .result-card-header span {
-  color: #3a75b3;
-}
-
-
-.analysis-result-card.risk .result-icon {
-  background:
-    rgba(242, 201, 76, 0.08);
-
-  color: #cfb052;
-}
-
-
-.analysis-result-card.risk .result-card-header span {
-  color: #83733d;
-}
-
-
-.analysis-result-content {
-  padding-top: 13px;
-
-  font-size: 9px;
-  line-height: 1.8;
-
-  color: #65788e;
-}
-
-
-/* =========================================================
-   41. POSE BOTTOM ACTIONS
-========================================================= */
-
-.pose-bottom-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  gap: 8px;
-
-  margin-top: 15px;
-
-  padding-top: 15px;
-
-  border-top:
-    1px solid rgba(255, 255, 255, 0.05);
-}
-
-
-/* =========================================================
-   42. CAMERA LOADING
-========================================================= */
-
-.camera-stage.loading::before {
-  opacity: 0.06;
-}
-
-
-.camera-loading {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  z-index: 10;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  gap: 10px;
-
-  transform:
-    translate(-50%, -50%);
-
-  color: #7189a2;
-}
-
-
-.camera-loading-spinner {
-  width: 28px;
-  height: 28px;
-
-  border:
-    2px solid rgba(255, 255, 255, 0.07);
-
-  border-top-color: #378fe9;
-
-  border-radius: 50%;
+.page-section.active {
 
   animation:
-    cameraSpin
-    0.8s linear infinite;
+    pageFadeIn
+    0.22s
+    ease;
+
 }
 
 
-@keyframes cameraSpin {
+.status-dot {
 
-  to {
-    transform: rotate(360deg);
+  animation:
+    pulseStatus
+    2.2s
+    ease-in-out
+    infinite;
+
+}
+
+
+.system-ring {
+
+  animation:
+    systemGlow
+    4s
+    ease-in-out
+    infinite;
+
+}
+
+
+/* =========================================================
+   42. BUTTON FOCUS
+========================================================= */
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+
+  outline:
+    2px
+    solid
+    rgba(40, 168, 255, 0.65);
+
+  outline-offset: 2px;
+
+}
+
+
+/* =========================================================
+   43. TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+  .nav-item:hover,
+  .summary-card:hover,
+  .sport-quick-card:hover,
+  .quick-action-card:hover,
+  .category-preview-card:hover,
+  .sport-list-card:hover {
+
+    transform: none;
+
+  }
+
+
+  .nav-item,
+  .sport-quick-card,
+  .quick-action-card,
+  .category-preview-card,
+  .primary-btn,
+  .secondary-btn {
+
+    touch-action: manipulation;
+
   }
 
 }
 
 
 /* =========================================================
-   43. RESPONSIVE - POSE
+   44. LARGE DESKTOP
 ========================================================= */
 
-@media (max-width: 1180px) {
+@media (min-width: 1500px) {
 
-  .pose-workspace {
-    grid-template-columns:
-      minmax(0, 1fr)
-      260px;
+  :root {
+    --sidebar-width: 275px;
   }
 
 
-  .camera-stage {
-    min-height: 380px;
+  .page-content {
+
+    max-width: 1650px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 36px;
+    padding-right: 36px;
+
+  }
+
+
+  .dashboard-hero {
+    min-height: 330px;
+  }
+
+
+  .summary-card {
+    min-height: 150px;
+  }
+
+
+  .analysis-viewer,
+  .analysis-side-panel {
+
+    min-height: 620px;
+
   }
 
 }
 
 
-@media (max-width: 1000px) {
+/* =========================================================
+   45. LAPTOP / iPAD PRO LANDSCAPE
+========================================================= */
 
-  .analysis-control-panel {
+@media (max-width: 1200px) {
+
+  :root {
+    --sidebar-width: 230px;
+  }
+
+
+  .brand {
+
+    padding-left: 15px;
+    padding-right: 15px;
+
+  }
+
+
+  .brand-text strong {
+    font-size: 12px;
+  }
+
+
+  .page-content {
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+  }
+
+
+  .topbar {
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+  }
+
+
+  .dashboard-hero {
+
+    grid-template-columns:
+      minmax(0, 1.3fr)
+      minmax(230px, 0.7fr);
+
+    padding:
+      32px
+      30px;
+
+  }
+
+
+  .summary-grid {
+
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
+
   }
 
 
-  .pose-workspace {
+  .recent-analysis-panel,
+  .performance-panel,
+  .sports-panel,
+  .elite-panel {
+
+    grid-column: span 6;
+
+  }
+
+
+  .chart-panel {
+
+    grid-column: span 7;
+
+  }
+
+
+  .university-panel {
+
+    grid-column: span 5;
+
+  }
+
+
+  .category-preview-grid,
+  .pose-feature-preview,
+  .athlete-grid,
+  .sports-list-grid {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+  }
+
+
+  .analysis-workspace {
+
+    grid-template-columns:
+      minmax(0, 1.5fr)
+      minmax(270px, 0.7fr);
+
+  }
+
+}
+
+
+/* =========================================================
+   46. iPAD PORTRAIT / TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  :root {
+    --topbar-height: 72px;
+  }
+
+
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+
+  .sidebar {
+
+    width: 260px;
+
+    transform: translateX(-102%);
+
+    transition:
+      transform
+      0.24s
+      ease;
+
+    box-shadow:
+      18px
+      0
+      50px
+      rgba(0, 0, 0, 0.35);
+
+    z-index: 1000;
+
+  }
+
+
+  body.sidebar-open .sidebar {
+
+    transform: translateX(0);
+
+  }
+
+
+  .main-area {
+
+    width: 100%;
+
+    margin-left: 0;
+
+  }
+
+
+  .mobile-menu-btn {
+
+    display: flex;
+
+  }
+
+
+  .topbar {
+
+    min-height: 72px;
+
+    padding:
+      10px
+      16px;
+
+  }
+
+
+  .topbar h1 {
+    font-size: 18px;
+  }
+
+
+  .topbar-eyebrow {
+    display: none;
+  }
+
+
+  .top-status-card {
+    display: none;
+  }
+
+
+  .profile-info {
+    display: none;
+  }
+
+
+  .profile-button {
+
+    padding: 5px;
+
+  }
+
+
+  .page-content {
+
+    padding:
+      18px
+      16px
+      40px;
+
+  }
+
+
+  .dashboard-hero {
+
     grid-template-columns: 1fr;
+
+    min-height: auto;
+
+    padding:
+      30px
+      26px;
+
   }
 
 
-  .pose-data-panel {
+  .hero-system {
+
     display: grid;
 
     grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+      130px
+      1fr;
+
+    align-items: center;
+
   }
 
 
-  .pose-score-card,
-  .joint-data-card,
-  .balance-card {
-    min-width: 0;
+  .system-ring {
+
+    width: 125px;
+    height: 125px;
+
   }
 
 
-  .pose-result-section {
-    grid-template-columns: 1fr 1fr;
+  .recent-analysis-panel,
+  .performance-panel,
+  .sports-panel,
+  .elite-panel,
+  .chart-panel,
+  .university-panel {
+
+    grid-column: span 12;
+
   }
 
 
-  .analysis-result-card.risk {
-    grid-column:
-      1 / -1;
+  .quick-actions-grid {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+  }
+
+
+  .entrance-flow {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .flow-line {
+
+    width: 1px;
+    height: 25px;
+
+    margin: auto;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(40, 168, 255, 0.05),
+        rgba(40, 168, 255, 0.4),
+        rgba(40, 168, 255, 0.05)
+      );
+
+  }
+
+
+  .analysis-workspace {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .analysis-viewer {
+
+    min-height: 480px;
+
+  }
+
+
+  .analysis-side-panel {
+
+    min-height: auto;
+
+  }
+
+
+  .comparison-preview {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .comparison-vs {
+
+    min-height: 40px;
+
   }
 
 }
 
+
+/* =========================================================
+   47. SMALL TABLET / LARGE PHONE
+========================================================= */
 
 @media (max-width: 700px) {
 
-  .analysis-page-header {
-    align-items: flex-start;
-    flex-direction: column;
+  .topbar-right {
+
+    gap: 6px;
+
   }
 
 
-  .analysis-page-header h1 {
-    font-size: 24px;
+  #quickAnalysisBtn {
+
+    min-height: 38px;
+
+    padding:
+      8px
+      11px;
+
+    font-size: 10px;
+
   }
 
 
-  .analysis-control-panel {
-    grid-template-columns: 1fr;
+  .profile-button {
+    display: none;
   }
 
 
-  .camera-stage {
-    min-height: 330px;
+  .dashboard-hero {
 
-    aspect-ratio: auto;
-  }
-
-
-  .pose-data-panel {
-    grid-template-columns: 1fr;
-  }
-
-
-  .pose-result-section {
-    grid-template-columns: 1fr;
-  }
-
-
-  .analysis-result-card.risk {
-    grid-column: auto;
-  }
-
-
-  .camera-controls {
-    display: grid;
-
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-
-  .camera-controls button {
-    width: 100%;
-  }
-
-}
-
-
-@media (max-width: 500px) {
-
-  .camera-panel {
-    padding: 12px;
-  }
-
-
-  .camera-header {
-    align-items: flex-start;
-    flex-direction: column;
-
-    gap: 9px;
-  }
-
-
-  .camera-stage {
-    min-height: 300px;
-  }
-
-
-  .body-guide {
-    transform:
-      translate(-50%, -50%)
-      scale(0.8);
-  }
-
-
-  .camera-controls {
-    grid-template-columns: 1fr;
-  }
-
-
-  .pose-bottom-actions {
-    display: grid;
-
-    grid-template-columns:
-      1fr
-      1fr;
-  }
-
-
-  .pose-bottom-actions button {
-    width: 100%;
-  }
-
-}
-
-
-/* =========================================================
-   END OF style.css PART 3
-========================================================= */
-/* =========================================================
-   SEOLCHEON PERFORMANCE LAB
-   style.css
-
-   PART 4
-   Video Analysis / Sports / Weight / PE Entrance
-========================================================= */
-
-
-/* =========================================================
-   44. VIDEO UPLOAD BUTTON
-========================================================= */
-
-.upload-button {
-  cursor: pointer;
-  user-select: none;
-}
-
-
-.video-stage {
-  min-height: 430px;
-}
-
-
-.video-empty-state {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 3;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  gap: 8px;
-
-  padding: 30px;
-
-  text-align: center;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(15, 35, 55, 0.82),
-      rgba(3, 8, 14, 0.95)
-    );
-
-  transition:
-    opacity 0.25s ease,
-    visibility 0.25s ease;
-}
-
-
-.video-empty-state.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-
-.video-empty-state i {
-  margin-bottom: 7px;
-
-  font-size: 30px;
-
-  color: #315f8d;
-}
-
-
-.video-empty-state strong {
-  font-size: 13px;
-  font-weight: 700;
-
-  color: #aebed0;
-}
-
-
-.video-empty-state span {
-  font-size: 9px;
-  line-height: 1.6;
-
-  color: #586b81;
-}
-
-
-/* =========================================================
-   45. VIDEO PLAYER CONTROLS
-========================================================= */
-
-.video-player-controls {
-  min-height: 54px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 9px;
-
-  margin-top: 10px;
-
-  padding:
-    8px
-    10px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.055);
-
-  border-radius: 10px;
-
-  background:
-    rgba(255, 255, 255, 0.018);
-}
-
-
-.video-player-controls button {
-  width: 32px;
-  height: 32px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 8px;
-
-  background:
-    rgba(255, 255, 255, 0.035);
-
-  border:
-    1px solid rgba(255, 255, 255, 0.055);
-
-  color: #71859c;
-
-  transition: var(--transition);
-}
-
-
-.video-player-controls button:hover {
-  background:
-    rgba(29, 124, 255, 0.1);
-
-  border-color:
-    rgba(29, 124, 255, 0.18);
-
-  color: #56a9ff;
-}
-
-
-.video-player-controls .video-play-button {
-  width: 38px;
-  height: 38px;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #2588f5,
-      #0e62c2
-    );
-
-  color: #ffffff;
-}
-
-
-.video-player-controls span {
-  min-width: 36px;
-
-  font-size: 8px;
-  font-weight: 600;
-
-  color: #62768d;
-}
-
-
-#videoTimeline {
-  flex: 1;
-
-  height: 4px;
-
-  appearance: none;
-  -webkit-appearance: none;
-
-  border-radius: 10px;
-
-  background:
-    rgba(255, 255, 255, 0.08);
-
-  cursor: pointer;
-}
-
-
-#videoTimeline::-webkit-slider-thumb {
-  width: 13px;
-  height: 13px;
-
-  appearance: none;
-  -webkit-appearance: none;
-
-  border:
-    2px solid #091421;
-
-  border-radius: 50%;
-
-  background: #3f9af8;
-
-  box-shadow:
-    0 0 7px rgba(63, 154, 248, 0.4);
-}
-
-
-#videoTimeline::-moz-range-thumb {
-  width: 13px;
-  height: 13px;
-
-  border:
-    2px solid #091421;
-
-  border-radius: 50%;
-
-  background: #3f9af8;
-}
-
-
-/* =========================================================
-   46. SPORT SELECTION PANEL
-========================================================= */
-
-.sport-selection-panel {
-  padding: 20px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: var(--radius);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 24, 39, 0.96),
-      rgba(7, 15, 26, 0.97)
-    );
-
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.13);
-}
-
-
-.selection-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 17px;
-}
-
-
-.selection-header h2 {
-  font-size: 17px;
-  font-weight: 750;
-
-  letter-spacing: -0.6px;
-
-  color: #eaf3ff;
-}
-
-
-/* =========================================================
-   47. SPORT CARD GRID
-========================================================= */
-
-.sport-card-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 10px;
-}
-
-
-.sport-select-card {
-  position: relative;
-
-  min-height: 128px;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-
-  padding:
-    18px
-    19px;
-
-  overflow: hidden;
-
-  text-align: left;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.06);
-
-  border-radius: 13px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(16, 30, 49, 0.88),
-      rgba(8, 17, 29, 0.92)
-    );
-
-  color: #ffffff;
-
-  transition:
-    transform var(--transition),
-    border-color var(--transition),
-    background var(--transition);
-}
-
-
-.sport-select-card::after {
-  content: "";
-
-  position: absolute;
-
-  right: -35px;
-  bottom: -40px;
-
-  width: 100px;
-  height: 100px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(31, 132, 238, 0.12),
-      transparent 70%
-    );
-
-  transition:
-    transform 0.3s ease;
-}
-
-
-.sport-select-card > i {
-  position: relative;
-  z-index: 2;
-
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 13px;
-
-  border-radius: 10px;
-
-  background:
-    rgba(29, 124, 255, 0.08);
-
-  border:
-    1px solid rgba(29, 124, 255, 0.12);
-
-  font-size: 15px;
-
-  color: #489df8;
-}
-
-
-.sport-select-card strong {
-  position: relative;
-  z-index: 2;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  color: #dce9f7;
-}
-
-
-.sport-select-card span {
-  position: relative;
-  z-index: 2;
-
-  margin-top: 3px;
-
-  font-size: 8px;
-  font-weight: 600;
-
-  letter-spacing: 0.3px;
-
-  color: #53687f;
-}
-
-
-.sport-select-card:hover {
-  transform: translateY(-3px);
-
-  border-color:
-    rgba(54, 151, 255, 0.24);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(19, 39, 64, 0.94),
-      rgba(9, 20, 34, 0.96)
-    );
-}
-
-
-.sport-select-card:hover::after {
-  transform: scale(1.5);
-}
-
-
-.sport-select-card:hover > i {
-  color: #72b7ff;
-
-  background:
-    rgba(29, 124, 255, 0.14);
-}
-
-
-.sport-select-card.selected {
-  border-color:
-    rgba(46, 146, 252, 0.48);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(19, 59, 100, 0.78),
-      rgba(9, 27, 47, 0.94)
-    );
-
-  box-shadow:
-    inset 0 0 25px rgba(29, 124, 255, 0.05),
-    0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-
-.sport-select-card.selected::before {
-  content: "SELECTED";
-
-  position: absolute;
-
-  top: 10px;
-  right: 10px;
-
-  z-index: 4;
-
-  padding:
-    4px
-    6px;
-
-  border-radius: 5px;
-
-  background:
-    rgba(29, 124, 255, 0.12);
-
-  font-size: 6px;
-  font-weight: 800;
-
-  letter-spacing: 0.8px;
-
-  color: #5aaaff;
-}
-
-
-/* =========================================================
-   48. ANALYSIS METHOD SECTION
-========================================================= */
-
-.analysis-method-section {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin-top: 14px;
-}
-
-
-.analysis-method-card {
-  min-height: 125px;
-
-  display: grid;
-
-  grid-template-columns:
-    50px
-    minmax(0, 1fr)
-    28px;
-
-  align-items: center;
-
-  gap: 14px;
-
-  padding:
-    18px;
-
-  text-align: left;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 25, 41, 0.95),
-      rgba(7, 15, 26, 0.96)
-    );
-
-  color: #ffffff;
-
-  transition: var(--transition);
-}
-
-
-.analysis-method-card:hover {
-  transform: translateY(-3px);
-
-  border-color:
-    rgba(50, 146, 248, 0.22);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17, 34, 55, 0.98),
-      rgba(8, 19, 32, 0.98)
-    );
-}
-
-
-.method-icon {
-  width: 48px;
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 12px;
-
-  background:
-    rgba(29, 124, 255, 0.09);
-
-  border:
-    1px solid rgba(29, 124, 255, 0.14);
-
-  color: #4b9ff7;
-}
-
-
-.method-icon i {
-  font-size: 16px;
-}
-
-
-.analysis-method-card > div:nth-child(2) {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-
-.analysis-method-card > div:nth-child(2) > span {
-  margin-bottom: 3px;
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 1.1px;
-
-  color: #3e79b7;
-}
-
-
-.analysis-method-card strong {
-  font-size: 12px;
-  font-weight: 700;
-
-  color: #dce8f6;
-}
-
-
-.analysis-method-card p {
-  margin-top: 5px;
-
-  font-size: 8px;
-  line-height: 1.6;
-
-  color: #566a80;
-}
-
-
-.analysis-method-card > i {
-  font-size: 10px;
-
-  color: #425b75;
-
-  transition: var(--transition);
-}
-
-
-.analysis-method-card:hover > i {
-  transform: translateX(4px);
-
-  color: #4b9ff7;
-}
-
-
-/* =========================================================
-   49. WINTER SPORTS ACCENT
-========================================================= */
-
-#page-winter .section-eyebrow {
-  color: #5ca9e8;
-}
-
-
-#page-winter .sport-selection-panel {
-  background:
-    radial-gradient(
-      circle at 85% 0%,
-      rgba(59, 145, 213, 0.08),
-      transparent 28%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(11, 27, 43, 0.97),
-      rgba(6, 15, 25, 0.98)
-    );
-}
-
-
-#page-winter .sport-select-card > i {
-  color: #6db7e8;
-
-  background:
-    rgba(67, 155, 214, 0.08);
-
-  border-color:
-    rgba(67, 155, 214, 0.13);
-}
-
-
-/* =========================================================
-   50. SUMMER SPORTS ACCENT
-========================================================= */
-
-#page-summer .section-eyebrow {
-  color: #5d96d0;
-}
-
-
-#page-summer .sport-selection-panel {
-  background:
-    radial-gradient(
-      circle at 85% 0%,
-      rgba(35, 116, 199, 0.08),
-      transparent 30%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(13, 25, 40, 0.97),
-      rgba(7, 15, 26, 0.98)
-    );
-}
-
-
-/* =========================================================
-   51. WEIGHT ACCENT
-========================================================= */
-
-#page-weight .sport-select-card {
-  min-height: 140px;
-}
-
-
-#page-weight .sport-select-card > i {
-  width: 42px;
-  height: 42px;
-
-  font-size: 16px;
-}
-
-
-/* =========================================================
-   52. PE ENTRANCE ACCENT
-========================================================= */
-
-#page-pe .sport-selection-panel {
-  background:
-    radial-gradient(
-      circle at 90% 0%,
-      rgba(42, 130, 225, 0.08),
-      transparent 30%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(13, 25, 41, 0.97),
-      rgba(7, 15, 26, 0.98)
-    );
-}
-
-
-#page-pe .sport-select-card {
-  min-height: 145px;
-}
-
-
-/* =========================================================
-   53. SPORT ANALYSIS PLACEHOLDER
-   추후 JS로 생성되는 선택 결과 화면
-========================================================= */
-
-.sport-analysis-box {
-  margin-top: 14px;
-
-  padding: 20px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: var(--radius);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(12, 24, 39, 0.97),
-      rgba(7, 15, 25, 0.98)
-    );
-}
-
-
-.sport-analysis-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 18px;
-}
-
-
-.sport-analysis-title span {
-  display: block;
-
-  margin-bottom: 4px;
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1.3px;
-
-  color: #3c79b7;
-}
-
-
-.sport-analysis-title h2 {
-  font-size: 17px;
-
-  color: #e8f2fc;
-}
-
-
-.sport-analysis-options {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 10px;
-}
-
-
-.sport-analysis-option {
-  min-height: 100px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 13px;
-
-  padding: 15px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.055);
-
-  border-radius: 11px;
-
-  background:
-    rgba(255, 255, 255, 0.018);
-
-  color: #ffffff;
-
-  text-align: left;
-
-  transition: var(--transition);
-}
-
-
-.sport-analysis-option:hover {
-  background:
-    rgba(29, 124, 255, 0.05);
-
-  border-color:
-    rgba(29, 124, 255, 0.15);
-}
-
-
-.sport-analysis-option i {
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 10px;
-
-  background:
-    rgba(29, 124, 255, 0.08);
-
-  color: #499df7;
-}
-
-
-.sport-analysis-option div {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.sport-analysis-option strong {
-  font-size: 11px;
-
-  color: #cbd9e8;
-}
-
-
-.sport-analysis-option span {
-  margin-top: 3px;
-
-  font-size: 8px;
-
-  color: #566a80;
-}
-
-
-/* =========================================================
-   54. VIDEO ANALYSIS ACTIVE STATE
-========================================================= */
-
-.video-stage.analysis-active {
-  border-color:
-    rgba(56, 217, 150, 0.2);
-
-  box-shadow:
-    inset 0 0 35px rgba(56, 217, 150, 0.025);
-}
-
-
-.video-stage.analysis-active::after {
-  content: "VIDEO ANALYSIS";
-
-  position: absolute;
-
-  top: 14px;
-  left: 14px;
-
-  z-index: 8;
-
-  padding:
-    6px
-    8px;
-
-  border:
-    1px solid rgba(56, 217, 150, 0.15);
-
-  border-radius: 6px;
-
-  background:
-    rgba(4, 15, 18, 0.72);
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 0.9px;
-
-  color: #67cfa1;
-}
-
-
-/* =========================================================
-   55. SPORT INFO STRIP
-========================================================= */
-
-.sport-info-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-top: 14px;
-
-  padding:
-    13px
-    15px;
-
-  border:
-    1px solid rgba(29, 124, 255, 0.09);
-
-  border-radius: 10px;
-
-  background:
-    rgba(29, 124, 255, 0.025);
-}
-
-
-.sport-info-strip div {
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-}
-
-
-.sport-info-strip i {
-  color: #428fdc;
-}
-
-
-.sport-info-strip strong {
-  font-size: 9px;
-
-  color: #8ca4bc;
-}
-
-
-.sport-info-strip span {
-  font-size: 8px;
-
-  color: #52677d;
-}
-
-
-/* =========================================================
-   56. RESPONSIVE - SPORTS / VIDEO
-========================================================= */
-
-@media (max-width: 1100px) {
-
-  .sport-card-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-
-@media (max-width: 800px) {
-
-  .analysis-method-section {
-    grid-template-columns: 1fr;
-  }
-
-
-  .video-stage {
-    min-height: 360px;
-  }
-
-}
-
-
-@media (max-width: 650px) {
-
-  .sport-card-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-
-  .sport-select-card {
-    min-height: 125px;
-
-    padding: 15px;
-  }
-
-
-  .analysis-method-card {
-    grid-template-columns:
-      44px
-      minmax(0, 1fr)
+    padding:
+      25px
       20px;
 
-    padding: 15px;
   }
 
 
-  .method-icon {
-    width: 42px;
-    height: 42px;
+  .hero-content h2 {
+
+    font-size: 29px;
+
+    letter-spacing: -1px;
+
   }
 
 
-  .video-player-controls {
-    flex-wrap: wrap;
+  .hero-content p {
+
+    font-size: 11px;
+
   }
 
 
-  #videoTimeline {
-    order: 10;
+  .hero-system {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .hero-system-info {
+
+    max-width: 100%;
+
+  }
+
+
+  .summary-grid {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+  }
+
+
+  .sport-quick-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .elite-comparison {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .elite-visual {
+
+    min-height: 150px;
+
+  }
+
+
+  .category-preview-grid,
+  .pose-feature-preview,
+  .athlete-grid,
+  .sports-list-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .form-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .page-placeholder {
+
+    padding:
+      25px
+      20px;
+
+  }
+
+
+  .page-placeholder > h2 {
+
+    font-size: 24px;
+
+  }
+
+
+  .analysis-viewer {
+
+    min-height: 400px;
+
+  }
+
+}
+
+
+/* =========================================================
+   48. PHONE
+========================================================= */
+
+@media (max-width: 520px) {
+
+  .topbar {
+
+    gap: 8px;
+
+    padding:
+      9px
+      12px;
+
+  }
+
+
+  .topbar-left {
+
+    gap: 9px;
+
+  }
+
+
+  .mobile-menu-btn {
+
+    width: 38px;
+    height: 38px;
+
+  }
+
+
+  .topbar h1 {
+
+    max-width: 150px;
+
+    overflow: hidden;
+
+    font-size: 16px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+  }
+
+
+  #quickAnalysisBtn {
+
+    font-size: 0;
+
+  }
+
+
+  #quickAnalysisBtn::after {
+
+    content: "AI 분석";
+
+    font-size: 9px;
+
+  }
+
+
+  .page-content {
+
+    padding:
+      14px
+      11px
+      35px;
+
+  }
+
+
+  .dashboard-hero {
+
+    border-radius: 16px;
+
+  }
+
+
+  .hero-badge {
+
+    font-size: 7px;
+
+  }
+
+
+  .hero-content h2 {
+
+    font-size: 25px;
+
+  }
+
+
+  .hero-actions {
+
+    flex-direction: column;
+
+  }
+
+
+  .hero-actions button {
 
     width: 100%;
-    flex-basis: 100%;
+
   }
 
 
-  .sport-analysis-options {
+  .summary-grid {
+
     grid-template-columns: 1fr;
-  }
 
-}
-
-
-@media (max-width: 450px) {
-
-  .sport-selection-panel {
-    padding: 14px;
   }
 
 
-  .sport-card-grid {
+  .summary-card {
+
+    min-height: 125px;
+
+  }
+
+
+  .panel {
+
+    padding: 15px;
+
+  }
+
+
+  .section-heading {
+
+    margin-top: 26px;
+
+  }
+
+
+  .quick-actions-grid {
+
     grid-template-columns: 1fr;
+
   }
 
 
-  .sport-select-card,
-  #page-weight .sport-select-card,
-  #page-pe .sport-select-card {
-    min-height: 110px;
+  .quick-action-card {
+
+    min-height: 95px;
+
   }
 
 
-  .video-stage {
-    min-height: 290px;
+  .chart-container {
+
+    height: 220px;
+
+  }
+
+
+  .analysis-viewer {
+
+    min-height: 330px;
+
+  }
+
+
+  .angle-data-grid {
+
+    grid-template-columns: 1fr;
+
   }
 
 }
 
 
 /* =========================================================
-   END OF style.css PART 4
-========================================================= */
-/* =========================================================
-   SEOLCHEON PERFORMANCE LAB
-   style.css
-
-   PART 5
-   Athlete / Records / Report / Toast / Final Responsive
+   49. iPHONE SAFE AREA
 ========================================================= */
 
-
-/* =========================================================
-   57. ATHLETE REGISTER LAYOUT
-========================================================= */
-
-.athlete-register-layout {
-  display: grid;
-
-  grid-template-columns:
-    260px
-    minmax(0, 1fr);
-
-  align-items: start;
-
-  gap: 15px;
-}
-
-
-/* =========================================================
-   58. ATHLETE PROFILE CARD
-========================================================= */
-
-.athlete-profile-card,
-.athlete-form-card {
-  padding: 20px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: var(--radius);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 25, 41, 0.97),
-      rgba(7, 15, 26, 0.98)
-    );
-
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.13);
-}
-
-
-.athlete-avatar-preview {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-
-.athlete-avatar {
-  width: 130px;
-  height: 130px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  border:
-    1px solid rgba(70, 154, 240, 0.18);
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle at 50% 30%,
-      #19324d,
-      #0a1725 70%
-    );
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-
-.athlete-avatar i {
-  font-size: 43px;
-
-  color: #486b8e;
-}
-
-
-.athlete-avatar img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-
-.photo-upload-button {
-  min-height: 35px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 7px;
-
-  margin-top: 15px;
-
+@supports (
   padding:
-    0
-    12px;
+  max(0px)
+) {
 
-  border:
-    1px solid rgba(29, 124, 255, 0.16);
+  .sidebar {
 
-  border-radius: 8px;
+    padding-bottom:
+      env(safe-area-inset-bottom);
 
-  background:
-    rgba(29, 124, 255, 0.07);
-
-  font-size: 9px;
-  font-weight: 700;
-
-  color: #54a6fc;
-
-  cursor: pointer;
-
-  transition: var(--transition);
-}
+  }
 
 
-.photo-upload-button:hover {
-  background:
-    rgba(29, 124, 255, 0.13);
-}
+  .topbar {
+
+    padding-top:
+      max(
+        10px,
+        env(safe-area-inset-top)
+      );
+
+  }
 
 
-.profile-guide {
-  margin-top: 24px;
+  @media (max-width: 900px) {
 
-  padding-top: 18px;
+    .page-content {
 
-  border-top:
-    1px solid rgba(255, 255, 255, 0.05);
-}
+      padding-bottom:
+        max(
+          40px,
+          env(safe-area-inset-bottom)
+        );
 
+    }
 
-.profile-guide strong {
-  display: block;
+  }
 
-  font-size: 11px;
-
-  color: #b6c6d7;
-}
-
-
-.profile-guide span {
-  display: block;
-
-  margin-top: 6px;
-
-  font-size: 8px;
-  line-height: 1.7;
-
-  color: #56697e;
 }
 
 
 /* =========================================================
-   59. ATHLETE FORM
+   50. LANDSCAPE SHORT SCREEN
 ========================================================= */
 
-.athlete-form-card .panel-header h2 {
-  font-size: 17px;
-}
+@media (
+  max-height: 650px
+)
+and
+(
+  min-width: 700px
+) {
+
+  .brand {
+
+    min-height: 70px;
+
+  }
 
 
-.form-grid {
-  display: grid;
+  .sidebar-nav {
 
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+    padding-top: 9px;
 
-  gap:
-    15px
-    12px;
-}
+  }
 
 
-.form-group {
-  display: flex;
-  flex-direction: column;
+  .nav-section-title {
 
-  gap: 7px;
-}
+    padding-top: 11px;
 
-
-.form-group.full {
-  margin-top: 15px;
-}
+  }
 
 
-.form-group label {
-  padding-left: 2px;
+  .nav-item {
 
-  font-size: 9px;
-  font-weight: 700;
+    min-height: 40px;
 
-  color: #708399;
-}
+    padding-top: 7px;
+    padding-bottom: 7px;
 
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.07);
-
-  border-radius: 9px;
-
-  background: #091421;
-
-  color: #c5d3e2;
-
-  transition: var(--transition);
-}
+  }
 
 
-.form-group input,
-.form-group select {
-  height: 42px;
+  .sidebar-footer {
 
-  padding:
-    0
-    12px;
-}
+    padding-top: 9px;
+    padding-bottom: 9px;
 
+  }
 
-.form-group textarea {
-  min-height: 110px;
-
-  padding: 12px;
-
-  line-height: 1.6;
-
-  resize: vertical;
-}
-
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #3f5267;
-}
-
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color:
-    rgba(55, 152, 255, 0.42);
-
-  box-shadow:
-    0 0 0 3px rgba(29, 124, 255, 0.07);
-}
-
-
-.input-unit {
-  position: relative;
-}
-
-
-.input-unit input {
-  padding-right: 45px;
-}
-
-
-.input-unit span {
-  position: absolute;
-
-  top: 50%;
-  right: 12px;
-
-  transform:
-    translateY(-50%);
-
-  font-size: 8px;
-  font-weight: 700;
-
-  color: #53677e;
-}
-
-
-.form-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  gap: 8px;
-
-  margin-top: 20px;
-
-  padding-top: 17px;
-
-  border-top:
-    1px solid rgba(255, 255, 255, 0.05);
 }
 
 
 /* =========================================================
-   60. ATHLETE TOOLBAR
+   51. REDUCED MOTION
 ========================================================= */
 
-.athlete-toolbar {
-  display: flex;
-  align-items: center;
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
 
-  gap: 9px;
+  *,
+  *::before,
+  *::after {
 
-  margin-bottom: 14px;
+    scroll-behavior: auto !important;
 
-  padding: 12px;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
 
-  border:
-    1px solid var(--line);
+    transition-duration: 0.01ms !important;
 
-  border-radius: 12px;
+  }
 
-  background:
-    rgba(11, 21, 35, 0.92);
-}
-
-
-.search-box {
-  position: relative;
-
-  min-width: 220px;
-  flex: 1;
-}
-
-
-.search-box i {
-  position: absolute;
-
-  left: 12px;
-  top: 50%;
-
-  transform:
-    translateY(-50%);
-
-  font-size: 10px;
-
-  color: #4d6279;
-}
-
-
-.search-box input {
-  width: 100%;
-  height: 40px;
-
-  padding:
-    0
-    12px
-    0
-    34px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.065);
-
-  border-radius: 9px;
-
-  background: #08131f;
-
-  color: #c5d4e3;
-}
-
-
-.search-box input:focus {
-  border-color:
-    rgba(52, 148, 250, 0.35);
-}
-
-
-.athlete-toolbar select {
-  min-width: 125px;
-  height: 40px;
-
-  padding:
-    0
-    10px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.065);
-
-  border-radius: 9px;
-
-  background: #08131f;
-
-  color: #8498ae;
-
-  font-size: 9px;
 }
 
 
 /* =========================================================
-   61. ATHLETE LIST
-========================================================= */
-
-.athlete-list-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 12px;
-}
-
-
-.athlete-list-grid > .large-empty-state {
-  grid-column:
-    1 / -1;
-}
-
-
-.athlete-card {
-  position: relative;
-
-  min-height: 220px;
-
-  padding: 18px;
-
-  overflow: hidden;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(14, 27, 44, 0.96),
-      rgba(7, 15, 26, 0.97)
-    );
-
-  transition: var(--transition);
-}
-
-
-.athlete-card:hover {
-  transform: translateY(-3px);
-
-  border-color:
-    rgba(49, 145, 246, 0.2);
-}
-
-
-.athlete-card-top {
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-}
-
-
-.athlete-card-avatar {
-  width: 58px;
-  height: 58px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background:
-    #0c1b2b;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.07);
-
-  color: #466886;
-}
-
-
-.athlete-card-avatar img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-
-.athlete-card-info {
-  min-width: 0;
-}
-
-
-.athlete-card-info strong {
-  display: block;
-
-  overflow: hidden;
-
-  font-size: 13px;
-
-  color: #dce8f5;
-
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-
-.athlete-card-info span {
-  display: block;
-
-  margin-top: 3px;
-
-  font-size: 8px;
-
-  color: #596d83;
-}
-
-
-.athlete-card-data {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 6px;
-
-  margin-top: 17px;
-}
-
-
-.athlete-card-data div {
-  padding:
-    9px
-    6px;
-
-  text-align: center;
-
-  border-radius: 8px;
-
-  background:
-    rgba(255, 255, 255, 0.022);
-}
-
-
-.athlete-card-data span {
-  display: block;
-
-  font-size: 7px;
-
-  color: #4f6277;
-}
-
-
-.athlete-card-data strong {
-  display: block;
-
-  margin-top: 3px;
-
-  font-size: 10px;
-
-  color: #9db2c7;
-}
-
-
-.athlete-card-actions {
-  display: flex;
-
-  gap: 6px;
-
-  margin-top: 15px;
-}
-
-
-.athlete-card-actions button {
-  min-height: 33px;
-
-  flex: 1;
-
-  border-radius: 8px;
-
-  background:
-    rgba(29, 124, 255, 0.06);
-
-  border:
-    1px solid rgba(29, 124, 255, 0.1);
-
-  font-size: 8px;
-  font-weight: 700;
-
-  color: #5b93ca;
-
-  transition: var(--transition);
-}
-
-
-.athlete-card-actions button:hover {
-  background:
-    rgba(29, 124, 255, 0.12);
-
-  color: #78b9fa;
-}
-
-
-/* =========================================================
-   62. RECORDS
-========================================================= */
-
-.records-panel {
-  overflow: hidden;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: var(--radius);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(12, 23, 38, 0.97),
-      rgba(7, 15, 25, 0.98)
-    );
-}
-
-
-.records-table-wrapper {
-  width: 100%;
-
-  overflow-x: auto;
-}
-
-
-.records-table {
-  width: 100%;
-  min-width: 760px;
-
-  border-collapse: collapse;
-}
-
-
-.records-table th {
-  height: 45px;
-
-  padding:
-    0
-    15px;
-
-  text-align: left;
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.06);
-
-  background:
-    rgba(255, 255, 255, 0.015);
-
-  font-size: 8px;
-  font-weight: 700;
-
-  letter-spacing: 0.4px;
-
-  color: #53687f;
-}
-
-
-.records-table td {
-  height: 58px;
-
-  padding:
-    0
-    15px;
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.04);
-
-  font-size: 9px;
-
-  color: #8498ae;
-}
-
-
-.records-table tbody tr {
-  transition: var(--transition);
-}
-
-
-.records-table tbody tr:not(.empty-table-row):hover {
-  background:
-    rgba(29, 124, 255, 0.025);
-}
-
-
-.records-table tbody tr:last-child td {
-  border-bottom: 0;
-}
-
-
-.table-empty {
-  min-height: 260px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  gap: 9px;
-}
-
-
-.table-empty i {
-  font-size: 26px;
-
-  color: #294e75;
-}
-
-
-.table-empty strong {
-  font-size: 10px;
-  font-weight: 600;
-
-  color: #61758b;
-}
-
-
-.record-score {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 38px;
-
-  padding:
-    5px
-    7px;
-
-  border-radius: 7px;
-
-  background:
-    rgba(29, 124, 255, 0.07);
-
-  font-weight: 700;
-
-  color: #5ca9f8;
-}
-
-
-.record-status {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 5px;
-
-  font-size: 8px;
-}
-
-
-.record-status::before {
-  content: "";
-
-  width: 5px;
-  height: 5px;
-
-  border-radius: 50%;
-
-  background: var(--green);
-}
-
-
-/* =========================================================
-   63. REPORT SHEET
-========================================================= */
-
-.report-sheet {
-  max-width: 1100px;
-
-  margin:
-    16px
-    auto
-    0;
-
-  padding:
-    32px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.08);
-
-  border-radius: var(--radius-large);
-
-  background:
-    linear-gradient(
-      145deg,
-      #0d1928,
-      #07111d
-    );
-
-  box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.25);
-}
-
-
-.report-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  padding-bottom: 22px;
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.07);
-}
-
-
-.report-top span {
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 1.7px;
-
-  color: #4384c7;
-}
-
-
-.report-top h2 {
-  margin-top: 4px;
-
-  font-size: 17px;
-  font-weight: 800;
-
-  color: #eaf4ff;
-}
-
-
-.report-logo {
-  font-size: 31px;
-  font-weight: 900;
-  font-style: italic;
-
-  letter-spacing: -2px;
-
-  color: #2b8df3;
-}
-
-
-/* =========================================================
-   64. REPORT PROFILE
-========================================================= */
-
-.report-profile {
-  display: flex;
-  align-items: center;
-
-  gap: 14px;
-
-  margin-top: 22px;
-
-  padding:
-    16px;
-
-  border-radius: 12px;
-
-  background:
-    rgba(255, 255, 255, 0.018);
-}
-
-
-.report-profile-avatar {
-  width: 55px;
-  height: 55px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  overflow: hidden;
-
-  border-radius: 50%;
-
-  background:
-    #10243a;
-
-  color: #52779c;
-}
-
-
-.report-profile-avatar img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-
-.report-profile > div:last-child > span {
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 1px;
-
-  color: #3f78b4;
-}
-
-
-.report-profile h2 {
-  margin-top: 2px;
-
-  font-size: 16px;
-
-  color: #dce9f7;
-}
-
-
-.report-profile p {
-  margin-top: 2px;
-
-  font-size: 8px;
-
-  color: #5c7187;
-}
-
-
-/* =========================================================
-   65. REPORT SCORES
-========================================================= */
-
-.report-score-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 9px;
-
-  margin-top: 14px;
-}
-
-
-.report-score-grid article {
-  min-height: 100px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.055);
-
-  border-radius: 11px;
-
-  background:
-    rgba(255, 255, 255, 0.016);
-}
-
-
-.report-score-grid span {
-  font-size: 8px;
-
-  color: #61758b;
-}
-
-
-.report-score-grid strong {
-  margin-top: 7px;
-
-  font-size: 27px;
-  line-height: 1;
-
-  color: #e3f1ff;
-}
-
-
-.report-score-grid small {
-  margin-top: 3px;
-
-  font-size: 7px;
-
-  color: #455a71;
-}
-
-
-/* =========================================================
-   66. REPORT BLOCK
-========================================================= */
-
-.report-block {
-  margin-top: 13px;
-
-  padding: 17px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.055);
-
-  border-radius: 12px;
-
-  background:
-    rgba(255, 255, 255, 0.015);
-}
-
-
-.report-block-title span {
-  display: block;
-
-  margin-bottom: 3px;
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 1.2px;
-
-  color: #3d78b5;
-}
-
-
-.report-block-title h3 {
-  font-size: 12px;
-
-  color: #cbd9e8;
-}
-
-
-.report-chart-container {
-  position: relative;
-
-  width: 100%;
-  height: 280px;
-
-  margin-top: 17px;
-}
-
-
-.report-analysis-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 12px;
-}
-
-
-.report-text {
-  margin-top: 11px;
-
-  font-size: 9px;
-  line-height: 1.9;
-
-  color: #687d93;
-}
-
-
-.report-footer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-top: 24px;
-
-  padding-top: 18px;
-
-  border-top:
-    1px solid rgba(255, 255, 255, 0.06);
-
-  font-size: 7px;
-
-  color: #40546a;
-}
-
-
-.report-footer div:first-child {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.report-footer strong {
-  font-size: 9px;
-
-  color: #7189a1;
-}
-
-
-.report-footer span {
-  margin-top: 2px;
-}
-
-
-/* =========================================================
-   67. TOAST
-========================================================= */
-
-.toast {
-  position: fixed;
-
-  right: 24px;
-  bottom: 24px;
-
-  z-index: 9999;
-
-  min-width: 230px;
-  max-width: 350px;
-  min-height: 48px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 9px;
-
-  padding:
-    11px
-    14px;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transform:
-    translateY(15px);
-
-  border:
-    1px solid rgba(56, 217, 150, 0.15);
-
-  border-radius: 10px;
-
-  background:
-    rgba(9, 25, 27, 0.95);
-
-  backdrop-filter:
-    blur(15px);
-
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.3);
-
-  color: #a6d7c1;
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease,
-    visibility 0.25s ease;
-}
-
-
-.toast.show {
-  opacity: 1;
-  visibility: visible;
-
-  transform:
-    translateY(0);
-}
-
-
-.toast i {
-  color: var(--green);
-}
-
-
-.toast span {
-  font-size: 9px;
-  font-weight: 600;
-}
-
-
-/* =========================================================
-   68. GENERAL UTILITY STATES
+   52. UTILITY
 ========================================================= */
 
 .hidden {
@@ -6143,295 +4857,31 @@ textarea {
 }
 
 
-.no-scroll {
-  overflow: hidden;
+.text-success {
+  color: var(--success) !important;
+}
+
+
+.text-warning {
+  color: var(--warning) !important;
+}
+
+
+.text-danger {
+  color: var(--danger) !important;
+}
+
+
+.text-accent {
+  color: var(--accent) !important;
+}
+
+
+.text-muted {
+  color: var(--text-muted) !important;
 }
 
 
 /* =========================================================
-   69. iPAD LANDSCAPE
-========================================================= */
-
-@media
-  (min-width: 768px)
-  and (max-width: 1180px) {
-
-  .page {
-    padding:
-      24px
-      22px
-      55px;
-  }
-
-
-  .athlete-list-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-
-  .report-sheet {
-    padding: 25px;
-  }
-
-}
-
-
-/* =========================================================
-   70. TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-  .athlete-register-layout {
-    grid-template-columns: 1fr;
-  }
-
-
-  .athlete-profile-card {
-    display: grid;
-
-    grid-template-columns:
-      170px
-      minmax(0, 1fr);
-
-    align-items: center;
-
-    gap: 20px;
-  }
-
-
-  .profile-guide {
-    margin-top: 0;
-
-    padding:
-      0
-      0
-      0
-      20px;
-
-    border-top: 0;
-
-    border-left:
-      1px solid rgba(255, 255, 255, 0.05);
-  }
-
-
-  .report-score-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-
-/* =========================================================
-   71. MOBILE
-========================================================= */
-
-@media (max-width: 650px) {
-
-  .athlete-toolbar {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-
-  .search-box {
-    min-width: 0;
-  }
-
-
-  .athlete-toolbar select {
-    width: 100%;
-  }
-
-
-  .athlete-list-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .athlete-profile-card {
-    display: block;
-  }
-
-
-  .profile-guide {
-    margin-top: 20px;
-
-    padding:
-      17px
-      0
-      0;
-
-    border-top:
-      1px solid rgba(255, 255, 255, 0.05);
-
-    border-left: 0;
-  }
-
-
-  .report-sheet {
-    padding: 20px 16px;
-
-    border-radius: 15px;
-  }
-
-
-  .report-score-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-
-  .report-analysis-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .report-footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-
-  .toast {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-
-    max-width: none;
-  }
-
-}
-
-
-/* =========================================================
-   72. VERY SMALL MOBILE
-========================================================= */
-
-@media (max-width: 420px) {
-
-  .report-score-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-
-  .report-score-grid article {
-    min-height: 90px;
-  }
-
-
-  .report-score-grid strong {
-    font-size: 23px;
-  }
-
-
-  .form-actions {
-    display: grid;
-
-    grid-template-columns:
-      1fr
-      1fr;
-  }
-
-
-  .form-actions button {
-    width: 100%;
-  }
-
-}
-
-
-/* =========================================================
-   73. PRINT REPORT
-========================================================= */
-
-@media print {
-
-  body {
-    background: #ffffff;
-
-    color: #111111;
-  }
-
-
-  .sidebar,
-  .topbar,
-  .analysis-page-header,
-  .analysis-control-panel,
-  .toast {
-    display: none !important;
-  }
-
-
-  .main {
-    margin: 0;
-  }
-
-
-  .page {
-    display: none !important;
-
-    padding: 0;
-  }
-
-
-  #page-report {
-    display: block !important;
-  }
-
-
-  .report-sheet {
-    max-width: none;
-
-    margin: 0;
-    padding: 20px;
-
-    border: 0;
-
-    background: #ffffff;
-
-    box-shadow: none;
-
-    color: #111111;
-  }
-
-
-  .report-sheet *,
-  .report-top h2,
-  .report-profile h2,
-  .report-score-grid strong,
-  .report-block-title h3 {
-    color: #111111;
-  }
-
-
-  .report-block,
-  .report-profile,
-  .report-score-grid article {
-    border-color: #dddddd;
-
-    background: #ffffff;
-  }
-
-
-  .report-text,
-  .report-profile p,
-  .report-score-grid span,
-  .report-score-grid small {
-    color: #555555;
-  }
-
-}
-
-
-/* =========================================================
-   END OF style.css
+   STYLE.CSS END
 ========================================================= */

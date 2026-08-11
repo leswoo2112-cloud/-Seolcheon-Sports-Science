@@ -3686,3 +3686,209 @@ window.addEventListener(
 /* =========================================================
    APP.JS END
 ========================================================= */
+/* =========================================================
+   63. NAVIGATION HARD FIX
+   iPad / Safari 포함 메뉴 이동 강제 연결
+========================================================= */
+
+(function () {
+
+  function hardNavigate(pageName) {
+
+    console.log("[NAV FIX] 이동 요청:", pageName);
+
+    const target = document.querySelector(
+      `[data-page-section="${pageName}"]`
+    );
+
+    if (!target) {
+      console.error("[NAV FIX] 페이지 없음:", pageName);
+      return;
+    }
+
+    /* 모든 페이지 숨김 */
+    document
+      .querySelectorAll("[data-page-section]")
+      .forEach((page) => {
+        page.classList.remove("active");
+        page.style.display = "none";
+      });
+
+
+    /* 대상 페이지 표시 */
+    target.classList.add("active");
+    target.style.display = "block";
+
+
+    /* 왼쪽 메뉴 active 변경 */
+    document
+      .querySelectorAll(".nav-item[data-page]")
+      .forEach((button) => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.page === pageName
+        );
+
+      });
+
+
+    /* 제목 변경 */
+    const title =
+      document.getElementById("pageTitle");
+
+    if (title && PAGE_INFO[pageName]) {
+      title.textContent =
+        PAGE_INFO[pageName].title;
+    }
+
+
+    /* 현재 페이지 저장 */
+    AppState.currentPage = pageName;
+
+
+    /* 모바일 메뉴 닫기 */
+    document.body.classList.remove(
+      "sidebar-open"
+    );
+
+    const overlay =
+      document.getElementById(
+        "sidebarOverlay"
+      );
+
+    if (overlay) {
+      overlay.classList.remove("active");
+    }
+
+
+    /* 위로 이동 */
+    window.scrollTo(0, 0);
+
+
+    /* 페이지 업데이트 */
+    try {
+
+      onPageOpened(pageName);
+
+    } catch (error) {
+
+      console.warn(
+        "[NAV FIX] 페이지 후처리 오류:",
+        error
+      );
+
+    }
+
+  }
+
+
+  function connectNavigation() {
+
+    console.log("[NAV FIX] 메뉴 연결 시작");
+
+
+    /* -----------------------------------------
+       왼쪽 메뉴
+    ----------------------------------------- */
+
+    document
+      .querySelectorAll(".nav-item[data-page]")
+      .forEach((button) => {
+
+        button.onclick = function (event) {
+
+          event.preventDefault();
+
+          const page =
+            this.getAttribute("data-page");
+
+          hardNavigate(page);
+
+        };
+
+      });
+
+
+    /* -----------------------------------------
+       대시보드 내부 이동 버튼
+    ----------------------------------------- */
+
+    document
+      .querySelectorAll("[data-go-page]")
+      .forEach((button) => {
+
+        button.onclick = function (event) {
+
+          event.preventDefault();
+
+          const page =
+            this.getAttribute(
+              "data-go-page"
+            );
+
+          hardNavigate(page);
+
+        };
+
+      });
+
+
+    /* -----------------------------------------
+       빠른 자세분석
+    ----------------------------------------- */
+
+    const quickButton =
+      document.getElementById(
+        "quickAnalysisBtn"
+      );
+
+    if (quickButton) {
+
+      quickButton.onclick =
+        function (event) {
+
+          event.preventDefault();
+
+          hardNavigate("pose");
+
+        };
+
+    }
+
+
+    console.log(
+      "[NAV FIX] 연결 완료:",
+      document.querySelectorAll(
+        ".nav-item[data-page]"
+      ).length,
+      "개 메뉴"
+    );
+
+  }
+
+
+  /* DOM 준비 후 연결 */
+
+  if (
+    document.readyState === "loading"
+  ) {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      connectNavigation
+    );
+
+  } else {
+
+    connectNavigation();
+
+  }
+
+
+  /* 외부에서도 테스트 가능 */
+
+  window.SeolcheonNavigate =
+    hardNavigate;
+
+})();

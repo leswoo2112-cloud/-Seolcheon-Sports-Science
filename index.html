@@ -9,494 +9,637 @@
   >
 
   <meta
-    name="description"
-    content="설천고 Performance Lab 스포츠과학 분석 시스템"
+    name="theme-color"
+    content="#07111f"
   >
 
-  <title>설천고 Performance Lab</title>
+  <title>설천고 스포츠과학 훈련센터 PRO</title>
 
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-  >
-
-  <!-- Main CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
-</head>
 
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
 
 <body>
 
-<div class="app">
+  <!-- =====================================================
+       설천고 스포츠과학 훈련센터 PRO
+       MAIN APP
+  ====================================================== -->
 
-  <!-- ========================================
-       SIDEBAR
-  ========================================= -->
+  <div id="app" class="app-shell">
 
-  <aside class="sidebar" id="sidebar">
+    <!-- ===================================================
+         LEFT SIDEBAR
+    ==================================================== -->
 
-    <!-- LOGO -->
-    <div class="brand">
+    <aside class="sidebar">
 
-      <div class="brand-mark">
-        <span>S</span>
-      </div>
+      <!-- LOGO / BRAND -->
+      <div class="brand">
 
-      <div class="brand-text">
-        <strong>설천고</strong>
-        <span>Performance Lab</span>
-      </div>
+        <div class="brand-logo">
+          <span class="brand-logo-main">S</span>
+        </div>
 
-    </div>
-
-
-    <!-- DASHBOARD -->
-    <nav class="sidebar-nav">
-
-      <button
-        class="nav-item active"
-        data-page="dashboard"
-        type="button"
-      >
-        <i class="fa-solid fa-table-cells-large"></i>
-
-        <span>대시보드</span>
-      </button>
-
-
-      <!-- 분석 -->
-      <div class="nav-section">
-
-        <p class="nav-title">
-          분석
-        </p>
-
-
-        <button
-          class="nav-item"
-          data-page="pose"
-          type="button"
-        >
-          <i class="fa-solid fa-person-running"></i>
-
-          <span>자세분석</span>
-        </button>
-
-
-        <button
-          class="nav-item"
-          data-page="video"
-          type="button"
-        >
-          <i class="fa-solid fa-video"></i>
-
-          <span>영상분석</span>
-        </button>
-
-
-        <button
-          class="nav-item"
-          data-page="weight"
-          type="button"
-        >
-          <i class="fa-solid fa-dumbbell"></i>
-
-          <span>웨이트분석</span>
-        </button>
-
-
-        <button
-          class="nav-item"
-          data-page="winter"
-          type="button"
-        >
-          <i class="fa-regular fa-snowflake"></i>
-
-          <span>동계종목 분석</span>
-        </button>
-
-
-        <button
-          class="nav-item"
-          data-page="summer"
-          type="button"
-        >
-          <i class="fa-regular fa-sun"></i>
-
-          <span>하계종목 분석</span>
-        </button>
-
-
-        <button
-          class="nav-item"
-          data-page="pe"
-          type="button"
-        >
-          <i class="fa-solid fa-bullseye"></i>
-
-          <span>체대입시 분석</span>
-        </button>
+        <div class="brand-text">
+          <strong>설천고 스포츠과학</strong>
+          <span>TRAINING CENTER PRO</span>
+        </div>
 
       </div>
 
 
-      <!-- 선수 관리 -->
-      <div class="nav-section">
+      <!-- =================================================
+           MAIN NAVIGATION
+      ================================================== -->
 
-        <p class="nav-title">
-          선수 관리
-        </p>
+      <nav class="sidebar-nav">
 
+        <div class="nav-section-title">
+          MAIN
+        </div>
+
+
+        <!-- DASHBOARD -->
 
         <button
-          class="nav-item"
-          data-page="athlete-register"
+          class="nav-item active"
           type="button"
+          data-page="dashboard"
         >
-          <i class="fa-solid fa-user-plus"></i>
 
-          <span>선수 등록</span>
+          <span class="nav-icon">
+            ▦
+          </span>
+
+          <span class="nav-label">
+            대시보드
+          </span>
+
         </button>
 
 
+        <!-- ATHLETES -->
+
         <button
           class="nav-item"
+          type="button"
           data-page="athletes"
-          type="button"
         >
-          <i class="fa-solid fa-address-card"></i>
 
-          <span>선수 목록</span>
+          <span class="nav-icon">
+            ♙
+          </span>
+
+          <span class="nav-label">
+            선수 등록 · 관리
+          </span>
+
         </button>
 
-      </div>
+
+        <!-- =================================================
+             ANALYSIS
+        ================================================== -->
+
+        <div class="nav-section-title">
+          SPORTS ANALYSIS
+        </div>
 
 
-      <!-- 기록 -->
-      <div class="nav-section">
-
-        <p class="nav-title">
-          기록 & 리포트
-        </p>
-
+        <!-- WEIGHT -->
 
         <button
           class="nav-item"
+          type="button"
+          data-page="weight"
+        >
+
+          <span class="nav-icon">
+            ◫
+          </span>
+
+          <span class="nav-label">
+            웨이트
+          </span>
+
+          <span class="nav-count">
+            70+
+          </span>
+
+        </button>
+
+
+        <!-- SUMMER SPORTS -->
+
+        <button
+          class="nav-item"
+          type="button"
+          data-page="summer"
+        >
+
+          <span class="nav-icon">
+            ☀
+          </span>
+
+          <span class="nav-label">
+            하계종목
+          </span>
+
+          <span class="nav-count">
+            60+
+          </span>
+
+        </button>
+
+
+        <!-- WINTER SPORTS -->
+
+        <button
+          class="nav-item"
+          type="button"
+          data-page="winter"
+        >
+
+          <span class="nav-icon">
+            ❄
+          </span>
+
+          <span class="nav-label">
+            동계종목
+          </span>
+
+          <span class="nav-count">
+            40+
+          </span>
+
+        </button>
+
+
+        <!-- PE ENTRANCE -->
+
+        <button
+          class="nav-item"
+          type="button"
+          data-page="pe-entrance"
+        >
+
+          <span class="nav-icon">
+            🎓
+          </span>
+
+          <span class="nav-label">
+            체대입시
+          </span>
+
+        </button>
+
+
+        <!-- =================================================
+             AI
+        ================================================== -->
+
+        <div class="nav-section-title">
+          AI PERFORMANCE
+        </div>
+
+
+        <!-- POSE ANALYSIS -->
+
+        <button
+          class="nav-item"
+          type="button"
+          data-page="pose"
+        >
+
+          <span class="nav-icon">
+            ◎
+          </span>
+
+          <span class="nav-label">
+            자세분석
+          </span>
+
+          <span class="nav-badge">
+            AI
+          </span>
+
+        </button>
+
+
+        <!-- ELITE COMPARISON -->
+
+        <button
+          class="nav-item"
+          type="button"
+          data-page="comparison"
+        >
+
+          <span class="nav-icon">
+            ◇
+          </span>
+
+          <span class="nav-label">
+            엘리트 기준 비교
+          </span>
+
+        </button>
+
+
+        <!-- =================================================
+             DATA
+        ================================================== -->
+
+        <div class="nav-section-title">
+          PERFORMANCE DATA
+        </div>
+
+
+        <!-- RECORDS -->
+
+        <button
+          class="nav-item"
+          type="button"
           data-page="records"
-          type="button"
         >
-          <i class="fa-solid fa-chart-line"></i>
 
-          <span>분석 기록</span>
+          <span class="nav-icon">
+            ◷
+          </span>
+
+          <span class="nav-label">
+            분석 기록
+          </span>
+
         </button>
 
+
+        <!-- REPORT -->
 
         <button
           class="nav-item"
-          data-page="report"
           type="button"
+          data-page="reports"
         >
-          <i class="fa-regular fa-file-lines"></i>
 
-          <span>리포트</span>
+          <span class="nav-icon">
+            ▤
+          </span>
+
+          <span class="nav-label">
+            리포트
+          </span>
+
         </button>
 
-      </div>
 
-    </nav>
-
-
-    <!-- SIDEBAR FOOTER -->
-    <div class="sidebar-footer">
-
-      <div class="footer-logo">
-        SPL
-      </div>
-
-      <p>
-        Seolcheon Performance Lab
-      </p>
-
-      <span>
-        Sports Science System
-      </span>
-
-    </div>
-
-  </aside>
-
-
-  <!-- ========================================
-       MAIN
-  ========================================= -->
-
-  <main class="main">
-
-    <!-- TOP BAR -->
-
-    <header class="topbar">
-
-      <button
-        class="mobile-menu"
-        id="mobileMenu"
-        type="button"
-        aria-label="메뉴 열기"
-      >
-        <i class="fa-solid fa-bars"></i>
-      </button>
-
-
-      <div class="top-message">
-
-        분석의
-        <strong>차이</strong>가,
-
-        경기의
-        <strong>결과</strong>를 만듭니다.
-
-      </div>
-
-
-      <div class="top-actions">
+        <!-- STATISTICS -->
 
         <button
-          class="icon-button"
+          class="nav-item"
           type="button"
-          aria-label="알림"
+          data-page="statistics"
         >
-          <i class="fa-regular fa-bell"></i>
+
+          <span class="nav-icon">
+            ▥
+          </span>
+
+          <span class="nav-label">
+            통계
+          </span>
+
         </button>
 
+
+        <!-- =================================================
+             SYSTEM
+        ================================================== -->
+
+        <div class="nav-section-title">
+          SYSTEM
+        </div>
+
+
+        <!-- SETTINGS -->
 
         <button
-          class="profile-button"
+          class="nav-item"
           type="button"
-          aria-label="프로필"
+          data-page="settings"
         >
-          <i class="fa-regular fa-user"></i>
+
+          <span class="nav-icon">
+            ⚙
+          </span>
+
+          <span class="nav-label">
+            설정
+          </span>
+
         </button>
+
+      </nav>
+
+
+      <!-- =================================================
+           SIDEBAR STATUS
+      ================================================== -->
+
+      <div class="sidebar-footer">
+
+        <div class="system-status">
+
+          <span class="status-dot"></span>
+
+          <div>
+            <strong>AI SYSTEM</strong>
+            <small>READY</small>
+          </div>
+
+        </div>
+
+        <div class="system-version">
+          PRO v1.0
+        </div>
 
       </div>
 
-    </header>
+    </aside>
 
 
-    <!-- ========================================
-         PAGE CONTAINER
-    ========================================= -->
+    <!-- ===================================================
+         MAIN AREA START
+    ==================================================== -->
 
-    <div class="page-container">
+    <main class="main-area">
 
-      <!-- DASHBOARD PAGE -->
+      <!-- TOP BAR -->
 
-      <section
-        class="page active"
-        id="page-dashboard"
+      <header class="topbar">
+
+        <div class="topbar-left">
+
+          <button
+            id="sidebarToggle"
+            class="mobile-menu-btn"
+            type="button"
+            aria-label="메뉴 열기"
+          >
+            ☰
+          </button>
+
+          <div>
+
+            <p class="topbar-eyebrow">
+              SEOLCHEON SPORTS SCIENCE
+            </p>
+
+            <h1 id="pageTitle">
+              대시보드
+            </h1>
+
+          </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+          <!-- AI STATUS -->
+
+          <div class="top-status-card">
+
+            <span class="status-dot"></span>
+
+            <div>
+              <small>AI ENGINE</small>
+              <strong>READY</strong>
+            </div>
+
+          </div>
+
+
+          <!-- QUICK ANALYSIS -->
+
+          <button
+            id="quickAnalysisBtn"
+            class="primary-btn"
+            type="button"
+          >
+            + 빠른 자세분석
+          </button>
+
+
+          <!-- USER -->
+
+          <button
+            class="profile-button"
+            type="button"
+          >
+
+            <span class="profile-avatar">
+              SC
+            </span>
+
+            <span class="profile-info">
+              <strong>설천고</strong>
+              <small>SPORTS SCIENCE</small>
+            </span>
+
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- =================================================
+           PAGE CONTENT
+      ================================================== -->
+
+      <div
+        id="pageContent"
+        class="page-content"
       >
 
+        <!-- Part 2에서 대시보드 내용이 이어집니다 -->
+                <!-- =================================================
+             DASHBOARD PAGE
+        ================================================== -->
 
-        <!-- HERO -->
+        <section
+          id="dashboardPage"
+          class="page-section active"
+          data-page-section="dashboard"
+        >
 
-        <section class="hero">
+          <!-- DASHBOARD HERO -->
 
-          <div class="hero-overlay"></div>
+          <div class="dashboard-hero">
 
+            <div class="hero-content">
 
-          <div class="hero-content">
+              <span class="hero-badge">
+                SEOLCHEON PERFORMANCE LAB
+              </span>
 
-            <div class="hero-label">
-              SEOLCHEON PERFORMANCE LAB
+              <h2>
+                설천고 스포츠과학
+                <br>
+                <span>훈련센터 PRO</span>
+              </h2>
+
+              <p>
+                선수 데이터를 기반으로 자세, 기술, 기록을
+                통합 분석하는 스포츠과학 시스템
+              </p>
+
+              <div class="hero-actions">
+
+                <button
+                  class="primary-btn large"
+                  type="button"
+                  data-go-page="pose"
+                >
+                  ◎ AI 자세분석 시작
+                </button>
+
+                <button
+                  class="secondary-btn large"
+                  type="button"
+                  data-go-page="athletes"
+                >
+                  선수 관리
+                </button>
+
+              </div>
+
             </div>
 
 
-            <h1>
+            <!-- SYSTEM STATUS -->
 
-              <span>설천고</span>
+            <div class="hero-system">
 
-              스포츠과학
-              <br>
+              <div class="system-ring">
+                <div class="system-ring-inner">
 
-              <strong>
-                분석 시스템
-              </strong>
-
-            </h1>
-
-
-            <p class="hero-description">
-
-              정확한 분석 · 체계적인 훈련 ·
-              최고의 경기력
-
-            </p>
-
-
-            <div class="hero-features">
-
-
-              <!-- FEATURE 01 -->
-
-              <div class="hero-feature">
-
-                <div class="feature-icon">
-                  <i class="fa-solid fa-bullseye"></i>
-                </div>
-
-                <div>
-
-                  <strong>
-                    정밀 분석
-                  </strong>
+                  <strong>READY</strong>
 
                   <span>
-                    선수 움직임 기반 분석
+                    AI SYSTEM
                   </span>
 
                 </div>
-
               </div>
 
+              <div class="hero-system-info">
 
-              <!-- FEATURE 02 -->
-
-              <div class="hero-feature">
-
-                <div class="feature-icon">
-                  <i class="fa-solid fa-chart-column"></i>
+                <div>
+                  <span>POSE ENGINE</span>
+                  <strong>ONLINE</strong>
                 </div>
 
                 <div>
-
-                  <strong>
-                    데이터 기반
-                  </strong>
-
-                  <span>
-                    객관적인 훈련 데이터
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <!-- FEATURE 03 -->
-
-              <div class="hero-feature">
-
-                <div class="feature-icon">
-                  <i class="fa-solid fa-medal"></i>
+                  <span>DATA SYSTEM</span>
+                  <strong>READY</strong>
                 </div>
 
                 <div>
-
-                  <strong>
-                    경기력 향상
+                  <span>CAMERA</span>
+                  <strong id="cameraSystemStatus">
+                    STANDBY
                   </strong>
-
-                  <span>
-                    선수별 분석 및 비교
-                  </span>
-
                 </div>
 
               </div>
-
 
             </div>
 
           </div>
 
-        </section>
-                <!-- ========================================
-             DASHBOARD STATS
-        ========================================= -->
 
-        <section class="dashboard-section">
+          <!-- =================================================
+               DASHBOARD TITLE
+          ================================================== -->
 
           <div class="section-heading">
 
             <div>
               <span class="section-eyebrow">
-                PERFORMANCE DATA
+                PERFORMANCE OVERVIEW
               </span>
 
-              <h2>분석 현황</h2>
+              <h2>
+                훈련 현황
+              </h2>
             </div>
 
-            <div class="system-status">
-              <span class="status-dot"></span>
-              시스템 정상
+            <div class="section-date">
+              <span>최근 데이터 기준</span>
             </div>
 
           </div>
 
 
-          <div class="stats-grid">
+          <!-- =================================================
+               SUMMARY CARDS
+          ================================================== -->
 
-            <!-- 등록 선수 -->
+          <div class="summary-grid">
 
-            <article class="stat-card">
+            <!-- ATHLETES -->
 
-              <div class="stat-card-top">
+            <article class="summary-card">
 
-                <div class="stat-icon">
-                  <i class="fa-solid fa-users"></i>
-                </div>
+              <div class="summary-card-top">
 
-                <span class="stat-label">
-                  등록 선수
+                <span class="summary-icon">
+                  ♙
+                </span>
+
+                <span class="summary-trend neutral">
+                  ATHLETES
                 </span>
 
               </div>
 
-
-              <div class="stat-value">
-
+              <div class="summary-value">
                 <strong id="dashboardAthleteCount">
                   0
                 </strong>
 
                 <span>명</span>
-
               </div>
 
-
-              <p class="stat-description">
-                Performance Lab 등록 선수
+              <p>
+                등록 선수
               </p>
 
             </article>
 
 
-            <!-- 전체 분석 -->
+            <!-- ANALYSIS COUNT -->
 
-            <article class="stat-card">
+            <article class="summary-card">
 
-              <div class="stat-card-top">
+              <div class="summary-card-top">
 
-                <div class="stat-icon">
-                  <i class="fa-solid fa-chart-line"></i>
-                </div>
+                <span class="summary-icon">
+                  ◎
+                </span>
 
-                <span class="stat-label">
-                  전체 분석
+                <span class="summary-trend positive">
+                  AI
                 </span>
 
               </div>
 
-
-              <div class="stat-value">
+              <div class="summary-value">
 
                 <strong id="dashboardAnalysisCount">
                   0
@@ -506,410 +649,143 @@
 
               </div>
 
-
-              <p class="stat-description">
-                누적 자세 및 경기력 분석
+              <p>
+                누적 자세분석
               </p>
 
             </article>
 
 
-            <!-- 평균 자세 점수 -->
+            <!-- AVG SCORE -->
 
-            <article class="stat-card">
+            <article class="summary-card">
 
-              <div class="stat-card-top">
+              <div class="summary-card-top">
 
-                <div class="stat-icon">
-                  <i class="fa-solid fa-person"></i>
-                </div>
+                <span class="summary-icon">
+                  ◇
+                </span>
 
-                <span class="stat-label">
-                  평균 자세 점수
+                <span class="summary-trend neutral">
+                  SCORE
                 </span>
 
               </div>
 
-
-              <div class="stat-value">
+              <div class="summary-value">
 
                 <strong id="dashboardAverageScore">
                   --
                 </strong>
 
-                <span>점</span>
+                <span>/100</span>
 
               </div>
 
-
-              <p class="stat-description">
-                최근 분석 평균 점수
+              <p>
+                평균 자세 점수
               </p>
 
             </article>
 
 
-            <!-- 이번 주 분석 -->
+            <!-- REPORT -->
 
-            <article class="stat-card">
+            <article class="summary-card">
 
-              <div class="stat-card-top">
+              <div class="summary-card-top">
 
-                <div class="stat-icon">
-                  <i class="fa-regular fa-calendar-check"></i>
-                </div>
+                <span class="summary-icon">
+                  ▤
+                </span>
 
-                <span class="stat-label">
-                  이번 주 분석
+                <span class="summary-trend neutral">
+                  REPORT
                 </span>
 
               </div>
 
+              <div class="summary-value">
 
-              <div class="stat-value">
-
-                <strong id="dashboardWeeklyCount">
+                <strong id="dashboardReportCount">
                   0
                 </strong>
 
-                <span>회</span>
+                <span>개</span>
 
               </div>
 
-
-              <p class="stat-description">
-                이번 주 진행된 분석
+              <p>
+                생성 리포트
               </p>
 
             </article>
 
           </div>
 
-        </section>
 
+          <!-- =================================================
+               MAIN DASHBOARD GRID
+          ================================================== -->
 
+          <div class="dashboard-grid">
 
-        <!-- ========================================
-             QUICK ANALYSIS
-        ========================================= -->
+            <!-- ===============================================
+                 RECENT ANALYSIS
+            ================================================ -->
 
-        <section class="dashboard-section quick-section">
-
-          <div class="section-heading">
-
-            <div>
-
-              <span class="section-eyebrow">
-                QUICK ANALYSIS
-              </span>
-
-              <h2>
-                빠른 분석
-              </h2>
-
-            </div>
-
-          </div>
-
-
-          <div class="quick-grid">
-
-
-            <!-- 자세분석 -->
-
-            <button
-              class="quick-card"
-              data-page-target="pose"
-              type="button"
-            >
-
-              <div class="quick-icon">
-                <i class="fa-solid fa-person-running"></i>
-              </div>
-
-
-              <div class="quick-text">
-
-                <strong>
-                  자세분석
-                </strong>
-
-                <span>
-                  실시간 카메라 자세 분석
-                </span>
-
-              </div>
-
-
-              <div class="quick-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </div>
-
-            </button>
-
-
-
-            <!-- 영상분석 -->
-
-            <button
-              class="quick-card"
-              data-page-target="video"
-              type="button"
-            >
-
-              <div class="quick-icon">
-                <i class="fa-solid fa-video"></i>
-              </div>
-
-
-              <div class="quick-text">
-
-                <strong>
-                  영상분석
-                </strong>
-
-                <span>
-                  훈련 영상 업로드 및 분석
-                </span>
-
-              </div>
-
-
-              <div class="quick-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </div>
-
-            </button>
-
-
-
-            <!-- 웨이트 -->
-
-            <button
-              class="quick-card"
-              data-page-target="weight"
-              type="button"
-            >
-
-              <div class="quick-icon">
-                <i class="fa-solid fa-dumbbell"></i>
-              </div>
-
-
-              <div class="quick-text">
-
-                <strong>
-                  웨이트 분석
-                </strong>
-
-                <span>
-                  근력운동 자세 및 동작 분석
-                </span>
-
-              </div>
-
-
-              <div class="quick-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </div>
-
-            </button>
-
-
-
-            <!-- 동계종목 -->
-
-            <button
-              class="quick-card"
-              data-page-target="winter"
-              type="button"
-            >
-
-              <div class="quick-icon">
-                <i class="fa-regular fa-snowflake"></i>
-              </div>
-
-
-              <div class="quick-text">
-
-                <strong>
-                  동계종목
-                </strong>
-
-                <span>
-                  동계 스포츠 경기력 분석
-                </span>
-
-              </div>
-
-
-              <div class="quick-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </div>
-
-            </button>
-
-
-
-            <!-- 하계종목 -->
-
-            <button
-              class="quick-card"
-              data-page-target="summer"
-              type="button"
-            >
-
-              <div class="quick-icon">
-                <i class="fa-regular fa-sun"></i>
-              </div>
-
-
-              <div class="quick-text">
-
-                <strong>
-                  하계종목
-                </strong>
-
-                <span>
-                  하계 스포츠 경기력 분석
-                </span>
-
-              </div>
-
-
-              <div class="quick-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </div>
-
-            </button>
-
-
-
-            <!-- 체대입시 -->
-
-            <button
-              class="quick-card"
-              data-page-target="pe"
-              type="button"
-            >
-
-              <div class="quick-icon">
-                <i class="fa-solid fa-stopwatch"></i>
-              </div>
-
-
-              <div class="quick-text">
-
-                <strong>
-                  체대입시
-                </strong>
-
-                <span>
-                  실기 종목 기록 및 자세 분석
-                </span>
-
-              </div>
-
-
-              <div class="quick-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </div>
-
-            </button>
-
-          </div>
-
-        </section>
-
-
-
-        <!-- ========================================
-             PERFORMANCE OVERVIEW
-        ========================================= -->
-
-        <section class="dashboard-section">
-
-          <div class="section-heading">
-
-            <div>
-
-              <span class="section-eyebrow">
-                ATHLETE PERFORMANCE
-              </span>
-
-              <h2>
-                선수 퍼포먼스
-              </h2>
-
-            </div>
-
-
-            <button
-              class="section-link"
-              data-page-target="athletes"
-              type="button"
-            >
-              전체 선수 보기
-
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-
-          </div>
-
-
-
-          <div class="performance-layout">
-
-
-            <!-- 최근 분석 -->
-
-            <article class="dashboard-panel recent-panel">
+            <article class="panel recent-analysis-panel">
 
               <div class="panel-header">
 
                 <div>
-
-                  <span class="panel-label">
+                  <span class="panel-eyebrow">
                     RECENT ANALYSIS
                   </span>
 
                   <h3>
-                    최근 분석
+                    최근 자세분석
                   </h3>
-
                 </div>
 
-
-                <i class="fa-solid fa-clock-rotate-left"></i>
+                <button
+                  class="text-button"
+                  type="button"
+                  data-go-page="records"
+                >
+                  전체보기 →
+                </button>
 
               </div>
 
 
-
               <div
-                class="recent-analysis-list"
                 id="recentAnalysisList"
+                class="recent-analysis-list"
               >
+
+                <!-- 초기 상태 -->
 
                 <div class="empty-state">
 
                   <div class="empty-icon">
-                    <i class="fa-solid fa-chart-simple"></i>
+                    ◎
                   </div>
 
                   <strong>
                     아직 분석 기록이 없습니다
                   </strong>
 
-                  <span>
-                    자세분석을 시작하면 최근 기록이 표시됩니다.
-                  </span>
+                  <p>
+                    첫 번째 AI 자세분석을 시작해보세요.
+                  </p>
 
                   <button
+                    class="primary-btn"
                     type="button"
-                    data-page-target="pose"
+                    data-go-page="pose"
                   >
-                    첫 분석 시작
+                    자세분석 시작
                   </button>
 
                 </div>
@@ -919,56 +795,430 @@
             </article>
 
 
+            <!-- ===============================================
+                 PERFORMANCE SCORE
+            ================================================ -->
 
-            <!-- 선수 현황 -->
-
-            <article class="dashboard-panel athlete-panel">
+            <article class="panel performance-panel">
 
               <div class="panel-header">
 
                 <div>
 
-                  <span class="panel-label">
-                    ATHLETE STATUS
+                  <span class="panel-eyebrow">
+                    PERFORMANCE SCORE
                   </span>
 
                   <h3>
-                    선수 현황
+                    종합 퍼포먼스
                   </h3>
 
                 </div>
 
-
-                <i class="fa-solid fa-users"></i>
+                <span class="live-badge">
+                  LIVE DATA
+                </span>
 
               </div>
 
 
+              <div class="performance-score-wrap">
 
-              <div
-                class="dashboard-athlete-list"
-                id="dashboardAthleteList"
-              >
+                <div class="big-score">
 
-                <div class="empty-state">
+                  <span>현재 평균</span>
 
-                  <div class="empty-icon">
-                    <i class="fa-solid fa-user-plus"></i>
-                  </div>
-
-                  <strong>
-                    등록된 선수가 없습니다
+                  <strong id="performanceMainScore">
+                    --
                   </strong>
 
-                  <span>
-                    선수를 등록하고 분석 데이터를 관리하세요.
+                  <small>
+                    / 100
+                  </small>
+
+                </div>
+
+
+                <div class="score-bars">
+
+                  <!-- POSTURE -->
+
+                  <div class="score-row">
+
+                    <div class="score-label">
+
+                      <span>
+                        자세 안정성
+                      </span>
+
+                      <strong id="stabilityScoreText">
+                        --
+                      </strong>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                      <div
+                        id="stabilityScoreBar"
+                        class="progress-fill"
+                        style="width: 0%;"
+                      ></div>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- SYMMETRY -->
+
+                  <div class="score-row">
+
+                    <div class="score-label">
+
+                      <span>
+                        좌우 대칭성
+                      </span>
+
+                      <strong id="symmetryScoreText">
+                        --
+                      </strong>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                      <div
+                        id="symmetryScoreBar"
+                        class="progress-fill"
+                        style="width: 0%;"
+                      ></div>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- TECHNIQUE -->
+
+                  <div class="score-row">
+
+                    <div class="score-label">
+
+                      <span>
+                        기술 수행
+                      </span>
+
+                      <strong id="techniqueScoreText">
+                        --
+                      </strong>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                      <div
+                        id="techniqueScoreBar"
+                        class="progress-fill"
+                        style="width: 0%;"
+                      ></div>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- ELITE -->
+
+                  <div class="score-row">
+
+                    <div class="score-label">
+
+                      <span>
+                        엘리트 기준 근접도
+                      </span>
+
+                      <strong id="eliteScoreText">
+                        --
+                      </strong>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                      <div
+                        id="eliteScoreBar"
+                        class="progress-fill"
+                        style="width: 0%;"
+                      ></div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </article>
+
+
+            <!-- ===============================================
+                 SPORT ANALYSIS
+            ================================================ -->
+
+            <article class="panel sports-panel">
+
+              <div class="panel-header">
+
+                <div>
+
+                  <span class="panel-eyebrow">
+                    SPORT ANALYSIS
                   </span>
 
+                  <h3>
+                    종목별 분석
+                  </h3>
+
+                </div>
+
+              </div>
+
+
+              <div class="sport-quick-grid">
+
+
+                <!-- WEIGHT -->
+
+                <button
+                  class="sport-quick-card"
+                  type="button"
+                  data-go-page="weight"
+                >
+
+                  <span class="sport-quick-icon">
+                    ◫
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      웨이트
+                    </strong>
+
+                    <span>
+                      70+ 운동
+                    </span>
+
+                  </div>
+
+                  <span class="quick-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+                <!-- SUMMER -->
+
+                <button
+                  class="sport-quick-card"
+                  type="button"
+                  data-go-page="summer"
+                >
+
+                  <span class="sport-quick-icon">
+                    ☀
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      하계종목
+                    </strong>
+
+                    <span>
+                      60+ 종목
+                    </span>
+
+                  </div>
+
+                  <span class="quick-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+                <!-- WINTER -->
+
+                <button
+                  class="sport-quick-card"
+                  type="button"
+                  data-go-page="winter"
+                >
+
+                  <span class="sport-quick-icon">
+                    ❄
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      동계종목
+                    </strong>
+
+                    <span>
+                      40+ 종목
+                    </span>
+
+                  </div>
+
+                  <span class="quick-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+                <!-- PE -->
+
+                <button
+                  class="sport-quick-card"
+                  type="button"
+                  data-go-page="pe-entrance"
+                >
+
+                  <span class="sport-quick-icon">
+                    🎓
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      체대입시
+                    </strong>
+
+                    <span>
+                      대학별 실기 분석
+                    </span>
+
+                  </div>
+
+                  <span class="quick-arrow">
+                    →
+                  </span>
+
+                </button>
+
+              </div>
+
+            </article>
+
+
+            <!-- ===============================================
+                 ELITE COMPARISON
+            ================================================ -->
+
+            <article class="panel elite-panel">
+
+              <div class="panel-header">
+
+                <div>
+
+                  <span class="panel-eyebrow">
+                    ELITE BENCHMARK
+                  </span>
+
+                  <h3>
+                    엘리트 기준 비교
+                  </h3>
+
+                </div>
+
+                <button
+                  class="text-button"
+                  type="button"
+                  data-go-page="comparison"
+                >
+                  비교분석 →
+                </button>
+
+              </div>
+
+
+              <div class="elite-comparison">
+
+                <div class="elite-visual">
+
+                  <div class="elite-human">
+                    <span class="human-head"></span>
+                    <span class="human-body"></span>
+                    <span class="human-arm left"></span>
+                    <span class="human-arm right"></span>
+                    <span class="human-leg left"></span>
+                    <span class="human-leg right"></span>
+                  </div>
+
+                  <div class="elite-target-ring">
+
+                    <span>
+                      ELITE
+                    </span>
+
+                  </div>
+
+                </div>
+
+
+                <div class="elite-info">
+
+                  <div class="elite-info-row">
+
+                    <span>
+                      비교 데이터
+                    </span>
+
+                    <strong>
+                      종목별 엘리트 기준
+                    </strong>
+
+                  </div>
+
+
+                  <div class="elite-info-row">
+
+                    <span>
+                      비교 방식
+                    </span>
+
+                    <strong>
+                      관절 · 각도 · 타이밍
+                    </strong>
+
+                  </div>
+
+
+                  <div class="elite-info-row">
+
+                    <span>
+                      현재 상태
+                    </span>
+
+                    <strong class="ready-text">
+                      READY
+                    </strong>
+
+                  </div>
+
+
                   <button
+                    class="secondary-btn full"
                     type="button"
-                    data-page-target="athlete-register"
+                    data-go-page="comparison"
                   >
-                    선수 등록
+                    엘리트 비교 시작
                   </button>
 
                 </div>
@@ -978,2434 +1228,764 @@
             </article>
 
 
-          </div>
+            <!-- ===============================================
+                 DEVELOPMENT CHART
+            ================================================ -->
 
-        </section>
+            <article class="panel chart-panel">
 
-
-
-        <!-- ========================================
-             BOTTOM SYSTEM BANNER
-        ========================================= -->
-
-        <section class="lab-banner">
-
-          <div class="lab-banner-content">
-
-            <span>
-              SEOLCHEON PERFORMANCE LAB
-            </span>
-
-            <h2>
-              데이터가 선수를 성장시킵니다.
-            </h2>
-
-            <p>
-              과학적인 분석을 통해 움직임을 이해하고,
-              기록을 통해 선수의 변화를 확인합니다.
-            </p>
-
-          </div>
-
-
-          <div class="lab-banner-mark">
-
-            <strong>
-              SPL
-            </strong>
-
-            <span>
-              SPORTS SCIENCE
-            </span>
-
-          </div>
-
-        </section>
-
-
-      </section>
-      <!-- DASHBOARD END -->
-          <!-- ========================================
-           POSE ANALYSIS PAGE
-      ========================================= -->
-
-      <section
-        class="page"
-        id="page-pose"
-      >
-
-        <!-- PAGE HEADER -->
-
-        <div class="analysis-page-header">
-
-          <div>
-
-            <span class="section-eyebrow">
-              MOTION ANALYSIS
-            </span>
-
-            <h1>
-              자세분석
-            </h1>
-
-            <p>
-              실시간 카메라를 이용해 선수의 움직임과
-              관절 각도를 분석합니다.
-            </p>
-
-          </div>
-
-
-          <div class="analysis-status">
-
-            <span
-              class="analysis-status-dot"
-              id="poseStatusDot"
-            ></span>
-
-            <span id="poseStatusText">
-              분석 대기
-            </span>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- ========================================
-             ANALYSIS CONTROL BAR
-        ========================================= -->
-
-        <section class="analysis-control-panel">
-
-
-          <!-- 선수 선택 -->
-
-          <div class="control-group">
-
-            <label for="poseAthlete">
-              선수
-            </label>
-
-            <select id="poseAthlete">
-
-              <option value="">
-                선수 선택
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- 분석 방향 -->
-
-          <div class="control-group">
-
-            <label for="poseView">
-              촬영 방향
-            </label>
-
-            <select id="poseView">
-
-              <option value="front">
-                전면
-              </option>
-
-              <option value="side">
-                측면
-              </option>
-
-              <option value="back">
-                후면
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- 분석 종류 -->
-
-          <div class="control-group">
-
-            <label for="poseCategory">
-              분석 유형
-            </label>
-
-            <select id="poseCategory">
-
-              <option value="basic">
-                기본 자세
-              </option>
-
-              <option value="sport">
-                스포츠 동작
-              </option>
-
-              <option value="weight">
-                웨이트
-              </option>
-
-              <option value="pe">
-                체대입시
-              </option>
-
-            </select>
-
-          </div>
-
-
-
-          <!-- 카메라 -->
-
-          <div class="control-group">
-
-            <label for="cameraSelect">
-              카메라
-            </label>
-
-            <select id="cameraSelect">
-
-              <option value="">
-                기본 카메라
-              </option>
-
-            </select>
-
-          </div>
-
-
-        </section>
-
-
-
-        <!-- ========================================
-             MAIN ANALYSIS WORKSPACE
-        ========================================= -->
-
-        <div class="pose-workspace">
-
-
-          <!-- ========================================
-               CAMERA AREA
-          ========================================= -->
-
-          <section class="camera-panel">
-
-
-            <div class="camera-header">
-
-              <div>
-
-                <span class="panel-label">
-                  LIVE MOTION CAPTURE
-                </span>
-
-                <h2>
-                  실시간 자세 분석
-                </h2>
-
-              </div>
-
-
-              <div class="camera-state">
-
-                <span
-                  class="camera-state-dot"
-                  id="cameraStateDot"
-                ></span>
-
-                <span id="cameraStateText">
-                  CAMERA OFF
-                </span>
-
-              </div>
-
-            </div>
-
-
-
-            <!-- CAMERA VIEW -->
-
-            <div
-              class="camera-stage"
-              id="cameraStage"
-            >
-
-
-              <!-- 실제 카메라 -->
-
-              <video
-                id="poseVideo"
-                autoplay
-                playsinline
-                muted
-              ></video>
-
-
-
-              <!-- 관절선 Canvas -->
-
-              <canvas
-                id="poseCanvas"
-              ></canvas>
-
-
-
-              <!-- 중앙 가이드 -->
-
-              <div
-                class="body-guide"
-                id="bodyGuide"
-              >
-
-                <div class="guide-head"></div>
-
-                <div class="guide-body"></div>
-
-                <div class="guide-line guide-arm-left"></div>
-
-                <div class="guide-line guide-arm-right"></div>
-
-                <div class="guide-line guide-leg-left"></div>
-
-                <div class="guide-line guide-leg-right"></div>
-
-
-                <span class="guide-message">
-                  전신이 화면 안에 들어오도록 위치하세요
-                </span>
-
-              </div>
-
-
-
-              <!-- CAMERA CORNERS -->
-
-              <span class="camera-corner top-left"></span>
-
-              <span class="camera-corner top-right"></span>
-
-              <span class="camera-corner bottom-left"></span>
-
-              <span class="camera-corner bottom-right"></span>
-
-
-
-              <!-- 분석 중 표시 -->
-
-              <div
-                class="live-analysis-badge"
-                id="liveAnalysisBadge"
-              >
-
-                <span></span>
-
-                LIVE ANALYSIS
-
-              </div>
-
-
-            </div>
-
-
-
-            <!-- ========================================
-                 CAMERA CONTROLS
-            ========================================= -->
-
-            <div class="camera-controls">
-
-
-              <button
-                class="primary-analysis-button"
-                id="startCameraButton"
-                type="button"
-              >
-
-                <i class="fa-solid fa-camera"></i>
-
-                카메라 시작
-
-              </button>
-
-
-
-              <button
-                class="secondary-analysis-button"
-                id="switchCameraButton"
-                type="button"
-              >
-
-                <i class="fa-solid fa-camera-rotate"></i>
-
-                카메라 전환
-
-              </button>
-
-
-
-              <button
-                class="secondary-analysis-button"
-                id="startPoseAnalysisButton"
-                type="button"
-                disabled
-              >
-
-                <i class="fa-solid fa-person-running"></i>
-
-                분석 시작
-
-              </button>
-
-
-
-              <button
-                class="danger-analysis-button"
-                id="stopCameraButton"
-                type="button"
-                disabled
-              >
-
-                <i class="fa-solid fa-stop"></i>
-
-                종료
-
-              </button>
-
-
-            </div>
-
-
-          </section>
-
-
-
-          <!-- ========================================
-               REALTIME DATA PANEL
-          ========================================= -->
-
-          <aside class="pose-data-panel">
-
-
-            <!-- SCORE -->
-
-            <article class="pose-score-card">
-
-              <span class="panel-label">
-                POSTURE SCORE
-              </span>
-
-
-              <div class="score-circle">
+              <div class="panel-header">
 
                 <div>
 
-                  <strong id="poseScore">
-                    --
-                  </strong>
-
-                  <span>
-                    / 100
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <p id="poseScoreMessage">
-                분석을 시작하면 자세 점수가 표시됩니다.
-              </p>
-
-            </article>
-
-
-
-            <!-- JOINT DATA -->
-
-            <article class="joint-data-card">
-
-              <div class="panel-header compact">
-
-                <div>
-
-                  <span class="panel-label">
-                    JOINT ANGLES
+                  <span class="panel-eyebrow">
+                    DEVELOPMENT
                   </span>
 
                   <h3>
-                    실시간 관절 각도
+                    퍼포먼스 변화
                   </h3>
 
                 </div>
 
+
+                <select
+                  id="dashboardChartRange"
+                  class="compact-select"
+                >
+
+                  <option value="7">
+                    최근 7회
+                  </option>
+
+                  <option value="14">
+                    최근 14회
+                  </option>
+
+                  <option value="30">
+                    최근 30회
+                  </option>
+
+                </select>
+
               </div>
 
 
-              <div class="joint-list">
+              <div class="chart-container">
 
+                <canvas
+                  id="performanceChart"
+                ></canvas>
 
-                <!-- 어깨 -->
-
-                <div class="joint-item">
-
-                  <div class="joint-name">
-
-                    <i class="fa-solid fa-arrows-left-right"></i>
-
-                    <span>
-                      어깨
-                    </span>
-
-                  </div>
-
-
-                  <strong id="shoulderAngle">
-                    --°
-                  </strong>
-
+                <div
+                  id="chartEmptyState"
+                  class="chart-empty-state"
+                >
+                  분석 데이터가 쌓이면 변화 그래프가 표시됩니다.
                 </div>
-
-
-
-                <!-- 팔꿈치 -->
-
-                <div class="joint-item">
-
-                  <div class="joint-name">
-
-                    <i class="fa-solid fa-person"></i>
-
-                    <span>
-                      팔꿈치
-                    </span>
-
-                  </div>
-
-
-                  <strong id="elbowAngle">
-                    --°
-                  </strong>
-
-                </div>
-
-
-
-                <!-- 골반 -->
-
-                <div class="joint-item">
-
-                  <div class="joint-name">
-
-                    <i class="fa-solid fa-arrows-up-down"></i>
-
-                    <span>
-                      골반
-                    </span>
-
-                  </div>
-
-
-                  <strong id="hipAngle">
-                    --°
-                  </strong>
-
-                </div>
-
-
-
-                <!-- 무릎 -->
-
-                <div class="joint-item">
-
-                  <div class="joint-name">
-
-                    <i class="fa-solid fa-person-walking"></i>
-
-                    <span>
-                      무릎
-                    </span>
-
-                  </div>
-
-
-                  <strong id="kneeAngle">
-                    --°
-                  </strong>
-
-                </div>
-
-
-
-                <!-- 발목 -->
-
-                <div class="joint-item">
-
-                  <div class="joint-name">
-
-                    <i class="fa-solid fa-shoe-prints"></i>
-
-                    <span>
-                      발목
-                    </span>
-
-                  </div>
-
-
-                  <strong id="ankleAngle">
-                    --°
-                  </strong>
-
-                </div>
-
-
-
-                <!-- 몸통 -->
-
-                <div class="joint-item">
-
-                  <div class="joint-name">
-
-                    <i class="fa-solid fa-person-rays"></i>
-
-                    <span>
-                      몸통 기울기
-                    </span>
-
-                  </div>
-
-
-                  <strong id="trunkAngle">
-                    --°
-                  </strong>
-
-                </div>
-
 
               </div>
 
             </article>
 
 
+            <!-- ===============================================
+                 PE ENTRANCE
+            ================================================ -->
 
-            <!-- BALANCE -->
+            <article class="panel university-panel">
 
-            <article class="balance-card">
-
-              <div class="panel-header compact">
+              <div class="panel-header">
 
                 <div>
 
-                  <span class="panel-label">
-                    BODY BALANCE
+                  <span class="panel-eyebrow">
+                    PE ENTRANCE
                   </span>
 
                   <h3>
-                    좌우 균형
+                    체대입시 목표
                   </h3>
 
                 </div>
 
-              </div>
-
-
-              <div class="balance-display">
-
-
-                <div class="balance-side">
-
-                  <span>
-                    LEFT
-                  </span>
-
-                  <strong id="leftBalance">
-                    --%
-                  </strong>
-
-                </div>
-
-
-                <div class="balance-bar">
-
-                  <div
-                    class="balance-center"
-                  ></div>
-
-                  <div
-                    class="balance-indicator"
-                    id="balanceIndicator"
-                  ></div>
-
-                </div>
-
-
-                <div class="balance-side">
-
-                  <span>
-                    RIGHT
-                  </span>
-
-                  <strong id="rightBalance">
-                    --%
-                  </strong>
-
-                </div>
-
-
-              </div>
-
-            </article>
-
-
-          </aside>
-
-        </div>
-
-
-
-        <!-- ========================================
-             AI ANALYSIS RESULT
-        ========================================= -->
-
-        <section class="pose-result-section">
-
-
-          <!-- GOOD -->
-
-          <article class="analysis-result-card good">
-
-            <div class="result-card-header">
-
-              <div class="result-icon">
-                <i class="fa-solid fa-check"></i>
-              </div>
-
-              <div>
-
-                <span>
-                  PERFORMANCE
+                <span class="university-badge">
+                  UNIVERSITY
                 </span>
 
-                <h3>
-                  잘하고 있는 부분
-                </h3>
-
               </div>
-
-            </div>
-
-
-            <div
-              class="analysis-result-content"
-              id="poseGoodResult"
-            >
-
-              분석을 시작하면 선수의 좋은 움직임이 표시됩니다.
-
-            </div>
-
-          </article>
-
-
-
-          <!-- IMPROVEMENT -->
-
-          <article class="analysis-result-card improvement">
-
-            <div class="result-card-header">
-
-              <div class="result-icon">
-                <i class="fa-solid fa-arrow-trend-up"></i>
-              </div>
-
-              <div>
-
-                <span>
-                  IMPROVEMENT
-                </span>
-
-                <h3>
-                  개선 포인트
-                </h3>
-
-              </div>
-
-            </div>
-
-
-            <div
-              class="analysis-result-content"
-              id="poseImprovementResult"
-            >
-
-              관절 움직임을 분석해 개선할 부분을 표시합니다.
-
-            </div>
-
-          </article>
-
-
-
-          <!-- RISK -->
-
-          <article class="analysis-result-card risk">
-
-            <div class="result-card-header">
-
-              <div class="result-icon">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-              </div>
-
-              <div>
-
-                <span>
-                  MOVEMENT CHECK
-                </span>
-
-                <h3>
-                  움직임 체크
-                </h3>
-
-              </div>
-
-            </div>
-
-
-            <div
-              class="analysis-result-content"
-              id="poseRiskResult"
-            >
-
-              좌우 불균형이나 큰 자세 차이가 감지되면 표시됩니다.
-
-            </div>
-
-          </article>
-
-
-        </section>
-
-
-
-        <!-- ========================================
-             ANALYSIS ACTION
-        ========================================= -->
-
-        <div class="pose-bottom-actions">
-
-
-          <button
-            class="secondary-analysis-button"
-            id="resetPoseButton"
-            type="button"
-          >
-
-            <i class="fa-solid fa-rotate-right"></i>
-
-            분석 초기화
-
-          </button>
-
-
-
-          <button
-            class="primary-analysis-button"
-            id="savePoseResultButton"
-            type="button"
-            disabled
-          >
-
-            <i class="fa-solid fa-floppy-disk"></i>
-
-            분석 결과 저장
-
-          </button>
-
-
-        </div>
-
-
-      </section>
-      <!-- POSE ANALYSIS PAGE END -->
-          <!-- ========================================
-           VIDEO ANALYSIS PAGE
-      ========================================= -->
-
-      <section class="page" id="page-video">
-
-        <div class="analysis-page-header">
-
-          <div>
-            <span class="section-eyebrow">
-              VIDEO MOTION ANALYSIS
-            </span>
-
-            <h1>영상분석</h1>
-
-            <p>
-              촬영한 훈련 영상을 불러와 프레임 단위로
-              선수의 움직임을 분석합니다.
-            </p>
-          </div>
-
-          <div class="analysis-status">
-            <span class="analysis-status-dot"></span>
-            <span>영상 대기</span>
-          </div>
-
-        </div>
-
-
-        <!-- VIDEO SETTINGS -->
-
-        <section class="analysis-control-panel">
-
-          <div class="control-group">
-            <label for="videoAthlete">
-              선수
-            </label>
-
-            <select id="videoAthlete">
-              <option value="">
-                선수 선택
-              </option>
-            </select>
-          </div>
-
-
-          <div class="control-group">
-            <label for="videoView">
-              촬영 방향
-            </label>
-
-            <select id="videoView">
-              <option value="front">전면</option>
-              <option value="side">측면</option>
-              <option value="back">후면</option>
-            </select>
-          </div>
-
-
-          <div class="control-group">
-            <label for="videoCategory">
-              분석 유형
-            </label>
-
-            <select id="videoCategory">
-              <option value="basic">기본 자세</option>
-              <option value="sport">스포츠 동작</option>
-              <option value="weight">웨이트</option>
-              <option value="pe">체대입시</option>
-            </select>
-          </div>
-
-        </section>
-
-
-        <!-- VIDEO WORKSPACE -->
-
-        <div class="pose-workspace">
-
-          <section class="camera-panel">
-
-            <div class="camera-header">
-
-              <div>
-                <span class="panel-label">
-                  VIDEO MOTION CAPTURE
-                </span>
-
-                <h2>
-                  훈련 영상
-                </h2>
-              </div>
-
-              <label
-                class="primary-analysis-button upload-button"
-                for="analysisVideoInput"
-              >
-                <i class="fa-solid fa-upload"></i>
-                영상 불러오기
-              </label>
-
-              <input
-                type="file"
-                id="analysisVideoInput"
-                accept="video/*"
-                hidden
-              >
-
-            </div>
-
-
-            <div class="camera-stage video-stage">
-
-              <video
-                id="analysisVideo"
-                playsinline
-              ></video>
-
-              <canvas id="videoPoseCanvas"></canvas>
 
 
               <div
-                class="video-empty-state"
-                id="videoEmptyState"
+                id="universityGoalEmpty"
+                class="university-empty"
               >
 
-                <i class="fa-solid fa-film"></i>
+                <div class="university-icon">
+                  🎓
+                </div>
 
                 <strong>
-                  분석할 영상을 선택하세요
+                  목표 대학교를 설정하세요
                 </strong>
 
-                <span>
-                  기기에 저장된 훈련 영상을 사용할 수 있습니다.
-                </span>
+                <p>
+                  대학 · 학과 · 전형을 선택하면
+                  실기종목과 기준을 관리할 수 있습니다.
+                </p>
 
-              </div>
-
-            </div>
-
-
-            <!-- VIDEO CONTROLS -->
-
-            <div class="video-player-controls">
-
-              <button
-                type="button"
-                id="videoBackwardButton"
-                aria-label="뒤로 이동"
-              >
-                <i class="fa-solid fa-backward-step"></i>
-              </button>
-
-
-              <button
-                type="button"
-                id="videoPlayButton"
-                class="video-play-button"
-                aria-label="재생"
-              >
-                <i class="fa-solid fa-play"></i>
-              </button>
-
-
-              <button
-                type="button"
-                id="videoForwardButton"
-                aria-label="앞으로 이동"
-              >
-                <i class="fa-solid fa-forward-step"></i>
-              </button>
-
-
-              <span id="videoCurrentTime">
-                00:00
-              </span>
-
-
-              <input
-                type="range"
-                id="videoTimeline"
-                min="0"
-                max="100"
-                value="0"
-              >
-
-
-              <span id="videoDuration">
-                00:00
-              </span>
-
-            </div>
-
-
-            <div class="camera-controls">
-
-              <button
-                class="primary-analysis-button"
-                id="startVideoAnalysisButton"
-                type="button"
-                disabled
-              >
-                <i class="fa-solid fa-magnifying-glass-chart"></i>
-                영상 분석 시작
-              </button>
-
-
-              <button
-                class="secondary-analysis-button"
-                id="captureFrameButton"
-                type="button"
-                disabled
-              >
-                <i class="fa-solid fa-camera"></i>
-                현재 프레임 분석
-              </button>
-
-            </div>
-
-          </section>
-
-
-          <!-- VIDEO RESULT -->
-
-          <aside class="pose-data-panel">
-
-            <article class="pose-score-card">
-
-              <span class="panel-label">
-                VIDEO SCORE
-              </span>
-
-              <div class="score-circle">
-                <div>
-                  <strong id="videoPoseScore">
-                    --
-                  </strong>
-
-                  <span>/ 100</span>
-                </div>
-              </div>
-
-              <p>
-                영상 분석 결과
-              </p>
-
-            </article>
-
-
-            <article class="joint-data-card">
-
-              <div class="panel-header compact">
-                <div>
-                  <span class="panel-label">
-                    FRAME DATA
-                  </span>
-
-                  <h3>
-                    프레임 분석
-                  </h3>
-                </div>
-              </div>
-
-
-              <div class="joint-list">
-
-                <div class="joint-item">
-                  <span>어깨 각도</span>
-                  <strong id="videoShoulderAngle">--°</strong>
-                </div>
-
-                <div class="joint-item">
-                  <span>팔꿈치 각도</span>
-                  <strong id="videoElbowAngle">--°</strong>
-                </div>
-
-                <div class="joint-item">
-                  <span>골반 각도</span>
-                  <strong id="videoHipAngle">--°</strong>
-                </div>
-
-                <div class="joint-item">
-                  <span>무릎 각도</span>
-                  <strong id="videoKneeAngle">--°</strong>
-                </div>
-
-                <div class="joint-item">
-                  <span>발목 각도</span>
-                  <strong id="videoAnkleAngle">--°</strong>
-                </div>
-
-                <div class="joint-item">
-                  <span>몸통 기울기</span>
-                  <strong id="videoTrunkAngle">--°</strong>
-                </div>
+                <button
+                  class="primary-btn"
+                  type="button"
+                  data-go-page="pe-entrance"
+                >
+                  목표 대학 설정
+                </button>
 
               </div>
 
             </article>
 
-          </aside>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- ========================================
-           WEIGHT ANALYSIS PAGE
-      ========================================= -->
-
-      <section class="page" id="page-weight">
-
-        <div class="analysis-page-header">
-
-          <div>
-            <span class="section-eyebrow">
-              STRENGTH & CONDITIONING
-            </span>
-
-            <h1>
-              웨이트 분석
-            </h1>
-
-            <p>
-              운동 종목을 선택하고 자세와 관절 움직임을
-              분석합니다.
-            </p>
           </div>
 
-        </div>
 
+          <!-- =================================================
+               QUICK ACTIONS
+          ================================================== -->
 
-        <!-- EXERCISE SELECT -->
-
-        <section class="sport-selection-panel">
-
-          <div class="selection-header">
+          <div class="section-heading quick-heading">
 
             <div>
-              <span class="panel-label">
-                EXERCISE SELECT
+
+              <span class="section-eyebrow">
+                QUICK ACCESS
               </span>
 
               <h2>
-                운동 선택
+                빠른 실행
               </h2>
+
             </div>
 
           </div>
 
 
-          <div class="sport-card-grid">
-
-
-            <button
-              class="sport-select-card"
-              data-exercise="squat"
-              type="button"
-            >
-              <i class="fa-solid fa-dumbbell"></i>
-              <strong>스쿼트</strong>
-              <span>Squat</span>
-            </button>
-
+          <div class="quick-actions-grid">
 
             <button
-              class="sport-select-card"
-              data-exercise="deadlift"
+              class="quick-action-card"
               type="button"
+              data-go-page="pose"
             >
-              <i class="fa-solid fa-dumbbell"></i>
-              <strong>데드리프트</strong>
-              <span>Deadlift</span>
-            </button>
 
-
-            <button
-              class="sport-select-card"
-              data-exercise="lunge"
-              type="button"
-            >
-              <i class="fa-solid fa-person-walking"></i>
-              <strong>런지</strong>
-              <span>Lunge</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-exercise="benchpress"
-              type="button"
-            >
-              <i class="fa-solid fa-dumbbell"></i>
-              <strong>벤치프레스</strong>
-              <span>Bench Press</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-exercise="shoulderpress"
-              type="button"
-            >
-              <i class="fa-solid fa-dumbbell"></i>
-              <strong>숄더프레스</strong>
-              <span>Shoulder Press</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-exercise="pullup"
-              type="button"
-            >
-              <i class="fa-solid fa-person"></i>
-              <strong>풀업</strong>
-              <span>Pull-up</span>
-            </button>
-
-
-          </div>
-
-        </section>
-
-
-        <!-- ANALYSIS METHODS -->
-
-        <section class="analysis-method-section">
-
-          <button
-            class="analysis-method-card"
-            data-weight-mode="camera"
-            type="button"
-          >
-
-            <div class="method-icon">
-              <i class="fa-solid fa-camera"></i>
-            </div>
-
-            <div>
-              <span>LIVE ANALYSIS</span>
-              <strong>실시간 카메라 분석</strong>
-              <p>
-                카메라로 웨이트 동작을 실시간 분석합니다.
-              </p>
-            </div>
-
-            <i class="fa-solid fa-arrow-right"></i>
-
-          </button>
-
-
-          <button
-            class="analysis-method-card"
-            data-weight-mode="video"
-            type="button"
-          >
-
-            <div class="method-icon">
-              <i class="fa-solid fa-video"></i>
-            </div>
-
-            <div>
-              <span>VIDEO ANALYSIS</span>
-              <strong>영상 분석</strong>
-              <p>
-                촬영한 운동 영상을 불러와 분석합니다.
-              </p>
-            </div>
-
-            <i class="fa-solid fa-arrow-right"></i>
-
-          </button>
-
-        </section>
-
-      </section>
-
-
-
-      <!-- ========================================
-           WINTER SPORTS PAGE
-      ========================================= -->
-
-      <section class="page" id="page-winter">
-
-        <div class="analysis-page-header">
-
-          <div>
-            <span class="section-eyebrow">
-              WINTER SPORTS
-            </span>
-
-            <h1>
-              동계종목 분석
-            </h1>
-
-            <p>
-              동계 스포츠 종목을 선택해 선수의 움직임과
-              경기력을 분석합니다.
-            </p>
-          </div>
-
-        </div>
-
-
-        <section class="sport-selection-panel">
-
-          <div class="selection-header">
-            <div>
-              <span class="panel-label">
-                SPORT SELECT
+              <span class="quick-action-icon">
+                ◎
               </span>
-
-              <h2>
-                분석 종목 선택
-              </h2>
-            </div>
-          </div>
-
-
-          <div class="sport-card-grid">
-
-            <button
-              class="sport-select-card"
-              data-sport="biathlon"
-              type="button"
-            >
-              <i class="fa-solid fa-person-skiing-nordic"></i>
 
               <strong>
-                바이애슬론
+                AI 자세분석
               </strong>
 
-              <span>
-                Biathlon
-              </span>
+              <small>
+                카메라 · 영상 분석
+              </small>
+
             </button>
 
 
             <button
-              class="sport-select-card"
-              data-sport="cross-country"
+              class="quick-action-card"
               type="button"
+              data-go-page="athletes"
             >
-              <i class="fa-solid fa-person-skiing-nordic"></i>
+
+              <span class="quick-action-icon">
+                ♙
+              </span>
 
               <strong>
-                크로스컨트리
+                선수 등록
               </strong>
 
-              <span>
-                Cross-Country Skiing
-              </span>
+              <small>
+                선수 프로필 관리
+              </small>
+
             </button>
 
 
             <button
-              class="sport-select-card"
-              data-sport="alpine"
+              class="quick-action-card"
               type="button"
+              data-go-page="comparison"
             >
-              <i class="fa-solid fa-person-skiing"></i>
+
+              <span class="quick-action-icon">
+                ◇
+              </span>
 
               <strong>
-                알파인스키
+                엘리트 비교
               </strong>
 
-              <span>
-                Alpine Skiing
-              </span>
+              <small>
+                종목별 기준 비교
+              </small>
+
             </button>
 
 
             <button
-              class="sport-select-card"
-              data-sport="snowboard"
+              class="quick-action-card"
               type="button"
+              data-go-page="reports"
             >
-              <i class="fa-solid fa-person-snowboarding"></i>
+
+              <span class="quick-action-icon">
+                ▤
+              </span>
 
               <strong>
-                스노보드
+                리포트
               </strong>
 
-              <span>
-                Snowboard
-              </span>
-            </button>
+              <small>
+                분석 결과 확인
+              </small>
 
-
-            <button
-              class="sport-select-card"
-              data-sport="speed-skating"
-              type="button"
-            >
-              <i class="fa-solid fa-person-skating"></i>
-
-              <strong>
-                스피드스케이팅
-              </strong>
-
-              <span>
-                Speed Skating
-              </span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="short-track"
-              type="button"
-            >
-              <i class="fa-solid fa-person-skating"></i>
-
-              <strong>
-                쇼트트랙
-              </strong>
-
-              <span>
-                Short Track
-              </span>
             </button>
 
           </div>
 
         </section>
-
-      </section>
-
-
-
-      <!-- ========================================
-           SUMMER SPORTS PAGE
-      ========================================= -->
-
-      <section class="page" id="page-summer">
-
-        <div class="analysis-page-header">
-
-          <div>
-            <span class="section-eyebrow">
-              SUMMER SPORTS
-            </span>
-
-            <h1>
-              하계종목 분석
-            </h1>
-
-            <p>
-              하계 스포츠 종목을 선택해 선수의 움직임과
-              경기력을 분석합니다.
-            </p>
-          </div>
-
-        </div>
-
-
-        <section class="sport-selection-panel">
-
-          <div class="selection-header">
-            <div>
-              <span class="panel-label">
-                SPORT SELECT
-              </span>
-
-              <h2>
-                분석 종목 선택
-              </h2>
-            </div>
-          </div>
-
-
-          <div class="sport-card-grid">
-
-            <button
-              class="sport-select-card"
-              data-sport="running"
-              type="button"
-            >
-              <i class="fa-solid fa-person-running"></i>
-
-              <strong>육상</strong>
-              <span>Athletics</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="football"
-              type="button"
-            >
-              <i class="fa-solid fa-futbol"></i>
-
-              <strong>축구</strong>
-              <span>Football</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="basketball"
-              type="button"
-            >
-              <i class="fa-solid fa-basketball"></i>
-
-              <strong>농구</strong>
-              <span>Basketball</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="volleyball"
-              type="button"
-            >
-              <i class="fa-solid fa-volleyball"></i>
-
-              <strong>배구</strong>
-              <span>Volleyball</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="swimming"
-              type="button"
-            >
-              <i class="fa-solid fa-person-swimming"></i>
-
-              <strong>수영</strong>
-              <span>Swimming</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="cycling"
-              type="button"
-            >
-              <i class="fa-solid fa-person-biking"></i>
-
-              <strong>사이클</strong>
-              <span>Cycling</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="badminton"
-              type="button"
-            >
-              <i class="fa-solid fa-medal"></i>
-
-              <strong>배드민턴</strong>
-              <span>Badminton</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="tennis"
-              type="button"
-            >
-              <i class="fa-solid fa-table-tennis-paddle-ball"></i>
-
-              <strong>테니스</strong>
-              <span>Tennis</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-sport="roller-ski"
-              type="button"
-            >
-              <i class="fa-solid fa-person-skiing-nordic"></i>
-
-              <strong>롤러스키</strong>
-              <span>Roller Ski</span>
-            </button>
-
-          </div>
-
-        </section>
-
-      </section>
-          <!-- ========================================
-           PE ENTRANCE ANALYSIS PAGE
-      ========================================= -->
-
-      <section class="page" id="page-pe">
-
-        <div class="analysis-page-header">
-          <div>
-            <span class="section-eyebrow">
-              PHYSICAL EDUCATION ENTRANCE
-            </span>
-
-            <h1>체대입시 분석</h1>
-
-            <p>
-              체대입시 실기 종목의 기록과 움직임을
-              체계적으로 분석합니다.
-            </p>
-          </div>
-        </div>
-
-
-        <section class="sport-selection-panel">
-
-          <div class="selection-header">
-            <div>
-              <span class="panel-label">
-                TEST SELECT
-              </span>
-
-              <h2>실기 종목 선택</h2>
-            </div>
-          </div>
-
-
-          <div class="sport-card-grid">
-
-            <button
-              class="sport-select-card"
-              data-pe-test="standing-long-jump"
-              type="button"
-            >
-              <i class="fa-solid fa-person-running"></i>
-
-              <strong>제자리멀리뛰기</strong>
-              <span>Standing Long Jump</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-pe-test="vertical-jump"
-              type="button"
-            >
-              <i class="fa-solid fa-arrow-up"></i>
-
-              <strong>서전트 점프</strong>
-              <span>Vertical Jump</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-pe-test="sit-up"
-              type="button"
-            >
-              <i class="fa-solid fa-person"></i>
-
-              <strong>윗몸일으키기</strong>
-              <span>Sit-up</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-pe-test="sit-reach"
-              type="button"
-            >
-              <i class="fa-solid fa-arrows-left-right"></i>
-
-              <strong>좌전굴</strong>
-              <span>Sit & Reach</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-pe-test="shuttle-run"
-              type="button"
-            >
-              <i class="fa-solid fa-person-running"></i>
-
-              <strong>왕복달리기</strong>
-              <span>Shuttle Run</span>
-            </button>
-
-
-            <button
-              class="sport-select-card"
-              data-pe-test="medicine-ball"
-              type="button"
-            >
-              <i class="fa-solid fa-circle"></i>
-
-              <strong>메디신볼 던지기</strong>
-              <span>Medicine Ball Throw</span>
-            </button>
-
-          </div>
-
-        </section>
-
-      </section>
-
-
-
-      <!-- ========================================
-           ATHLETE REGISTER PAGE
-      ========================================= -->
-
-      <section
-        class="page"
-        id="page-athlete-register"
-      >
-
-        <div class="analysis-page-header">
-
-          <div>
-            <span class="section-eyebrow">
+                <!-- =================================================
+             ATHLETE MANAGEMENT PAGE
+        ================================================== -->
+
+        <section
+          id="athletesPage"
+          class="page-section"
+          data-page-section="athletes"
+        >
+
+          <div class="page-placeholder">
+
+            <span class="placeholder-badge">
               ATHLETE MANAGEMENT
             </span>
 
-            <h1>
-              선수 등록
-            </h1>
-
-            <p>
-              분석할 선수의 기본 정보를 등록합니다.
-            </p>
-          </div>
-
-        </div>
-
-
-        <section class="athlete-register-layout">
-
-
-          <!-- PROFILE -->
-
-          <article class="athlete-profile-card">
-
-            <div class="athlete-avatar-preview">
-
-              <div
-                class="athlete-avatar"
-                id="athleteAvatarPreview"
-              >
-                <i class="fa-solid fa-user"></i>
-              </div>
-
-
-              <label
-                for="athletePhoto"
-                class="photo-upload-button"
-              >
-                <i class="fa-solid fa-camera"></i>
-
-                사진 선택
-              </label>
-
-
-              <input
-                type="file"
-                id="athletePhoto"
-                accept="image/*"
-                hidden
-              >
-
-            </div>
-
-
-            <div class="profile-guide">
-
-              <strong>
-                선수 프로필
-              </strong>
-
-              <span>
-                등록된 선수는 모든 분석 기능에서 선택할 수 있습니다.
-              </span>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- FORM -->
-
-          <article class="athlete-form-card">
-
-            <div class="panel-header">
-
-              <div>
-                <span class="panel-label">
-                  ATHLETE INFORMATION
-                </span>
-
-                <h2>
-                  기본 정보
-                </h2>
-              </div>
-
-            </div>
-
-
-            <form id="athleteRegisterForm">
-
-
-              <div class="form-grid">
-
-
-                <div class="form-group">
-
-                  <label for="athleteName">
-                    이름
-                  </label>
-
-                  <input
-                    type="text"
-                    id="athleteName"
-                    placeholder="선수 이름"
-                    required
-                  >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                  <label for="athleteNumber">
-                    선수번호
-                  </label>
-
-                  <input
-                    type="text"
-                    id="athleteNumber"
-                    placeholder="예: S001"
-                  >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                  <label for="athleteGrade">
-                    학년
-                  </label>
-
-                  <select id="athleteGrade">
-
-                    <option value="">
-                      선택
-                    </option>
-
-                    <option value="1">
-                      1학년
-                    </option>
-
-                    <option value="2">
-                      2학년
-                    </option>
-
-                    <option value="3">
-                      3학년
-                    </option>
-
-                  </select>
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                  <label for="athleteGender">
-                    구분
-                  </label>
-
-                  <select id="athleteGender">
-
-                    <option value="">
-                      선택
-                    </option>
-
-                    <option value="male">
-                      남
-                    </option>
-
-                    <option value="female">
-                      여
-                    </option>
-
-                  </select>
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                  <label for="athleteSport">
-                    주 종목
-                  </label>
-
-                  <input
-                    type="text"
-                    id="athleteSport"
-                    placeholder="예: 바이애슬론"
-                  >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                  <label for="athletePosition">
-                    세부 종목 / 포지션
-                  </label>
-
-                  <input
-                    type="text"
-                    id="athletePosition"
-                    placeholder="선택 입력"
-                  >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                  <label for="athleteHeight">
-                    신장
-                  </label>
-
-                  <div class="input-unit">
-
-                    <input
-                      type="number"
-                      id="athleteHeight"
-                      placeholder="0"
-                      min="0"
-                      step="0.1"
-                    >
-
-                    <span>
-                      cm
-                    </span>
-
-                  </div>
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                  <label for="athleteWeight">
-                    체중
-                  </label>
-
-                  <div class="input-unit">
-
-                    <input
-                      type="number"
-                      id="athleteWeight"
-                      placeholder="0"
-                      min="0"
-                      step="0.1"
-                    >
-
-                    <span>
-                      kg
-                    </span>
-
-                  </div>
-
-                </div>
-
-
-              </div>
-
-
-              <div class="form-group full">
-
-                <label for="athleteMemo">
-                  선수 메모
-                </label>
-
-                <textarea
-                  id="athleteMemo"
-                  rows="5"
-                  placeholder="훈련 관련 메모를 입력하세요."
-                ></textarea>
-
-              </div>
-
-
-              <div class="form-actions">
-
-                <button
-                  type="reset"
-                  class="secondary-analysis-button"
-                >
-                  초기화
-                </button>
-
-
-                <button
-                  type="submit"
-                  class="primary-analysis-button"
-                >
-                  <i class="fa-solid fa-user-plus"></i>
-
-                  선수 등록
-                </button>
-
-              </div>
-
-            </form>
-
-          </article>
-
-        </section>
-
-      </section>
-
-
-
-      <!-- ========================================
-           ATHLETE LIST PAGE
-      ========================================= -->
-
-      <section
-        class="page"
-        id="page-athletes"
-      >
-
-        <div class="analysis-page-header">
-
-          <div>
-            <span class="section-eyebrow">
-              ATHLETE DATABASE
-            </span>
-
-            <h1>
-              선수 목록
-            </h1>
-
-            <p>
-              등록된 선수와 분석 기록을 관리합니다.
-            </p>
-          </div>
-
-
-          <button
-            class="primary-analysis-button"
-            data-page-target="athlete-register"
-            type="button"
-          >
-            <i class="fa-solid fa-user-plus"></i>
-
-            선수 등록
-          </button>
-
-        </div>
-
-
-        <!-- SEARCH -->
-
-        <section class="athlete-toolbar">
-
-          <div class="search-box">
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-              type="search"
-              id="athleteSearch"
-              placeholder="선수 이름 또는 종목 검색"
-            >
-
-          </div>
-
-
-          <select id="athleteSportFilter">
-
-            <option value="all">
-              전체 종목
-            </option>
-
-          </select>
-
-
-          <select id="athleteGradeFilter">
-
-            <option value="all">
-              전체 학년
-            </option>
-
-            <option value="1">
-              1학년
-            </option>
-
-            <option value="2">
-              2학년
-            </option>
-
-            <option value="3">
-              3학년
-            </option>
-
-          </select>
-
-        </section>
-
-
-        <!-- ATHLETE CARDS -->
-
-        <div
-          class="athlete-list-grid"
-          id="athleteList"
-        >
-
-          <div class="large-empty-state">
-
-            <i class="fa-solid fa-users"></i>
-
             <h2>
-              등록된 선수가 없습니다
+              선수 등록 · 관리
             </h2>
 
             <p>
-              첫 선수를 등록하고 Performance Lab 분석을 시작하세요.
+              선수 프로필과 종목, 분석 기록을 관리합니다.
             </p>
 
+            <div class="placeholder-actions">
 
-            <button
-              class="primary-analysis-button"
-              data-page-target="athlete-register"
-              type="button"
-            >
-              선수 등록
-            </button>
+              <button
+                class="primary-btn"
+                type="button"
+                id="addAthleteBtn"
+              >
+                + 선수 등록
+              </button>
+
+            </div>
 
           </div>
 
-        </div>
-
-      </section>
+        </section>
 
 
 
-      <!-- ========================================
-           RECORDS PAGE
-      ========================================= -->
+        <!-- =================================================
+             WEIGHT TRAINING PAGE
+        ================================================== -->
 
-      <section
-        class="page"
-        id="page-records"
-      >
+        <section
+          id="weightPage"
+          class="page-section"
+          data-page-section="weight"
+        >
 
-        <div class="analysis-page-header">
+          <div class="page-placeholder">
 
-          <div>
-            <span class="section-eyebrow">
-              ANALYSIS DATABASE
+            <span class="placeholder-badge">
+              STRENGTH & CONDITIONING
             </span>
 
-            <h1>
-              분석 기록
-            </h1>
+            <h2>
+              웨이트 자세분석
+            </h2>
 
             <p>
-              저장된 선수 분석 결과와 변화 추이를 확인합니다.
+              하체 · 가슴 · 등 · 어깨 · 팔 · 코어 ·
+              역도 · 기능성 운동을 분석합니다.
             </p>
-          </div>
-
-        </div>
 
 
-        <!-- RECORD FILTER -->
+            <div class="category-preview-grid">
 
-        <section class="athlete-toolbar">
+              <div class="category-preview-card">
+                <span>🦵</span>
+                <strong>하체</strong>
+                <small>Squat · Lunge · Leg</small>
+              </div>
 
-          <div class="search-box">
+              <div class="category-preview-card">
+                <span>🏋️</span>
+                <strong>데드리프트</strong>
+                <small>Deadlift variations</small>
+              </div>
 
-            <i class="fa-solid fa-magnifying-glass"></i>
+              <div class="category-preview-card">
+                <span>💪</span>
+                <strong>상체</strong>
+                <small>Chest · Back · Arms</small>
+              </div>
 
-            <input
-              type="search"
-              id="recordSearch"
-              placeholder="선수 또는 분석 종목 검색"
-            >
+              <div class="category-preview-card">
+                <span>⚡</span>
+                <strong>파워 · 역도</strong>
+                <small>Clean · Snatch · Jerk</small>
+              </div>
 
-          </div>
-
-
-          <select id="recordTypeFilter">
-
-            <option value="all">
-              전체 분석
-            </option>
-
-            <option value="pose">
-              자세분석
-            </option>
-
-            <option value="video">
-              영상분석
-            </option>
-
-            <option value="weight">
-              웨이트
-            </option>
-
-            <option value="sport">
-              종목분석
-            </option>
-
-            <option value="pe">
-              체대입시
-            </option>
-
-          </select>
-
-        </section>
-
-
-        <!-- RECORD TABLE -->
-
-        <section class="records-panel">
-
-          <div class="records-table-wrapper">
-
-            <table class="records-table">
-
-              <thead>
-
-                <tr>
-                  <th>날짜</th>
-                  <th>선수</th>
-                  <th>분석 유형</th>
-                  <th>종목</th>
-                  <th>점수</th>
-                  <th>상태</th>
-                  <th></th>
-                </tr>
-
-              </thead>
-
-
-              <tbody id="recordsTableBody">
-
-                <tr class="empty-table-row">
-
-                  <td colspan="7">
-
-                    <div class="table-empty">
-
-                      <i class="fa-solid fa-chart-line"></i>
-
-                      <strong>
-                        저장된 분석 기록이 없습니다.
-                      </strong>
-
-                    </div>
-
-                  </td>
-
-                </tr>
-
-              </tbody>
-
-            </table>
+            </div>
 
           </div>
 
         </section>
 
-      </section>
+
+
+        <!-- =================================================
+             SUMMER SPORTS PAGE
+        ================================================== -->
+
+        <section
+          id="summerPage"
+          class="page-section"
+          data-page-section="summer"
+        >
+
+          <div class="page-placeholder">
+
+            <span class="placeholder-badge">
+              SUMMER SPORTS
+            </span>
+
+            <h2>
+              하계종목
+            </h2>
+
+            <p>
+              육상 · 구기 · 라켓 · 수영 · 사이클 · 체조 등
+              하계 스포츠 기술을 분석합니다.
+            </p>
+
+
+            <div class="category-preview-grid">
+
+              <div class="category-preview-card">
+                <span>🏃</span>
+                <strong>육상</strong>
+                <small>Running · Jump · Throw</small>
+              </div>
+
+              <div class="category-preview-card">
+                <span>🏀</span>
+                <strong>구기</strong>
+                <small>Basketball · Football</small>
+              </div>
+
+              <div class="category-preview-card">
+                <span>🏸</span>
+                <strong>라켓</strong>
+                <small>Badminton · Tennis</small>
+              </div>
+
+              <div class="category-preview-card">
+                <span>🏊</span>
+                <strong>수상</strong>
+                <small>Swimming · Rowing</small>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
 
 
 
-      <!-- ========================================
-           REPORT PAGE
-      ========================================= -->
+        <!-- =================================================
+             WINTER SPORTS PAGE
+        ================================================== -->
 
-      <section
-        class="page"
-        id="page-report"
-      >
+        <section
+          id="winterPage"
+          class="page-section"
+          data-page-section="winter"
+        >
 
-        <div class="analysis-page-header">
+          <div class="page-placeholder">
 
-          <div>
-            <span class="section-eyebrow">
+            <span class="placeholder-badge">
+              WINTER SPORTS
+            </span>
+
+            <h2>
+              동계종목
+            </h2>
+
+            <p>
+              바이애슬론 · 크로스컨트리 · 롤러스키 ·
+              알파인 · 스케이팅 등 동계종목을 분석합니다.
+            </p>
+
+
+            <div class="category-preview-grid">
+
+              <div class="category-preview-card">
+                <span>🎯</span>
+                <strong>바이애슬론</strong>
+                <small>Biathlon</small>
+              </div>
+
+              <div class="category-preview-card">
+                <span>⛷️</span>
+                <strong>크로스컨트리</strong>
+                <small>Cross Country</small>
+              </div>
+
+              <div class="category-preview-card">
+                <span>🎿</span>
+                <strong>알파인</strong>
+                <small>Alpine Ski</small>
+              </div>
+
+              <div class="category-preview-card">
+                <span>⛸️</span>
+                <strong>빙상</strong>
+                <small>Speed · Short Track</small>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PE ENTRANCE PAGE
+        ================================================== -->
+
+        <section
+          id="peEntrancePage"
+          class="page-section"
+          data-page-section="pe-entrance"
+        >
+
+          <div class="page-placeholder">
+
+            <span class="placeholder-badge">
+              UNIVERSITY PERFORMANCE
+            </span>
+
+            <h2>
+              체대입시 분석
+            </h2>
+
+            <p>
+              목표 대학교와 학과, 전형을 선택하고
+              대학별 실기 기준과 자세를 분석합니다.
+            </p>
+
+
+            <div class="entrance-flow">
+
+              <div class="flow-step">
+                <span>01</span>
+                <strong>대학교 선택</strong>
+              </div>
+
+              <div class="flow-line"></div>
+
+              <div class="flow-step">
+                <span>02</span>
+                <strong>학과 선택</strong>
+              </div>
+
+              <div class="flow-line"></div>
+
+              <div class="flow-step">
+                <span>03</span>
+                <strong>전형 선택</strong>
+              </div>
+
+              <div class="flow-line"></div>
+
+              <div class="flow-step">
+                <span>04</span>
+                <strong>실기 분석</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             AI POSE ANALYSIS PAGE
+        ================================================== -->
+
+        <section
+          id="posePage"
+          class="page-section"
+          data-page-section="pose"
+        >
+
+          <div class="page-placeholder pose-placeholder">
+
+            <span class="placeholder-badge ai">
+              AI BIOMECHANICS
+            </span>
+
+            <h2>
+              AI 자세분석
+            </h2>
+
+            <p>
+              카메라와 영상을 이용하여 관절점,
+              스켈레톤, 기준선과 관절각을 분석합니다.
+            </p>
+
+
+            <div class="pose-feature-preview">
+
+              <div>
+                <span class="pose-feature-number">
+                  01
+                </span>
+
+                <strong>
+                  VIDEO
+                </strong>
+
+                <small>
+                  영상 업로드
+                </small>
+              </div>
+
+
+              <div>
+                <span class="pose-feature-number">
+                  02
+                </span>
+
+                <strong>
+                  CAMERA
+                </strong>
+
+                <small>
+                  실시간 카메라
+                </small>
+              </div>
+
+
+              <div>
+                <span class="pose-feature-number">
+                  03
+                </span>
+
+                <strong>
+                  LANDMARK
+                </strong>
+
+                <small>
+                  관절점 추적
+                </small>
+              </div>
+
+
+              <div>
+                <span class="pose-feature-number">
+                  04
+                </span>
+
+                <strong>
+                  ANGLE
+                </strong>
+
+                <small>
+                  기준선 · 각도
+                </small>
+              </div>
+
+            </div>
+
+
+            <div class="development-warning">
+
+              <span>
+                ●
+              </span>
+
+              <div>
+                <strong>
+                  STEP-BY-STEP DEVELOPMENT
+                </strong>
+
+                <p>
+                  영상 → 카메라 → 관절인식 → 기준선 →
+                  각도분석 순서로 기능을 검증합니다.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ELITE COMPARISON PAGE
+        ================================================== -->
+
+        <section
+          id="comparisonPage"
+          class="page-section"
+          data-page-section="comparison"
+        >
+
+          <div class="page-placeholder">
+
+            <span class="placeholder-badge">
+              ELITE BENCHMARK
+            </span>
+
+            <h2>
+              엘리트 기준 비교
+            </h2>
+
+            <p>
+              종목별 공개·검증된 엘리트 기준과
+              선수의 관절각, 움직임과 기술 수행을 비교합니다.
+            </p>
+
+
+            <div class="comparison-preview">
+
+              <div class="comparison-side">
+
+                <span>
+                  ATHLETE
+                </span>
+
+                <strong>
+                  내 자세
+                </strong>
+
+                <div class="comparison-score">
+                  --
+                </div>
+
+              </div>
+
+
+              <div class="comparison-vs">
+                VS
+              </div>
+
+
+              <div class="comparison-side elite">
+
+                <span>
+                  BENCHMARK
+                </span>
+
+                <strong>
+                  엘리트 기준
+                </strong>
+
+                <div class="comparison-score">
+                  READY
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANALYSIS RECORDS PAGE
+        ================================================== -->
+
+        <section
+          id="recordsPage"
+          class="page-section"
+          data-page-section="records"
+        >
+
+          <div class="page-placeholder">
+
+            <span class="placeholder-badge">
+              PERFORMANCE HISTORY
+            </span>
+
+            <h2>
+              분석 기록
+            </h2>
+
+            <p>
+              선수별 자세분석과 운동 기록을
+              날짜별로 확인합니다.
+            </p>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             REPORT PAGE
+        ================================================== -->
+
+        <section
+          id="reportsPage"
+          class="page-section"
+          data-page-section="reports"
+        >
+
+          <div class="page-placeholder">
+
+            <span class="placeholder-badge">
               PERFORMANCE REPORT
             </span>
 
-            <h1>
-              선수 분석 리포트
-            </h1>
+            <h2>
+              분석 리포트
+            </h2>
 
             <p>
-              분석 데이터를 종합해 선수의 움직임과
-              퍼포먼스 변화를 확인합니다.
+              자세 점수, 관절각, 개선점과
+              퍼포먼스 변화를 리포트로 정리합니다.
             </p>
-          </div>
-
-
-          <button
-            class="primary-analysis-button"
-            id="exportReportButton"
-            type="button"
-          >
-            <i class="fa-solid fa-file-export"></i>
-
-            리포트 출력
-          </button>
-
-        </div>
-
-
-
-        <!-- REPORT SELECT -->
-
-        <section class="analysis-control-panel">
-
-          <div class="control-group">
-
-            <label for="reportAthlete">
-              선수
-            </label>
-
-            <select id="reportAthlete">
-
-              <option value="">
-                선수 선택
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="control-group">
-
-            <label for="reportPeriod">
-              분석 기간
-            </label>
-
-            <select id="reportPeriod">
-
-              <option value="latest">
-                최근 분석
-              </option>
-
-              <option value="month">
-                최근 1개월
-              </option>
-
-              <option value="three-month">
-                최근 3개월
-              </option>
-
-              <option value="all">
-                전체
-              </option>
-
-            </select>
 
           </div>
 
@@ -3413,343 +1993,96 @@
 
 
 
-        <!-- REPORT CONTENT -->
+        <!-- =================================================
+             STATISTICS PAGE
+        ================================================== -->
 
         <section
-          class="report-sheet"
-          id="reportSheet"
+          id="statisticsPage"
+          class="page-section"
+          data-page-section="statistics"
         >
 
+          <div class="page-placeholder">
 
-          <div class="report-top">
+            <span class="placeholder-badge">
+              SPORTS DATA
+            </span>
 
-            <div>
+            <h2>
+              통계
+            </h2>
 
-              <span>
-                SEOLCHEON PERFORMANCE LAB
-              </span>
-
-              <h2>
-                ATHLETE PERFORMANCE REPORT
-              </h2>
-
-            </div>
-
-
-            <div class="report-logo">
-              SPL
-            </div>
+            <p>
+              선수와 종목별 데이터를 그래프로
+              비교하고 변화 추세를 분석합니다.
+            </p>
 
           </div>
-
-
-
-          <!-- PROFILE -->
-
-          <div class="report-profile">
-
-            <div class="report-profile-avatar">
-
-              <i class="fa-solid fa-user"></i>
-
-            </div>
-
-
-            <div>
-
-              <span>
-                ATHLETE
-              </span>
-
-              <h2 id="reportAthleteName">
-                선수를 선택하세요
-              </h2>
-
-              <p id="reportAthleteInfo">
-                종목 · 학년
-              </p>
-
-            </div>
-
-          </div>
-
-
-
-          <!-- SCORE -->
-
-          <div class="report-score-grid">
-
-            <article>
-
-              <span>
-                종합 점수
-              </span>
-
-              <strong id="reportTotalScore">
-                --
-              </strong>
-
-              <small>
-                / 100
-              </small>
-
-            </article>
-
-
-            <article>
-
-              <span>
-                자세 안정성
-              </span>
-
-              <strong id="reportStabilityScore">
-                --
-              </strong>
-
-              <small>
-                / 100
-              </small>
-
-            </article>
-
-
-            <article>
-
-              <span>
-                좌우 균형
-              </span>
-
-              <strong id="reportBalanceScore">
-                --
-              </strong>
-
-              <small>
-                / 100
-              </small>
-
-            </article>
-
-
-            <article>
-
-              <span>
-                움직임 효율
-              </span>
-
-              <strong id="reportEfficiencyScore">
-                --
-              </strong>
-
-              <small>
-                / 100
-              </small>
-
-            </article>
-
-          </div>
-
-
-
-          <!-- REPORT GRAPH -->
-
-          <article class="report-block">
-
-            <div class="report-block-title">
-
-              <span>
-                PERFORMANCE TREND
-              </span>
-
-              <h3>
-                분석 점수 변화
-              </h3>
-
-            </div>
-
-
-            <div class="report-chart-container">
-
-              <canvas id="performanceChart"></canvas>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- ANALYSIS SUMMARY -->
-
-          <div class="report-analysis-grid">
-
-
-            <article class="report-block">
-
-              <div class="report-block-title">
-
-                <span>
-                  STRENGTH
-                </span>
-
-                <h3>
-                  강점
-                </h3>
-
-              </div>
-
-
-              <div
-                class="report-text"
-                id="reportStrength"
-              >
-                분석 기록이 없습니다.
-              </div>
-
-            </article>
-
-
-
-            <article class="report-block">
-
-              <div class="report-block-title">
-
-                <span>
-                  IMPROVEMENT
-                </span>
-
-                <h3>
-                  개선 포인트
-                </h3>
-
-              </div>
-
-
-              <div
-                class="report-text"
-                id="reportImprovement"
-              >
-                분석 기록이 없습니다.
-              </div>
-
-            </article>
-
-
-          </div>
-
-
-
-          <!-- COACH NOTE -->
-
-          <article class="report-block">
-
-            <div class="report-block-title">
-
-              <span>
-                TRAINING NOTE
-              </span>
-
-              <h3>
-                훈련 참고사항
-              </h3>
-
-            </div>
-
-
-            <div
-              class="report-text"
-              id="reportTrainingNote"
-            >
-              분석 결과를 기반으로 훈련 참고사항이 표시됩니다.
-            </div>
-
-          </article>
-
-
-
-          <div class="report-footer">
-
-            <div>
-              <strong>
-                설천고 Performance Lab
-              </strong>
-
-              <span>
-                Sports Science & Performance Analysis
-              </span>
-            </div>
-
-
-            <div>
-              SEOLCHEON HIGH SCHOOL
-            </div>
-
-          </div>
-
 
         </section>
 
-      </section>
+
+
+        <!-- =================================================
+             SETTINGS PAGE
+        ================================================== -->
+
+        <section
+          id="settingsPage"
+          class="page-section"
+          data-page-section="settings"
+        >
+
+          <div class="page-placeholder">
+
+            <span class="placeholder-badge">
+              SYSTEM SETTINGS
+            </span>
+
+            <h2>
+              설정
+            </h2>
+
+            <p>
+              카메라, 분석 기준선, 데이터와
+              시스템 환경을 설정합니다.
+            </p>
+
+          </div>
+
+        </section>
 
 
 
-    </div>
-    <!-- PAGE CONTAINER END -->
+      <!-- PAGE CONTENT END -->
+      </div>
 
 
-  </main>
-  <!-- MAIN END -->
+      <!-- =================================================
+           MOBILE SIDEBAR OVERLAY
+      ================================================== -->
+
+      <div
+        id="sidebarOverlay"
+        class="sidebar-overlay"
+      ></div>
 
 
-</div>
-<!-- APP END -->
+    <!-- MAIN AREA END -->
+    </main>
 
 
-
-<!-- ========================================
-     TOAST
-========================================= -->
-
-<div
-  class="toast"
-  id="toast"
-  role="status"
-  aria-live="polite"
->
-
-  <i class="fa-solid fa-circle-check"></i>
-
-  <span id="toastMessage">
-    완료되었습니다.
-  </span>
-
-</div>
+  <!-- APP END -->
+  </div>
 
 
 
-<!-- ========================================
-     CHART.JS
-========================================= -->
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
 
-<script
-  src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
-></script>
-
-
-<!-- ========================================
-     APPLICATION
-========================================= -->
-
-<script src="app.js"></script>
-
-<script src="athletes.js"></script>
-
-<script src="sports.js"></script>
-
-<script src="pose.js"></script>
-
-<script src="records.js"></script>
-
-<script src="report.js"></script>
-
+  <script src="app.js"></script>
 
 </body>
 </html>
